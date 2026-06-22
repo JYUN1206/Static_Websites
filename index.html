@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="刘俊 - 文旅规划与策划 · AI + 文旅">
+    <title>刘俊 - 文旅策划师作品集</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/features.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ===== 导航栏 ===== -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">刘俊·John Lau</a>
+            <button class="menu-toggle" aria-label="菜单">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active" data-i18n="nav.home">首页</a></li>
+                <li><a href="#professional" class="nav-link" data-i18n="nav.professional">专业领域</a></li>
+                <li><a href="#skills" class="nav-link" data-i18n="nav.skills">技能</a></li>
+                <li><a href="#works" class="nav-link" data-i18n="nav.works">项目</a></li>
+                <li><a href="#blog" class="nav-link" data-i18n="nav.blog">博客</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="nav.contact">联系</a></li>
+                <li class="nav-right-mobile" style="display:none;">
+                    <button class="theme-toggle" id="themeToggleMobile">🌙</button>
+                    <select class="lang-toggle" id="langSelectMobile">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                    </select>
+                </li>
+            </ul>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="深色模式切换">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <select class="lang-toggle" id="langSelect">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== Hero 区块 ===== -->
+    <section id="home" class="hero fade-in">
+        <div class="hero-badge" data-i18n="hero.badge">🟢 AVAILABLE FOR WORK</div>
+        <h1 class="hero-title">I'm <span class="highlight">刘俊</span></h1>
+        <p class="hero-subtitle">文旅规划与策划师 · 8年泛规划领域经验</p>
+        <p class="hero-desc">拥有城市规划专业背景，近5年深耕文旅策划、产业规划与项目申报。精通G端业务逻辑，主导及参与十余个省市级文旅融合、乡村振兴与度假区创建项目。擅长"数据分析+AI工具"辅助策划工作流。</p>
+        <div class="hero-actions">
+            <a href="#works" class="btn btn-primary" data-i18n="hero.cta1">查看作品 ↓</a>
+            <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">联系我 ✉</a>
+        </div>
+    </section>
+
+    <!-- ===== 专业领域 ===== -->
+    <section id="professional" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">My Professional</div>
+                <h2 class="section-title" data-i18n="professional.title">我的专业领域</h2>
+                <p class="section-subtitle">多年积累的专业技能与领域经验</p>
+            </div>
+            <div class="professional-grid fade-in">
+                <div class="professional-card">
+                    <div class="professional-card-icon">🗺️</div>
+                    <div class="professional-card-title">文旅规划与策划</div>
+                    <div class="professional-card-desc">深度参与旅游度假区、文旅融合、乡村振兴等省市级规划项目</div>
+                </div>
+                <div class="professional-card">
+                    <div class="professional-card-icon">🤖</div>
+                    <div class="professional-card-title">AI + 数智化赋能</div>
+                    <div class="professional-card-desc">担任公司AI小组组长，搭建RAG知识库，推动AIGC工具落地业务</div>
+                </div>
+                <div class="professional-card">
+                    <div class="professional-card-icon">📊</div>
+                    <div class="professional-card-title">数据分析与经济运行</div>
+                    <div class="professional-card-desc">运用Python与八爪鱼构建文旅数据采集流程，支撑省厅级报告编制</div>
+                </div>
+                <div class="professional-card">
+                    <div class="professional-card-icon">📋</div>
+                    <div class="professional-card-title">政务智库与顶层设计</div>
+                    <div class="professional-card-desc">起草省厅级政务发言稿，参编"十五五"文旅产业发展规划</div>
+                </div>
+                <div class="professional-card">
+                    <div class="professional-card-icon">📝</div>
+                    <div class="professional-card-title">行业研究与专业输出</div>
+                    <div class="professional-card-desc">参编7项行业专题，累计发表22篇专业原创文章</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 技能标签 ===== -->
+    <section id="skills" class="section section-alt">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Skill</div>
+                <h2 class="section-title" data-i18n="skills.title">技能标签</h2>
+            </div>
+            <div class="skills-tags fade-in">
+                <span class="skill-tag">Dify</span>
+                <span class="skill-tag">Coze</span>
+                <span class="skill-tag">CherryStudio</span>
+                <span class="skill-tag">RAG知识库</span>
+                <span class="skill-tag">AIGC工作流</span>
+                <span class="skill-tag">Claude Code</span>
+                <span class="skill-tag">Trae</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">八爪鱼</span>
+                <span class="skill-tag">提示词工程</span>
+                <span class="skill-tag">文旅产业规划</span>
+                <span class="skill-tag">政务公文写作</span>
+                <span class="skill-tag">申报材料编制</span>
+                <span class="skill-tag">数据分析与可视化</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 精通工具 ===== -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Tool</div>
+                <h2 class="section-title" data-i18n="tool.title">精通的工具</h2>
+                <p class="section-subtitle" data-i18n="tool.subtitle">日常策划与数据分析中使用的主要工具</p>
+            </div>
+            <div class="tools-list fade-in">
+                <span class="tool-item">Dify</span>
+                <span class="tool-item">Coze</span>
+                <span class="tool-item">CherryStudio</span>
+                <span class="tool-item">Claude Code</span>
+                <span class="tool-item">Trae</span>
+                <span class="tool-item">Python</span>
+                <span class="tool-item">八爪鱼采集器</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 项目作品 ===== -->
+    <section id="works" class="section section-alt">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Works</div>
+                <h2 class="section-title" data-i18n="works.title">我的项目作品</h2>
+                <p class="section-subtitle">累计参与30+个文旅规划、策划、评估与申报项目</p>
+            </div>
+
+            <div class="fade-in">
+                <!-- 文旅报告 -->
+                <div class="works-category-title">📊 文旅经济运行分析报告</div>
+                <div class="works-gallery">
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project1.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">湘西州文旅经济运行情况分析报告(简本)</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project29.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">湘西州文旅经济运行情况分析报告·汇报PPT</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project30.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">湘西州文旅投诉情况分析报告</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project32.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">湘西州文旅经济运行情况分析报告（全本）</div>
+                    </div>
+                </div>
+
+                <!-- 规划设计 -->
+                <div class="works-category-title">🗺️ 规划设计</div>
+                <div class="works-gallery">
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project4.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">雪峰山文旅融合发展规划竞标稿</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project10.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">花垣县乡村旅游景区品牌建设规划</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project26.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">常德西洞庭文旅体融合发展规划 · 图集</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project27.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">常德西洞庭文旅体融合发展规划 · 文本</div>
+                    </div>
+                </div>
+
+                <!-- 文旅策划 -->
+                <div class="works-category-title">✍️ 文旅策划与研究</div>
+                <div class="works-gallery">
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project3.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">旅游度假区专题研究</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project5.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">云南旅游新方向 · 红河文旅新局面</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project6.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">长沙芙蓉区戏曲文化特色街区规划</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project7.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">体育旅游专题研究</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project8.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">湘潭市文旅招商手册</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project23.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">“云上相思 南国有爱”策划案</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project24.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">云南旅居专题研究</div>
+                    </div>
+                </div>
+
+                <!-- 评估报告 -->
+                <div class="works-category-title">📋 旅游度假区评估报告</div>
+                <div class="works-gallery">
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project2.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">里耶八面山 · 国家级度假区评估</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project20.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">芙蓉镇 · 国家级度假区评估</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project21.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">边城茶峒 · 省级度假区评估</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project22.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">紫霞湖 · 省级度假区评估</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project9.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">清溪景区5A创建初步研判</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project11.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">旅发大会办会效应分析报告</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project16.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">全省景区安全能力建设调研报告</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project28.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">天子湖不夜城 · 省级休闲街区自评</div>
+                    </div>
+                </div>
+
+                <!-- 试点申报 -->
+                <div class="works-category-title">🏷️ 品牌创建与试点申报</div>
+                <div class="works-gallery">
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project13.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">索县汉代城址文化遗址公园申报</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project14.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">南岳区融合发展示范区建设方案</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project15.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">花垣县文化产业赋能乡村振兴试点</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project17.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">弥勒湖泉水乡 · 国家级度假区申报</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project18.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">湘潭水府 · 省级度假区申报</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project25.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">云溪街道 · 省级乡村旅游重点镇</div>
+                    </div>
+                </div>
+
+                <!-- 领导发言 -->
+                <div class="works-category-title">🎤 政务发言稿起草</div>
+                <div class="works-gallery">
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project33.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">湖南省文旅厅 · 厅党组中心组学习讲话</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project34.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">湖南省文旅厅 · 文旅产业发展趋势分析</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project35.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">云南省文旅厅 · “十五五”规划培训汇报(PPT)</div>
+                    </div>
+                    <div class="gallery-item" onclick="previewImage(this)">
+                        <div class="gallery-item-image"><img src="images/projects/project36.png" alt="" loading="lazy"></div>
+                        <div class="gallery-item-title">云南省文旅厅 · “十五五”规划培训汇报</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 图片预览弹窗 ===== -->
+    <div class="image-preview-overlay" id="imagePreview" onclick="this.classList.remove('active')">
+        <img id="previewImg" src="" alt="预览">
+    </div>
+
+    <!-- ===== 博客文章 ===== -->
+    <section id="blog" class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Blog</div>
+                <h2 class="section-title" data-i18n="blog.title">博客文章</h2>
+                <p class="section-subtitle" data-i18n="blog.subtitle">分享技术心得与项目经验</p>
+            </div>
+            <div class="blog-list fade-in">
+                <input type="text" class="blog-search" placeholder="搜索文章..." id="blogSearch">
+                <div id="blogContainer">
+                    <!-- 由 JS 动态加载 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA 联系区块 ===== -->
+    <section id="contact" class="cta-section fade-in">
+        <div class="cta-title">LET'S TALK!</div>
+        <p class="cta-desc" data-i18n="contact.desc">专注于文旅规划策划，兼顾数据分析与AI赋能，打造高效解决方案。</p>
+        <div class="cta-actions">
+            <a href="mailto:841900709@qq.com" class="btn btn-primary" style="background:var(--accent);">📧 联系我</a>
+        </div>
+        <div class="cta-contact-info">
+            <span>841900709@qq.com</span>
+            <span>长沙 · 18273715252</span>
+        </div>
+    </section>
+
+    <!-- ===== 页脚 ===== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <span>&copy; 2025 刘俊 · 文旅策划师作品集</span>
+        </div>
+    </footer>
+
+    <!-- ===== 微信二维码弹窗 ===== -->
+    <div class="qr-overlay" id="qrOverlay">
+        <div class="qr-popup">
+            <img src="images/wechat-qr.png" alt="微信二维码" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22><rect fill=%22%23f0f0f0%22 width=%22180%22 height=%22180%22 rx=%228%22/><text x=%2290%22 y=%2295%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2212%22>二维码占位</text></svg>';">
+            <p style="font-size:13px;color:var(--text-color);margin-top:8px;">扫一扫添加微信</p>
+            <button class="qr-popup-close" onclick="document.getElementById('qrOverlay').classList.remove('active')">关闭</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
