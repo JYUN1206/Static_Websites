@@ -302,9 +302,10 @@ img {
 .hero-desc {
     font-size: 13px;
     color: var(--text-muted);
-    max-width: 460px;
+    max-width: 680px;
     margin: 16px auto 0;
-    line-height: 1.7;
+    line-height: 1.9;
+    text-align: left;
 }
 
 .hero-actions {
@@ -407,4 +408,135 @@ img {
     align-items: center;
     gap: 24px;
     flex-wrap: wrap;
+}
+
+/* ===== 项目经验 · Warm Editorial 风格 ===== */
+.exp-section {
+    background: var(--bg-color);
+}
+
+.exp-main-title {
+    font-family: 'Newsreader', 'Georgia', var(--font-stack);
+    font-weight: 500;
+    font-size: 36px;
+    letter-spacing: -0.5px;
+}
+
+/* 分类标题 */
+.exp-category {
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border-color);
+}
+.exp-category:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.exp-cat-title {
+    font-family: 'Newsreader', 'Georgia', var(--font-stack);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--heading-color);
+    margin-bottom: 20px;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+    line-height: 1.4;
+    transition: border-color var(--transition-speed);
+}
+
+/* 项目列表 */
+.exp-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.exp-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid transparent;
+    transition: all var(--transition-speed);
+    cursor: default;
+    border-radius: var(--radius-sm);
+}
+.exp-item:last-child {
+    border-bottom: none;
+}
+
+.exp-item:hover {
+    background: rgba(var(--accent-rgb), 0.03);
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+/* 年份 */
+.exp-year {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    padding-top: 2px;
+    white-space: nowrap;
+}
+
+/* 项目内容 */
+.exp-body {
+    min-width: 0;
+}
+
+.exp-title {
+    font-family: 'Newsreader', 'Georgia', var(--font-stack);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--heading-color);
+    line-height: 1.4;
+    margin-bottom: 3px;
+    transition: color var(--transition-speed);
+}
+.exp-item:hover .exp-title {
+    color: var(--accent);
+}
+
+.exp-role {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+    margin-bottom: 4px;
+}
+
+.exp-desc {
+    font-size: 13px;
+    color: var(--text-color);
+    line-height: 1.65;
+}
+
+/* 入场动画增强 — 分类依次渐入 */
+.exp-category.fade-in {
+    transition-delay: 0s;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .exp-main-title {
+        font-size: 28px;
+    }
+    .exp-cat-title {
+        font-size: 18px;
+    }
+    .exp-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+    .exp-year {
+        font-size: 11px;
+    }
+    .exp-item:hover {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
 }

@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/features.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,14..72,300;0,14..72,500;1,14..72,300;1,14..72,500&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -22,8 +25,10 @@
                 <li><a href="#home" class="nav-link active" data-i18n="nav.home">首页</a></li>
                 <li><a href="#professional" class="nav-link" data-i18n="nav.professional">专业领域</a></li>
                 <li><a href="#skills" class="nav-link" data-i18n="nav.skills">技能</a></li>
-                <li><a href="#works" class="nav-link" data-i18n="nav.works">项目</a></li>
-                <li><a href="#blog" class="nav-link" data-i18n="nav.blog">博客</a></li>
+                <li><a href="#works" class="nav-link" data-i18n="nav.works">项目作品</a></li>
+                <li><a href="#experience" class="nav-link">项目经历</a></li>
+                <li><a href="#cases" class="nav-link">项目案例</a></li>
+                <li><a href="#blog" class="nav-link" data-i18n="nav.blog">原创文章</a></li>
                 <li><a href="#contact" class="nav-link" data-i18n="nav.contact">联系</a></li>
                 <li class="nav-right-mobile" style="display:none;">
                     <button class="theme-toggle" id="themeToggleMobile">🌙</button>
@@ -49,8 +54,8 @@
     <section id="home" class="hero fade-in">
         <div class="hero-badge" data-i18n="hero.badge">🟢 AVAILABLE FOR WORK</div>
         <h1 class="hero-title">I'm <span class="highlight">刘俊</span></h1>
-        <p class="hero-subtitle">文旅规划与策划师 · 8年泛规划领域经验</p>
-        <p class="hero-desc">拥有城市规划专业背景，近5年深耕文旅策划、产业规划与项目申报。精通G端业务逻辑，主导及参与十余个省市级文旅融合、乡村振兴与度假区创建项目。擅长"数据分析+AI工具"辅助策划工作流。</p>
+        <p class="hero-subtitle">文旅规划与策划师 · 9年跨领域经验</p>
+        <p class="hero-desc">9年跨领域工作经验，其中超过5年深耕文旅规划咨询领域，历经从景观设计、SAP开发到文旅规划、数据分析与AI应用的角色演变。长期参与文化和旅游发展规划、旅游度假区创建、乡村旅游、红色旅游、文旅经济运行分析及"十五五"规划研究等项目工作，累计参与约32个正式项目，并在多个项目中担任负责人或独立承担核心任务。2024年起系统拓展数据分析能力，掌握Python、八爪鱼等工具，并应用于文旅经济运行监测与报告编制。2025年担任公司生成式AI技术应用小组组长，统筹内部AI技能培训、工具分享及知识库应用探索，熟悉Dify、CherryStudio及主流大模型调用。目前正从传统规划策划向"数据分析+AI赋能"方向转型，致力于将文旅行业洞察、数据分析方法与AI工具相结合，优化规划文本编制与研究流程，提升项目交付质量与生产效率。</p>
         <div class="hero-actions">
             <a href="#works" class="btn btn-primary" data-i18n="hero.cta1">查看作品 ↓</a>
             <a href="#contact" class="btn btn-outline" data-i18n="hero.cta2">联系我 ✉</a>
@@ -103,20 +108,14 @@
                 <h2 class="section-title" data-i18n="skills.title">技能标签</h2>
             </div>
             <div class="skills-tags fade-in">
-                <span class="skill-tag">Dify</span>
-                <span class="skill-tag">Coze</span>
-                <span class="skill-tag">CherryStudio</span>
-                <span class="skill-tag">RAG知识库</span>
-                <span class="skill-tag">AIGC工作流</span>
-                <span class="skill-tag">Claude Code</span>
-                <span class="skill-tag">Trae</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">八爪鱼</span>
-                <span class="skill-tag">提示词工程</span>
-                <span class="skill-tag">文旅产业规划</span>
-                <span class="skill-tag">政务公文写作</span>
-                <span class="skill-tag">申报材料编制</span>
+                <span class="skill-tag">文旅规划编制与申报</span>
+                <span class="skill-tag">产业经济分析与专题研究</span>
+                <span class="skill-tag">AI工具应用与内部赋能</span>
+                <span class="skill-tag">规划文本与报告撰写</span>
+                <span class="skill-tag">项目全流程管理</span>
+                <span class="skill-tag">跨部门协同沟通</span>
                 <span class="skill-tag">数据分析与可视化</span>
+                <span class="skill-tag">政策研究与解读</span>
             </div>
         </div>
     </section>
@@ -321,13 +320,398 @@
         <img id="previewImg" src="" alt="预览">
     </div>
 
+    <!-- ===== 项目经验（Warm Editorial 风格） ===== -->
+    <section id="experience" class="section exp-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Experience</div>
+                <h2 class="section-title exp-main-title">项目经历</h2>
+                <p class="section-subtitle" style="margin:0 auto;">6年+文旅策划规划经验，独立负责4个以上省市级项目，累计参与30+个正式项目</p>
+            </div>
+
+            <!-- 一、文旅数据分析 -->
+            <div class="exp-category fade-in">
+                <h3 class="exp-cat-title">文旅数据分析与经济运行</h3>
+                <div class="exp-items">
+                    <div class="exp-item">
+                        <div class="exp-year">2025 — 2026</div>
+                        <div class="exp-body">
+                            <div class="exp-title">湘西州文化和旅游领域经济运行分析报告</div>
+                            <div class="exp-role">独立负责 · 报告主编</div>
+                            <div class="exp-desc">独立完成全部报告编制，含各季度与年度文旅形势分析、旅游投诉分析，以及数据整理与趋势研判。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2024 — 2025</div>
+                        <div class="exp-body">
+                            <div class="exp-title">湖南省文化和旅游领域经济运行情况分析报告</div>
+                            <div class="exp-role">数据分析 · 报告编制</div>
+                            <div class="exp-desc">学习并运用 Python、八爪鱼等工具进行数据采集与清洗，参与报告数据分析与成果输出。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2024</div>
+                        <div class="exp-body">
+                            <div class="exp-title">《数说湖南"十四五"》PPT 制作</div>
+                            <div class="exp-role">辅助支撑 · 数据可视化</div>
+                            <div class="exp-desc">配合完成湖南省文旅"十四五"发展成果的数据梳理与可视化呈现。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 二、文旅规划与产业策划 -->
+            <div class="exp-category fade-in">
+                <h3 class="exp-cat-title">文旅规划与产业策划</h3>
+                <div class="exp-items">
+                    <div class="exp-item">
+                        <div class="exp-year">2025 — 2026</div>
+                        <div class="exp-body">
+                            <div class="exp-title">湖南省"十五五"文化和旅游发展规划</div>
+                            <div class="exp-role">前期调研 · 初稿编制</div>
+                            <div class="exp-desc">参与项目竞标、前期调研与规划初稿编制，熟悉省级规划框架搭建与核心章节撰写。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2025 — 2026</div>
+                        <div class="exp-body">
+                            <div class="exp-title">张家界市"十五五"文旅产业发展规划</div>
+                            <div class="exp-role">重点参与 · 成果编制</div>
+                            <div class="exp-desc">参与前期调研与规划成果编制，聚焦产业方向与项目谋划。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2024</div>
+                        <div class="exp-body">
+                            <div class="exp-title">郴州市北湖区文化和旅游产业提质三年行动计划</div>
+                            <div class="exp-role">产业策划 · 行动方案</div>
+                            <div class="exp-desc">参与编制区域文旅产业提质升级三年行动计划，明确发展路径与重点项目。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2023 — 2024</div>
+                        <div class="exp-body">
+                            <div class="exp-title">常德西洞庭管理区文旅体融合发展规划</div>
+                            <div class="exp-role">产业策划 · 规划编制</div>
+                            <div class="exp-desc">参与文旅体融合发展的产业定位、业态布局与规划文本编制。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2021 — 2022</div>
+                        <div class="exp-body">
+                            <div class="exp-title">雪峰山文化和旅游融合发展规划</div>
+                            <div class="exp-role">投标主笔 · 方案策划</div>
+                            <div class="exp-desc">负责方案核心内容策划与文本撰写，项目获湖南省文旅厅表扬。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2021</div>
+                        <div class="exp-body">
+                            <div class="exp-title">汨罗市屈子文化旅游度假区总体规划</div>
+                            <div class="exp-role">规划编制 · 参与</div>
+                            <div class="exp-desc">参与文化旅游度假区的总体规划编制，负责部分章节撰写。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 三、项目申报与品牌创建 -->
+            <div class="exp-category fade-in">
+                <h3 class="exp-cat-title">项目申报与品牌创建</h3>
+                <div class="exp-items">
+                    <div class="exp-item">
+                        <div class="exp-year">2024</div>
+                        <div class="exp-body">
+                            <div class="exp-title">长沙大王山文化旅游度假区创建国家级旅游度假区自评报告</div>
+                            <div class="exp-role">创建申报 · 自评报告</div>
+                            <div class="exp-desc">参与编写国家级旅游度假区创建自评报告，梳理创建条件与达标情况。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2023 — 2024</div>
+                        <div class="exp-body">
+                            <div class="exp-title">湘潭水府旅游度假区创建省级旅游度假区</div>
+                            <div class="exp-role">创建申报 · 参与编制</div>
+                            <div class="exp-desc">参与省级旅游度假区创建申报工作，负责部分材料撰写。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2023</div>
+                        <div class="exp-body">
+                            <div class="exp-title">弥勒湖泉水乡创建国家级旅游度假区</div>
+                            <div class="exp-role">创建申报 · 参与编制</div>
+                            <div class="exp-desc">参与国家级旅游度假区创建申报工作，协助完成相关材料。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2021</div>
+                        <div class="exp-body">
+                            <div class="exp-title">湘潭昭山旅游度假区创建省级旅游度假区</div>
+                            <div class="exp-role">创建申报 · 材料编制</div>
+                            <div class="exp-desc">参与编制申报材料和总体规划，助力该度假区成功创建省级旅游度假区。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 四、活动策划与专题报告 -->
+            <div class="exp-category fade-in">
+                <h3 class="exp-cat-title">活动策划与专题报告</h3>
+                <div class="exp-items">
+                    <div class="exp-item">
+                        <div class="exp-year">2022</div>
+                        <div class="exp-body">
+                            <div class="exp-title">湘潭申办湖南省首届旅游发展大会申报材料</div>
+                            <div class="exp-role">项目负责人 · 材料主笔</div>
+                            <div class="exp-desc">独立负责整套申办材料的策划与撰写，统筹申报逻辑与核心内容。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2021</div>
+                        <div class="exp-body">
+                            <div class="exp-title">湖南省文化旅游产业发展形势分析报告</div>
+                            <div class="exp-role">项目负责人 · 报告主编</div>
+                            <div class="exp-desc">独立完成产业形势研判与报告编制，输出年度文旅产业发展分析。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2023</div>
+                        <div class="exp-body">
+                            <div class="exp-title">旅发大会"1+13+N"办会模式及办会效应分析报告</div>
+                            <div class="exp-role">报告编制 · 效应分析</div>
+                            <div class="exp-desc">参与旅发大会办会模式与效应分析，负责相关研究与报告撰写。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 五、乡村旅游与农文旅融合 -->
+            <div class="exp-category fade-in">
+                <h3 class="exp-cat-title">乡村旅游与农文旅融合</h3>
+                <div class="exp-items">
+                    <div class="exp-item">
+                        <div class="exp-year">2022</div>
+                        <div class="exp-body">
+                            <div class="exp-title">花垣县乡村旅游景区品牌建设规划</div>
+                            <div class="exp-role">项目负责人 · 品牌主笔</div>
+                            <div class="exp-desc">独立负责乡村旅游品牌定位、产品体系与规划文本编制。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2024</div>
+                        <div class="exp-body">
+                            <div class="exp-title">桂阳县申报国家文化产业赋能乡村振兴试点</div>
+                            <div class="exp-role">产业融合 · 申报编制</div>
+                            <div class="exp-desc">参与农文旅融合与文化产业赋能乡村振兴的试点申报工作。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2019 — 2020</div>
+                        <div class="exp-body">
+                            <div class="exp-title">娄底新化县乡村旅游项目</div>
+                            <div class="exp-role">规划师 · 项目参与</div>
+                            <div class="exp-desc">在湖南景程智旅期间参与乡村旅游项目规划，成果顺利通过评审并落地。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 六、文旅产品策划与方案设计 -->
+            <div class="exp-category fade-in">
+                <h3 class="exp-cat-title">文旅产品策划与方案设计</h3>
+                <div class="exp-items">
+                    <div class="exp-item">
+                        <div class="exp-year">2025</div>
+                        <div class="exp-body">
+                            <div class="exp-title">"全域统筹绘蓝图 旅居云南开新局"——十五五旅游业发展培训交流汇报</div>
+                            <div class="exp-role">独立编写 · 汇报材料</div>
+                            <div class="exp-desc">独立完成云南旅居产业与十五五旅游业发展的培训交流汇报材料编写。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2024</div>
+                        <div class="exp-body">
+                            <div class="exp-title">云南省推进"云上相思 南国有爱"主题旅游产品策划方案</div>
+                            <div class="exp-role">产品策划 · 方案编写</div>
+                            <div class="exp-desc">参与主题旅游产品的概念设计与策划方案编制。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2024</div>
+                        <div class="exp-body">
+                            <div class="exp-title">弥勒市旅居产业发展情况报告</div>
+                            <div class="exp-role">产业研究 · 报告编写</div>
+                            <div class="exp-desc">参与弥勒市旅居产业发展情况调研与报告编写。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2022</div>
+                        <div class="exp-body">
+                            <div class="exp-title">张家界武陵源世界级旅游景区创建服务建议书</div>
+                            <div class="exp-role">项目建议书 · 参与编制</div>
+                            <div class="exp-desc">参与世界级旅游景区创建服务的建议书编制。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 七、文旅专题研究 -->
+            <div class="exp-category fade-in">
+                <h3 class="exp-cat-title">文旅专题研究</h3>
+                <div class="exp-items">
+                    <div class="exp-item">
+                        <div class="exp-year">2024</div>
+                        <div class="exp-body">
+                            <div class="exp-title">文化和旅游领域不动产投资信托基金（REITs）系列专题</div>
+                            <div class="exp-role">专题研究 · 研究报告</div>
+                            <div class="exp-desc">参与文旅领域 REITs 融资模式的系列专题研究与报告编写。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2024</div>
+                        <div class="exp-body">
+                            <div class="exp-title">云南旅居专题研究</div>
+                            <div class="exp-role">专题研究 · 研究报告</div>
+                            <div class="exp-desc">分析旅居产品、客群特征与发展模式。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2023</div>
+                        <div class="exp-body">
+                            <div class="exp-title">旅游度假区专题研究</div>
+                            <div class="exp-role">专题研究 · 研究报告</div>
+                            <div class="exp-desc">参与旅游度假区开发建设、运营管理与发展趋势的专题研究。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2021</div>
+                        <div class="exp-body">
+                            <div class="exp-title">红色旅游专题研究 / 产品手册</div>
+                            <div class="exp-role">专题研究 · 产品手册</div>
+                            <div class="exp-desc">参与红色旅游发展趋势与产品开发研究，并编制产品手册。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 八、AI 技术应用与研究 -->
+            <div class="exp-category fade-in">
+                <h3 class="exp-cat-title">AI 技术应用与研究</h3>
+                <div class="exp-items">
+                    <div class="exp-item">
+                        <div class="exp-year">2025</div>
+                        <div class="exp-body">
+                            <div class="exp-title">生成式 AI 技术应用小组工作方案</div>
+                            <div class="exp-role">组长 · 方案主导</div>
+                            <div class="exp-desc">担任公司生成式 AI 技术应用小组组长，主导编写工作方案，明确 AI 应用场景与推进路径。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2025</div>
+                        <div class="exp-body">
+                            <div class="exp-title">全公司 AI 技能培训</div>
+                            <div class="exp-role">组织者 · 培训主讲</div>
+                            <div class="exp-desc">组织面向全公司的 AI 工具应用培训，推动 AI 在业务中的普及使用。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2025</div>
+                        <div class="exp-body">
+                            <div class="exp-title">AI 工具辅助报告编制与项目本地部署</div>
+                            <div class="exp-role">工具应用 · 效率提升</div>
+                            <div class="exp-desc">运用 CherryStudio、Cursor、Trae 等 AI 工具辅助报告编制与 GitHub 项目本地部署。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 九、内容创作与专项支持 -->
+            <div class="exp-category fade-in">
+                <h3 class="exp-cat-title">内容创作与专项支持</h3>
+                <div class="exp-items">
+                    <div class="exp-item">
+                        <div class="exp-year">2025</div>
+                        <div class="exp-body">
+                            <div class="exp-title">厅领导发言稿撰写</div>
+                            <div class="exp-role">文案支持 · 参与起草</div>
+                            <div class="exp-desc">参与起草 3 篇厅领导发言稿，熟悉政府公文风格与政策表达。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2021 — 2022</div>
+                        <div class="exp-body">
+                            <div class="exp-title">公司公众号"zoomview"原创文章</div>
+                            <div class="exp-role">内容创作 · 行业观察</div>
+                            <div class="exp-desc">两年间发表原创文章 22 篇，其中 17 篇被公司公众号采用，涵盖文旅行业观察、产品研究与趋势分析。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 十、早期工作经历 -->
+            <div class="exp-category fade-in">
+                <h3 class="exp-cat-title">早期工作经历</h3>
+                <div class="exp-items">
+                    <div class="exp-item">
+                        <div class="exp-year">2019 — 2020</div>
+                        <div class="exp-body">
+                            <div class="exp-title">湖南景程智旅规划设计研究院 · 规划师 / 项目负责人</div>
+                            <div class="exp-role">全流程组织 · 核心文本撰写</div>
+                            <div class="exp-desc">负责文旅规划项目全流程组织，独立承担核心规划文本与申报材料撰写；参与永州东山景区等多个景区规划，成果均顺利通过评审并落地。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2017 — 2018</div>
+                        <div class="exp-body">
+                            <div class="exp-title">上海怀思信息技术咨询有限公司 · ABAP 开发顾问</div>
+                            <div class="exp-role">程序开发 · 运营支持</div>
+                            <div class="exp-desc">参与上海 WMF 等企业 SAP 整合项目，负责核心功能模块的程序设计、开发与维护。积累企业信息化系统与 IT 技术基础。</div>
+                        </div>
+                    </div>
+                    <div class="exp-item">
+                        <div class="exp-year">2016 — 2017</div>
+                        <div class="exp-body">
+                            <div class="exp-title">深圳华侨城文化旅游科技股份有限公司 · 景观设计师</div>
+                            <div class="exp-role">设计深化 · 施工配合</div>
+                            <div class="exp-desc">参与广西柳州主题乐园、常德卡乐星球等大型主题乐园后期规划图纸修改与景观设计。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== 项目案例（占位） ===== -->
+    <section id="cases" class="section section-alt">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Cases</div>
+                <h2 class="section-title">项目案例</h2>
+                <p class="section-subtitle" style="margin:0 auto;">精选代表性项目案例，详细展示项目背景、工作方法与成果</p>
+            </div>
+            <div class="fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+                <div class="blog-card" style="text-align:center;padding:48px 24px;">
+                    <div style="font-size:32px;margin-bottom:12px;">📊</div>
+                    <div class="blog-card-title" style="margin-bottom:8px;">文旅数据分析项目</div>
+                    <div style="font-size:13px;color:var(--text-muted);">案例整理中，敬请期待</div>
+                </div>
+                <div class="blog-card" style="text-align:center;padding:48px 24px;">
+                    <div style="font-size:32px;margin-bottom:12px;">🗺️</div>
+                    <div class="blog-card-title" style="margin-bottom:8px;">文旅策划项目</div>
+                    <div style="font-size:13px;color:var(--text-muted);">案例整理中，敬请期待</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== 博客文章 ===== -->
     <section id="blog" class="section">
         <div class="container">
             <div class="section-header fade-in">
                 <div class="section-label">Blog</div>
-                <h2 class="section-title" data-i18n="blog.title">博客文章</h2>
-                <p class="section-subtitle" data-i18n="blog.subtitle">分享技术心得与项目经验</p>
+                <h2 class="section-title" data-i18n="blog.title">原创文章</h2>
+                <p class="section-subtitle" data-i18n="blog.subtitle">公众号「zoomview」原创文章，聚焦文旅行业观察与趋势分析</p>
             </div>
             <div class="blog-list fade-in">
                 <input type="text" class="blog-search" placeholder="搜索文章..." id="blogSearch">

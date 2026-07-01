@@ -2,27 +2,183 @@
     "posts": [
         {
             "id": "1",
-            "title": "从规划师到AI组长：我的数智化转型实践",
-            "date": "2025-03-15",
-            "tags": ["AI应用", "数智化转型", "RAG知识库", "AIGC工作流"],
-            "excerpt": "分享担任公司AI小组组长期间，从0到1搭建本地AI服务器与知识库，组织全员培训，推动AIGC工具在文旅业务场景落地的实践经验。",
-            "content": "完整的文章内容..."
+            "title": "ZOOMVIEW原创 | 博物馆文创潮玩化路径探究",
+
+            "date": "2026-01-15",
+            "tags": ["文创", "博物馆", "产品设计"],
+            "excerpt": "探讨博物馆文创产品的潮玩化转型路径，分析IP开发与消费趋势。",
+
+            "link": "https://mp.weixin.qq.com/s/RbJtnbPsXnlrosa-UVfPSw"
         },
         {
             "id": "2",
-            "title": "Python+八爪鱼：文旅数据采集与分析实战",
-            "date": "2024-12-10",
-            "tags": ["Python", "数据分析", "八爪鱼", "文旅经济"],
-            "excerpt": "介绍如何运用Python与八爪鱼采集器构建多源数据自动化采集流程，支撑湖南省文旅经济运行分析报告编制的技术方法。",
-            "content": "完整的文章内容..."
+            "title": "时代热潮下，带你解锁「露营＋」新玩法",
+
+            "date": "2022-08-20",
+            "tags": ["露营", "业态创新", "文旅融合"],
+            "excerpt": "分析露营经济的迭代升级，探索「露营+」多元融合模式。",
+
+            "link": "https://mp.weixin.qq.com/s/umG-f-zd2ypSGyRRTbwNuA"
         },
         {
             "id": "3",
-            "title": "旅游度假区创建申报全流程经验总结",
-            "date": "2023-06-20",
-            "tags": ["度假区规划", "项目申报", "政策拆解", "文旅策划"],
-            "excerpt": "总结参与近10个国家级/省级旅游度假区创建申报的全流程经验，涵盖现状研判、空间落位、核心文本编制与政策指标拆解要点。",
-            "content": "完整的文章内容..."
+            "title": "浅析休闲农业与乡村旅游融合发展路径",
+
+            "date": "2022-07-12",
+            "tags": ["休闲农业", "乡村旅游", "农文旅融合"],
+            "excerpt": "探讨休闲农业与乡村旅游的产业联动与融合发展路径。",
+
+            "link": "https://mp.weixin.qq.com/s/ZU5mzSzOtm5m-N3yaUsVYg"
+        },
+        {
+            "id": "4",
+            "title": "在路上丨漫谈中国公路旅游",
+
+            "date": "2022-06-18",
+            "tags": ["公路旅游", "自驾", "业态研究"],
+            "excerpt": "梳理中国公路旅游的发展历程与产品形态。",
+
+            "link": "https://mp.weixin.qq.com/s/CT5nL65WOxXTqx7qmOBW4A"
+        },
+        {
+            "id": "5",
+            "title": "装得下梦想，拉得动经济——浅议「后备箱集市」",
+
+            "date": "2022-05-25",
+            "tags": ["夜市经济", "消费场景", "业态创新"],
+            "excerpt": "分析后备箱集市这一新兴消费场景的商业模式与发展潜力。",
+
+            "link": "https://mp.weixin.qq.com/s/9YXuV19KrDY1z_sgh7O0vg"
+        },
+        {
+            "id": "6",
+            "title": "乡村振兴战略背景下乡村剧场演艺发展浅析",
+
+            "date": "2022-04-15",
+            "tags": ["乡村振兴", "演艺", "文旅融合"],
+            "excerpt": "探讨乡村剧场演艺在文旅融合背景下的发展路径。",
+
+            "link": "https://mp.weixin.qq.com/s/qVE33MqNLXyN_Ix4r96k8A"
+        },
+        {
+            "id": "7",
+            "title": "浅谈影视与旅游融合发展路径",
+
+            "date": "2022-03-22",
+            "tags": ["影视旅游", "文旅融合", "IP开发"],
+            "excerpt": "分析影视作品对旅游目的地的带动效应与融合发展模式。",
+
+            "link": "https://mp.weixin.qq.com/s/C0CBG9iKGfLlF8Eo9EB4bQ"
+        },
+        {
+            "id": "8",
+            "title": "传统夜市升级，消费场景创新——以「不超级文和友」为例",
+
+            "date": "2022-02-18",
+            "tags": ["夜市经济", "消费场景", "案例分析"],
+            "excerpt": "以文和友为案例，解析传统夜市的消费升级与场景创新。",
+
+            "link": "https://mp.weixin.qq.com/s/ZzoWwA04VZrL51UyzRlpEA"
+        },
+        {
+            "id": "9",
+            "title": "旅游要素详解系列之「住」",
+
+            "date": "2022-01-10",
+            "tags": ["旅游要素", "住宿", "业态研究"],
+            "excerpt": "详解旅游六要素中「住」的产品体系与发展趋势。",
+
+            "link": "https://mp.weixin.qq.com/s/3gYdgDBxTmF1UsNzXBpj_A"
+        },
+        {
+            "id": "10",
+            "title": "浅谈红色体育旅游融合发展分析与探究",
+
+            "date": "2021-11-20",
+            "tags": ["红色旅游", "体育旅游", "文旅融合"],
+            "excerpt": "探索红色文化与体育旅游的跨界融合路径。",
+
+            "link": "https://mp.weixin.qq.com/s/5rmPj_Kk82U_ZtzEnBOyYw"
+        },
+        {
+            "id": "11",
+            "title": "浅谈红色旅游与乡村旅游融合发展的途径",
+
+            "date": "2021-10-15",
+            "tags": ["红色旅游", "乡村旅游", "文旅融合"],
+            "excerpt": "分析红色旅游资源与乡村旅游的融合发展模式。",
+
+            "link": "https://mp.weixin.qq.com/s/1R5Qo04ngJgDBYetZckqKg"
+        },
+        {
+            "id": "12",
+            "title": "浅谈乡村民宿的集聚化发展路径",
+
+            "date": "2021-09-08",
+            "tags": ["民宿", "乡村旅游", "产业集聚"],
+            "excerpt": "探讨乡村民宿从单体经营走向集聚化发展的路径与策略。",
+
+            "link": "https://mp.weixin.qq.com/s/EiLPAzC6cDaFipTu0BgEOg"
+        },
+        {
+            "id": "13",
+            "title": "浅谈我国冰雪体育旅游融合发展路径",
+
+            "date": "2021-08-12",
+            "tags": ["冰雪旅游", "体育旅游", "业态研究"],
+            "excerpt": "分析冰雪体育旅游的产品形态与融合发展路径。",
+
+            "link": "https://mp.weixin.qq.com/s/thpTSYtCa5wH5Cwtvpg3KA"
+        },
+        {
+            "id": "14",
+            "title": "体验经济时代下，汽车自驾运动营地的发展路径探究",
+
+            "date": "2021-07-05",
+            "tags": ["自驾营地", "体育旅游", "体验经济"],
+            "excerpt": "探究体验经济背景下汽车自驾运动营地的产品设计与运营模式。",
+
+            "link": "https://mp.weixin.qq.com/s/c-EnqfmYHrwbK3ey7c85vQ"
+        },
+        {
+            "id": "15",
+            "title": "露营旅游发展探究",
+
+            "date": "2021-06-10",
+            "tags": ["露营", "业态研究", "产品体系"],
+            "excerpt": "系统梳理露营旅游的产品类型、客群特征与发展趋势。",
+
+            "link": "https://mp.weixin.qq.com/s/23xcKBB0FMD5GaFHirLzsQ"
+        },
+        {
+            "id": "16",
+            "title": "文旅融合背景下的非遗活化探究",
+
+            "date": "2021-05-18",
+            "tags": ["非遗", "文旅融合", "文化传承"],
+            "excerpt": "探讨文旅融合背景下非物质文化遗产的活化利用路径。",
+
+            "link": "https://mp.weixin.qq.com/s/HtbBmv_1RzWmV0Nz_V_qFw"
+        },
+        {
+            "id": "17",
+            "title": "休闲度假时代下，精致露营发展前景探究",
+
+            "date": "2021-04-22",
+            "tags": ["露营", "休闲度假", "业态研究"],
+            "excerpt": "分析精致露营在休闲度假时代的市场前景与发展模式。",
+
+            "link": "https://mp.weixin.qq.com/s/KY0om1VX3fmBPu5BmDrbAA"
+        },
+        {
+            "id": "18",
+            "title": "乡村民宿的建筑设计分析与探究",
+
+            "date": "2021-03-15",
+            "tags": ["民宿", "建筑设计", "乡村旅游"],
+            "excerpt": "从建筑设计角度分析乡村民宿的空间布局与风格定位。",
+
+            "link": "https://mp.weixin.qq.com/s/u5n6QVcrqGxht98l8s6EPA"
         }
     ]
 }

@@ -41,21 +41,21 @@
 
 /* ===== 技能标签云 ===== */
 .skills-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    max-width: 600px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 720px;
     margin: 0 auto;
 }
 
 .skill-tag {
     background: var(--accent);
     color: #fff;
-    padding: 6px 18px;
-    border-radius: var(--radius-lg);
-    font-size: 12px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
     font-weight: 500;
+    text-align: center;
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
 }
 
@@ -267,6 +267,9 @@
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 10px;
     }
+    .skills-tags {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* ===== 博客列表 ===== */
@@ -286,6 +289,22 @@
 
 .blog-card:hover {
     border-color: var(--accent);
+}
+
+.blog-card-linkable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.12);
+}
+
+.blog-card-arrow {
+    font-size: 13px;
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+    margin-left: 4px;
+}
+.blog-card-linkable:hover .blog-card-arrow {
+    opacity: 1;
 }
 
 .blog-card-date {

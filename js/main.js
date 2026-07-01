@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const translations = {
         zh: {
             'nav.home': '首页', 'nav.professional': '专业领域', 'nav.skills': '技能',
-            'nav.works': '项目', 'nav.blog': '博客', 'nav.contact': '联系',
-            'blog.title': '博客文章', 'blog.subtitle': '分享技术心得与项目经验',
+            'nav.works': '项目作品', 'nav.blog': '原创文章', 'nav.contact': '联系',
+            'blog.title': '原创文章', 'blog.subtitle': '公众号「zoomview」原创文章，聚焦文旅行业观察与趋势分析',
             'works.title': '我的项目作品', 'works.viewAll': '查看全部项目 →',
             'skills.title': '技能标签', 'professional.title': '我的专业领域',
             'contact.title': '联系我', 'contact.desc': '如果您对我的项目感兴趣，欢迎联系我',
@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         en: {
             'nav.home': 'Home', 'nav.professional': 'Professional', 'nav.skills': 'Skills',
-            'nav.works': 'Works', 'nav.blog': 'Blog', 'nav.contact': 'Contact',
-            'blog.title': 'Blog', 'blog.subtitle': 'Sharing technical insights and project experiences',
+            'nav.works': 'Works', 'nav.blog': 'Articles', 'nav.contact': 'Contact',
+            'blog.title': 'Blog', 'blog.subtitle': 'Original articles on WeChat "zoomview", focusing on cultural tourism insights',
             'works.title': 'My Works', 'works.viewAll': 'View All Projects →',
             'skills.title': 'Skills', 'professional.title': 'My Professional',
             'contact.title': 'Contact Me', 'contact.desc': 'Feel free to reach out if interested in my projects',
@@ -150,13 +150,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayBlog(posts) {
         const container = document.getElementById('blogContainer');
         if (!container) return;
-        container.innerHTML = posts.map(post => `
-            <div class="blog-card">
-                <div class="blog-card-date">${new Date(post.date).toLocaleDateString('zh-CN')} · ${(post.tags || []).join(', ')}</div>
-                <div class="blog-card-title">${post.title}</div>
-                <div class="blog-card-excerpt">${post.excerpt}</div>
+        container.innerHTML = posts.map(post => {
+            const hasLink = !!post.link;
+            const clickAttr = hasLink ? ` onclick="window.open('${post.link}','_blank')" style="cursor:pointer"` : '';
+            return `
+            <div class="blog-card${hasLink ? ' blog-card-linkable' : ''}"${clickAttr}>
+                <div class="blog-card-title">${post.title}${hasLink ? ' <span class="blog-card-arrow">↗</span>' : ''}</div>
             </div>
-        `).join('');
+        `}).join('');
     }
 
     loadBlog();
