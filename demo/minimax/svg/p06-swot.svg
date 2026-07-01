@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 400">
+  <style>text{font-family:'Noto Sans SC','Noto Serif SC',sans-serif}</style>
+  <rect width="520" height="400" fill="none"/>
+  <text x="260" y="24" font-size="13" font-weight="700" fill="#1a2e1f" text-anchor="middle">SWOT 分析矩阵</text>
+  <!-- Grid lines -->
+  <line x1="260" y1="35" x2="260" y2="390" stroke="rgba(26,46,31,0.08)" stroke-width="1"/>
+  <line x1="10" y1="210" x2="510" y2="210" stroke="rgba(26,46,31,0.08)" stroke-width="1"/>
+  <!-- S -->
+  <rect x="14" y="38" width="240" height="166" rx="6" fill="rgba(42,157,143,0.06)" stroke="rgba(42,157,143,0.25)" stroke-width="1"/>
+  <path d="M14 44 Q14 38 20 38 L130 38 L130 54 L130 54 L14 54 Z" fill="rgba(42,157,143,0.12)"/>
+  <text x="130" y="50" font-size="11" font-weight="700" fill="#2A9D8F" text-anchor="middle">S 优势</text>
+  <text x="24" y="72" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 悬崖苗寨地貌独家</text>
+  <text x="24" y="90" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 樱桃会非遗 IP</text>
+  <text x="24" y="108" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 紧邻十八洞 5A 红利</text>
+  <text x="24" y="126" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 传统村落+3A+乡村振兴</text>
+  <text x="24" y="144" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 政策资源三重叠加</text>
+  <text x="24" y="168" font-size="8" fill="#2A9D8F" opacity="0.5">内部有利因素</text>
+  <!-- W -->
+  <rect x="266" y="38" width="240" height="166" rx="6" fill="rgba(216,90,48,0.04)" stroke="rgba(216,90,48,0.2)" stroke-width="1"/>
+  <path d="M266 44 Q266 38 272 38 L382 38 L382 54 L266 54 Z" fill="rgba(216,90,48,0.08)"/>
+  <text x="386" y="50" font-size="11" font-weight="700" fill="#D85A30" text-anchor="middle">W 劣势</text>
+  <text x="276" y="72" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 住宿品质不足</text>
+  <text x="276" y="90" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 交通最后一公里瓶颈</text>
+  <text x="276" y="108" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 产品单一无深度体验</text>
+  <text x="276" y="126" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 运营人才匮乏</text>
+  <text x="276" y="144" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 品牌知名度为零</text>
+  <text x="276" y="168" font-size="8" fill="#D85A30" opacity="0.5">内部制约因素</text>
+  <!-- O -->
+  <rect x="14" y="216" width="240" height="170" rx="6" fill="rgba(55,138,221,0.04)" stroke="rgba(55,138,221,0.2)" stroke-width="1"/>
+  <path d="M14 222 Q14 216 20 216 L130 216 L130 232 L14 232 Z" fill="rgba(55,138,221,0.08)"/>
+  <text x="130" y="228" font-size="11" font-weight="700" fill="#378ADD" text-anchor="middle">O 机会</text>
+  <text x="24" y="250" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 情绪经济·60亿人次风口</text>
+  <text x="24" y="268" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 研学旅行市场爆发</text>
+  <text x="24" y="286" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 银发旅居万亿市场</text>
+  <text x="24" y="304" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 小而美精品化趋势</text>
+  <text x="24" y="322" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 小红书+私域获客红利</text>
+  <text x="24" y="346" font-size="8" fill="#378ADD" opacity="0.5">外部有利趋势</text>
+  <!-- T -->
+  <rect x="266" y="216" width="240" height="170" rx="6" fill="rgba(153,53,86,0.04)" stroke="rgba(153,53,86,0.2)" stroke-width="1"/>
+  <path d="M266 222 Q266 216 272 216 L382 216 L382 232 L266 232 Z" fill="rgba(153,53,86,0.08)"/>
+  <text x="386" y="228" font-size="11" font-weight="700" fill="#993556" text-anchor="middle">T 威胁</text>
+  <text x="276" y="250" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 周边竞品同质化严重</text>
+  <text x="276" y="268" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 山路安全风险</text>
+  <text x="276" y="286" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 村落承载力有限</text>
+  <text x="276" y="304" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 十八洞虹吸效应</text>
+  <text x="276" y="322" font-size="9" fill="#1a2e1f" opacity="0.65">✦ 经济下行消费降级</text>
+  <text x="276" y="346" font-size="8" fill="#993556" opacity="0.5">外部风险挑战</text>
+</svg>

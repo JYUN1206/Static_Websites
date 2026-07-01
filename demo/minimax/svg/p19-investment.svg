@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 340">
+  <style>text{font-family:'Noto Sans SC','Noto Serif SC',sans-serif}</style>
+  <rect width="500" height="340" fill="none"/>
+  <text x="250" y="22" font-size="13" font-weight="700" fill="#1a2e1f" text-anchor="middle">投资构成 · 250 万元</text>
+  <!-- H bar chart -->
+  <text x="100" y="50" font-size="9" fill="#1a2e1f" opacity="0.55" text-anchor="end">民居改造</text>
+  <rect x="105" y="40" width="252" height="18" rx="2" fill="rgba(42,157,143,0.2)"/>
+  <rect x="105" y="40" width="252" height="18" rx="2" fill="#2A9D8F" opacity="0.7"/>
+  <text x="365" y="53" font-size="11" font-weight="700" fill="#2A9D8F">180 万 · 72%</text>
+
+  <text x="100" y="78" font-size="9" fill="#1a2e1f" opacity="0.55" text-anchor="end">茶修空间</text>
+  <rect x="105" y="68" width="252" height="16" rx="2" fill="rgba(55,138,221,0.15)"/>
+  <rect x="105" y="68" width="45" height="16" rx="2" fill="rgba(55,138,221,0.5)"/>
+  <text x="365" y="80" font-size="9" fill="#1a2e1f" opacity="0.55">32 万 · 13%</text>
+
+  <text x="100" y="104" font-size="9" fill="#1a2e1f" opacity="0.55" text-anchor="end">适老卫浴</text>
+  <rect x="105" y="94" width="252" height="14" rx="2" fill="rgba(216,90,48,0.12)"/>
+  <rect x="105" y="94" width="20" height="14" rx="2" fill="rgba(216,90,48,0.4)"/>
+  <text x="365" y="105" font-size="9" fill="#1a2e1f" opacity="0.55">14 万 · 6%</text>
+
+  <text x="100" y="130" font-size="9" fill="#1a2e1f" opacity="0.55" text-anchor="end">户外配套</text>
+  <rect x="105" y="120" width="252" height="14" rx="2" fill="rgba(251,191,36,0.12)"/>
+  <rect x="105" y="120" width="39" height="14" rx="2" fill="rgba(251,191,36,0.4)"/>
+  <text x="365" y="131" font-size="9" fill="#1a2e1f" opacity="0.55">28 万 · 11%</text>
+
+  <text x="100" y="156" font-size="9" fill="#1a2e1f" opacity="0.55" text-anchor="end">软装家具</text>
+  <rect x="105" y="146" width="252" height="14" rx="2" fill="rgba(153,53,86,0.1)"/>
+  <rect x="105" y="146" width="34" height="14" rx="2" fill="rgba(153,53,86,0.35)"/>
+  <text x="365" y="157" font-size="9" fill="#1a2e1f" opacity="0.55">24 万 · 10%</text>
+
+  <text x="100" y="182" font-size="9" fill="#1a2e1f" opacity="0.55" text-anchor="end">品牌/培训/设备</text>
+  <rect x="105" y="172" width="252" height="14" rx="2" fill="rgba(148,163,184,0.12)"/>
+  <rect x="105" y="172" width="17" height="14" rx="2" fill="rgba(148,163,184,0.35)"/>
+  <text x="365" y="183" font-size="9" fill="#1a2e1f" opacity="0.55">12 万 · 5%</text>
+  <!-- Total -->
+  <rect x="105" y="200" width="252" height="22" rx="4" fill="rgba(42,110,59,0.08)" stroke="rgba(42,110,59,0.2)" stroke-width="1"/>
+  <text x="231" y="215" font-size="12" font-weight="700" fill="#1a2e1f" text-anchor="middle">投资小计 250 万 + 预备金 10%</text>
+  <!-- note -->
+  <text x="250" y="255" font-size="9" fill="#1a2e1f" opacity="0.35" text-anchor="middle">注：按方案 A 中值估算 · 单房改造成本约 30-37 万/间</text>
+</svg>

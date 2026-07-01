@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <style>text{font-family:'Noto Sans SC','Noto Serif SC',sans-serif}</style>
+  <rect width="400" height="400" fill="none"/>
+  <circle cx="200" cy="200" r="170" fill="none" stroke="rgba(26,46,31,0.1)" stroke-width="1.5"/>
+  <circle cx="200" cy="200" r="120" fill="none" stroke="rgba(26,46,31,0.13)" stroke-width="1.5"/>
+  <circle cx="200" cy="200" r="70" fill="none" stroke="rgba(26,46,31,0.16)" stroke-width="1.5"/>
+  <circle cx="200" cy="200" r="20" fill="#1a2e1f" opacity="0.08"/>
+  <text x="200" y="205" font-size="9" fill="#1a2e1f" opacity="0.4" text-anchor="middle">金龙村</text>
+  <text x="200" y="115" font-size="10" fill="#2A9D8F" font-weight="600" text-anchor="middle">第一圈层</text>
+  <text x="200" y="130" font-size="9" fill="#1a2e1f" opacity="0.45" text-anchor="middle">1-2h · 吉首/花垣/铜仁</text>
+  <text x="200" y="145" font-size="8" fill="#1a2e1f" opacity="0.35" text-anchor="middle">周末自驾 · 基础客群</text>
+  <text x="200" y="65" font-size="10" fill="#378ADD" font-weight="600" text-anchor="middle">第二圈层</text>
+  <text x="200" y="80" font-size="9" fill="#1a2e1f" opacity="0.45" text-anchor="middle">2-4h · 怀化/张家界/常德</text>
+  <text x="200" y="95" font-size="8" fill="#1a2e1f" opacity="0.35" text-anchor="middle">省内银发 · 核心增量</text>
+  <text x="200" y="20" font-size="10" fill="#993556" font-weight="600" text-anchor="middle">第三圈层</text>
+  <text x="200" y="35" font-size="9" fill="#1a2e1f" opacity="0.45" text-anchor="middle">4h+ · 长沙/重庆/贵阳</text>
+  <text x="200" y="380" font-size="8" fill="#1a2e1f" opacity="0.3" text-anchor="middle">溢出圈层：十八洞→矮寨→金龙村</text>
+</svg>

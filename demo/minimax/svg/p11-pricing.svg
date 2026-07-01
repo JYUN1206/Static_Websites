@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320">
+  <style>text{font-family:'Noto Sans SC','Noto Serif SC',sans-serif}</style>
+  <rect width="520" height="320" fill="none"/>
+  <text x="260" y="20" font-size="12" font-weight="700" fill="#1a2e1f" text-anchor="middle">产品定价阶梯</text>
+  <!-- L1 体验 -->
+  <rect x="20" y="40" width="100" height="260" rx="6" fill="rgba(42,157,143,0.05)" stroke="rgba(42,157,143,0.2)" stroke-width="1"/>
+  <text x="70" y="62" font-size="9" fill="#2A9D8F" font-weight="600" text-anchor="middle">体验·云起</text>
+  <text x="70" y="78" font-size="8" fill="#1a2e1f" opacity="0.4" text-anchor="middle">3天2夜</text>
+  <text x="70" y="108" font-size="18" font-weight="700" fill="#2A9D8F" text-anchor="middle">2,280</text>
+  <text x="70" y="125" font-size="8" fill="#1a2e1f" opacity="0.4" text-anchor="middle">元/人</text>
+  <text x="70" y="150" font-size="8" fill="#1a2e1f" opacity="0.5" text-anchor="middle">日均 1,140 元</text>
+  <text x="70" y="170" font-size="7" fill="#1a2e1f" opacity="0.35" text-anchor="middle">含住宿+三餐</text>
+  <text x="70" y="185" font-size="7" fill="#1a2e1f" opacity="0.35" text-anchor="middle">+基础茶修</text>
+  <!-- L2 疗愈 -->
+  <rect x="135" y="30" width="115" height="270" rx="6" fill="rgba(55,138,221,0.05)" stroke="rgba(55,138,221,0.2)" stroke-width="1"/>
+  <text x="192" y="52" font-size="9" fill="#378ADD" font-weight="600" text-anchor="middle">疗愈·山栖</text>
+  <text x="192" y="68" font-size="8" fill="#1a2e1f" opacity="0.4" text-anchor="middle">5天4夜</text>
+  <text x="192" y="98" font-size="20" font-weight="700" fill="#378ADD" text-anchor="middle">3,980</text>
+  <text x="192" y="115" font-size="8" fill="#1a2e1f" opacity="0.4" text-anchor="middle">元/人</text>
+  <text x="192" y="140" font-size="8" fill="#1a2e1f" opacity="0.5" text-anchor="middle">日均 995 元</text>
+  <text x="192" y="160" font-size="7" fill="#1a2e1f" opacity="0.35" text-anchor="middle">含全部课程</text>
+  <text x="192" y="175" font-size="7" fill="#1a2e1f" opacity="0.35" text-anchor="middle">+L4 茶山巡礼</text>
+  <!-- L3 静修 -->
+  <rect x="265" y="20" width="115" height="280" rx="6" fill="rgba(42,110,59,0.06)" stroke="rgba(42,110,59,0.25)" stroke-width="1.5"/>
+  <text x="322" y="42" font-size="9" fill="#1a2e1f" font-weight="700" text-anchor="middle">静修·观止</text>
+  <text x="322" y="58" font-size="8" fill="#1a2e1f" opacity="0.4" text-anchor="middle">7天6夜</text>
+  <rect x="280" y="75" width="85" height="28" rx="4" fill="rgba(42,110,59,0.1)"/>
+  <text x="322" y="94" font-size="20" font-weight="700" fill="#1a2e1f" text-anchor="middle">6,280</text>
+  <text x="322" y="110" font-size="8" fill="#1a2e1f" opacity="0.4" text-anchor="middle">元/人</text>
+  <text x="322" y="130" font-size="8" fill="#1a2e1f" opacity="0.5" text-anchor="middle">日均 897 元</text>
+  <text x="322" y="150" font-size="7" fill="#1a2e1f" opacity="0.35" text-anchor="middle">含悬崖茶会 L5</text>
+  <text x="322" y="165" font-size="7" fill="#1a2e1f" opacity="0.35" text-anchor="middle">+灵芝养生餐</text>
+  <!-- L4 银发 -->
+  <rect x="395" y="45" width="105" height="255" rx="6" fill="rgba(216,90,48,0.03)" stroke="rgba(216,90,48,0.15)" stroke-width="1"/>
+  <text x="447" y="65" font-size="9" fill="#D85A30" font-weight="600" text-anchor="middle">银发·云栖</text>
+  <text x="447" y="80" font-size="8" fill="#1a2e1f" opacity="0.4" text-anchor="middle">5天4夜</text>
+  <text x="447" y="108" font-size="18" font-weight="700" fill="#D85A30" text-anchor="middle">2,980</text>
+  <text x="447" y="125" font-size="8" fill="#1a2e1f" opacity="0.4" text-anchor="middle">元/人</text>
+  <text x="447" y="148" font-size="8" fill="#1a2e1f" opacity="0.5" text-anchor="middle">日均 745 元</text>
+  <text x="447" y="168" font-size="7" fill="#1a2e1f" opacity="0.35" text-anchor="middle">适老客房</text>
+  <text x="447" y="183" font-size="7" fill="#1a2e1f" opacity="0.35" text-anchor="middle">+慢节奏课程</text>
+  <text x="447" y="200" font-size="7" fill="#1a2e1f" opacity="0.35" text-anchor="middle">续住 600/天</text>
+</svg>

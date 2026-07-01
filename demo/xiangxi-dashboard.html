@@ -1,0 +1,2886 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>湘西旅游区 2023 年运营数据看板 — 暗色数据终端</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  /* ===== Reset & Base ===== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-deep: #0F1419;
+    --bg-card: #1A1F2E;
+    --border-card: #2D3748;
+    --neon-green: #00E5A0;
+    --gold: #FFD700;
+    --coral: #FF6B6B;
+    --text-primary: #E2E8F0;
+    --text-secondary: #8892A0;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --glow-green: rgba(0, 229, 160, 0.15);
+    --glow-gold: rgba(255, 215, 0, 0.12);
+  }
+
+  body {
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    min-width: 1000px;
+    line-height: 1.5;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* ===== Navigation ===== */
+  .nav-bar {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-card);
+    padding: 0 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .nav-title {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding: 16px 0 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-title span {
+    color: var(--neon-green);
+    font-family: var(--font-mono);
+    font-weight: 600;
+  }
+
+  .nav-tabs {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-tab {
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.25s, border-color 0.25s;
+    position: relative;
+  }
+
+  .nav-tab:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-tab.active {
+    color: var(--neon-green);
+    border-bottom-color: var(--neon-green);
+    text-shadow: 0 0 8px var(--glow-green);
+  }
+
+  .nav-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--glow-green);
+    border-radius: 1px;
+  }
+
+  /* ===== Main Container ===== */
+  .main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 32px 48px;
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ===== KPI Cards ===== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .kpi-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .kpi-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .kpi-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-left: 3px solid var(--neon-green);
+    border-radius: 6px;
+    padding: 20px 24px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--neon-green), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .kpi-card:hover {
+    box-shadow: 0 0 15px var(--glow-green);
+    border-color: rgba(0, 229, 160, 0.3);
+  }
+
+  .kpi-card:hover::before { opacity: 1; }
+
+  .kpi-card.gold { border-left-color: var(--gold); }
+  .kpi-card.gold:hover { box-shadow: 0 0 15px var(--glow-gold); border-color: rgba(255, 215, 0, 0.3); }
+  .kpi-card.gold::before { background: linear-gradient(90deg, var(--gold), transparent 60%); }
+
+  .kpi-card.coral { border-left-color: var(--coral); }
+  .kpi-card.coral:hover { box-shadow: 0 0 15px rgba(255, 107, 107, 0.15); border-color: rgba(255, 107, 107, 0.3); }
+  .kpi-card.coral::before { background: linear-gradient(90deg, var(--coral), transparent 60%); }
+
+  .kpi-card.teal { border-left-color: #4ECDC4; }
+  .kpi-card.teal:hover { box-shadow: 0 0 15px rgba(78, 205, 196, 0.15); border-color: rgba(78, 205, 196, 0.3); }
+  .kpi-card.teal::before { background: linear-gradient(90deg, #4ECDC4, transparent 60%); }
+
+  .kpi-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .kpi-value {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--neon-green);
+    text-shadow: 0 0 12px var(--glow-green);
+    line-height: 1.2;
+  }
+
+  .kpi-card.gold .kpi-value {
+    color: var(--gold);
+    text-shadow: 0 0 12px var(--glow-gold);
+  }
+
+  .kpi-card.coral .kpi-value {
+    color: var(--coral);
+    text-shadow: 0 0 12px rgba(255, 107, 107, 0.15);
+  }
+
+  .kpi-card.teal .kpi-value {
+    color: #4ECDC4;
+    text-shadow: 0 0 12px rgba(78, 205, 196, 0.15);
+  }
+
+  .kpi-unit {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-left: 4px;
+  }
+
+  .kpi-sub {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    opacity: 0.7;
+  }
+
+  /* ===== Chart Grid ===== */
+  .chart-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .chart-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 6px;
+    padding: 20px;
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chart-panel-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-card);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .chart-panel-title .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .chart-panel-title .dot.green { background: var(--neon-green); box-shadow: 0 0 6px var(--neon-green); }
+  .chart-panel-title .dot.gold { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
+  .chart-panel-title .dot.coral { background: var(--coral); box-shadow: 0 0 6px var(--coral); }
+  .chart-panel-title .dot.teal { background: #4ECDC4; box-shadow: 0 0 6px #4ECDC4; }
+  .chart-panel-title .dot.blue { background: #45B7D1; box-shadow: 0 0 6px #45B7D1; }
+
+  .chart-container {
+    flex: 1;
+    min-height: 300px;
+  }
+
+  /* ===== AI Report ===== */
+  .ai-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .ai-select {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    padding: 10px 16px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+
+  .ai-select:hover, .ai-select:focus {
+    border-color: var(--neon-green);
+  }
+
+  .ai-select option {
+    background: var(--bg-card);
+    color: var(--text-primary);
+  }
+
+  .ai-btn {
+    background: transparent;
+    border: 1px solid var(--neon-green);
+    border-radius: 6px;
+    color: var(--neon-green);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-shadow: 0 0 8px var(--glow-green);
+  }
+
+  .ai-btn:hover {
+    background: var(--neon-green);
+    color: var(--bg-deep);
+    box-shadow: 0 0 20px var(--glow-green);
+    text-shadow: none;
+  }
+
+  .ai-report-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 6px;
+    padding: 32px;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-report-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-green), var(--gold), var(--coral), transparent);
+  }
+
+  .ai-report-header {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-card);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-report-header .blink-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--neon-green);
+    animation: blink 1s infinite;
+  }
+
+  .ai-report-body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-primary);
+    white-space: pre-wrap;
+  }
+
+  .ai-report-body .typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 18px;
+    background: var(--neon-green);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: cursor-blink 0.8s infinite;
+  }
+
+  .ai-report-body .section-title {
+    color: var(--neon-green);
+    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+
+  .ai-report-body .highlight {
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-weight: 600;
+  }
+
+  .ai-report-body .risk {
+    color: var(--coral);
+    font-weight: 600;
+  }
+
+  .ai-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+
+  .ai-placeholder .loading-bar {
+    width: 200px;
+    height: 2px;
+    background: var(--border-card);
+    margin-top: 16px;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  .ai-placeholder .loading-bar::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 100%;
+    background: var(--neon-green);
+    box-shadow: 0 0 8px var(--neon-green);
+    animation: loading-slide 1.2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes loading-slide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(260%); }
+  }
+
+  /* ===== Scrollbar ===== */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--border-card); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 1200px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 1000px) {
+    .chart-grid { grid-template-columns: 1fr; }
+    .main-container { padding: 20px 16px 40px; }
+    .nav-bar { padding: 0 16px; }
+  }
+
+  /* ===== AI Monthly Report ===== */
+  .ai-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .ai-summary-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 6px;
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .ai-summary-card .label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .ai-summary-card .val {
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .ai-summary-card .val.green { color: var(--neon-green); text-shadow: 0 0 10px var(--glow-green); }
+  .ai-summary-card .val.gold { color: var(--gold); text-shadow: 0 0 10px var(--glow-gold); }
+  .ai-summary-card .val.coral { color: var(--coral); }
+  .ai-summary-card .val.teal { color: #4ECDC4; }
+  .ai-summary-card .delta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  .ai-summary-card .delta.up { color: var(--neon-green); }
+  .ai-summary-card .delta.down { color: var(--coral); }
+
+  .ai-text-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 6px;
+    padding: 24px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-text-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--neon-green), var(--gold), var(--coral), transparent);
+  }
+  .ai-text-section .section-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--neon-green);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ai-text-section .section-label .blink-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--neon-green);
+    animation: blink 1s infinite;
+  }
+  .ai-text-body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--text-primary);
+  }
+  .ai-text-body .hl { color: var(--gold); font-family: var(--font-mono); font-weight: 600; }
+  .ai-text-body .risk { color: var(--coral); font-weight: 600; }
+  .ai-text-body .good { color: var(--neon-green); font-weight: 600; }
+
+  .ai-chart-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .ai-chart-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 6px;
+    padding: 16px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+  }
+  .ai-chart-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-card);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ai-chart-title .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .ai-chart-container {
+    flex: 1;
+    min-height: 260px;
+  }
+
+  @media (max-width: 1200px) {
+    .ai-summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .ai-chart-row { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 1000px) {
+    .ai-chart-row { grid-template-columns: 1fr; }
+  }
+
+  /* ===== Spot Data Table ===== */
+  .spot-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .spot-table th {
+    background: rgba(0,229,160,0.08);
+    color: var(--neon-green);
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-card);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .spot-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid rgba(45,55,72,0.5);
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+  .spot-table tr:hover td {
+    background: rgba(0,229,160,0.03);
+  }
+  .spot-table .rank {
+    color: var(--neon-green);
+    font-weight: 700;
+    width: 30px;
+    text-align: center;
+  }
+  .spot-table .type-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .spot-table .type-badge.历史文化 { background: rgba(0,229,160,0.15); color: #00E5A0; }
+  .spot-table .type-badge.自然景观 { background: rgba(78,205,196,0.15); color: #4ECDC4; }
+  .spot-table .type-badge.红色旅游 { background: rgba(255,107,107,0.15); color: #FF6B6B; }
+  .spot-table .type-badge.乡村旅游 { background: rgba(255,215,0,0.15); color: #FFD700; }
+  .spot-table .type-badge.主题乐园 { background: rgba(69,183,209,0.15); color: #45B7D1; }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <div class="nav-title"><span>&#9670;</span> 湘西旅游区 <span>2023</span> 年运营数据看板</div>
+    <div class="nav-tabs" id="navTabs">
+      <div class="nav-tab active" data-tab="overview">运营总览</div>
+      <div class="nav-tab" data-tab="traffic">客流分析</div>
+      <div class="nav-tab" data-tab="revenue">收入分析</div>
+      <div class="nav-tab" data-tab="profile">客群画像</div>
+      <div class="nav-tab" data-tab="channel">渠道与营销</div>
+      <div class="nav-tab" data-tab="project">项目运营</div>
+      <div class="nav-tab" data-tab="service">服务质量</div>
+      <div class="nav-tab" data-tab="spot">景区运营</div>
+      <div class="nav-tab" data-tab="ai">AI月报</div>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== Tab 1: 运营总览 ==================== -->
+<div class="tab-content active" id="tabOverview">
+  <div class="main-container">
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">全年接待总人次</div>
+        <div class="kpi-value">30,135,008</div>
+        <div class="kpi-sub">约 3013.5 万人次</div>
+      </div>
+      <div class="kpi-card gold">
+        <div class="kpi-label">全年营业收入</div>
+        <div class="kpi-value">137,397.9<span class="kpi-unit">万元</span></div>
+        <div class="kpi-sub">约 13.74 亿元</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">平均客单价</div>
+        <div class="kpi-value">45.59<span class="kpi-unit">元</span></div>
+      </div>
+      <div class="kpi-card gold">
+        <div class="kpi-label">年平均满意度</div>
+        <div class="kpi-value">4.65<span class="kpi-unit">/ 5.0</span></div>
+      </div>
+      <div class="kpi-card coral">
+        <div class="kpi-label">全年投诉数量</div>
+        <div class="kpi-value">2,857<span class="kpi-unit">件</span></div>
+      </div>
+      <div class="kpi-card coral">
+        <div class="kpi-label">全年安全事故</div>
+        <div class="kpi-value">0<span class="kpi-unit">起</span></div>
+      </div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot green"></span>月度接待人次趋势</div>
+        <div class="chart-container" id="chartVisitor"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot gold"></span>月度营业收入趋势</div>
+        <div class="chart-container" id="chartRevenue"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot coral"></span>收入结构</div>
+        <div class="chart-container" id="chartRevStruct"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot teal"></span>区域接待人次排名</div>
+        <div class="chart-container" id="chartRegion"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Tab 2: 客流分析 ==================== -->
+<div class="tab-content" id="tabTraffic">
+  <div class="main-container">
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">全年接待总人次</div>
+        <div class="kpi-value">3013.5<span class="kpi-unit">万</span></div>
+      </div>
+      <div class="kpi-card teal">
+        <div class="kpi-label">免票人次</div>
+        <div class="kpi-value">1515.9<span class="kpi-unit">万</span></div>
+        <div class="kpi-sub">占比 50.3%</div>
+      </div>
+      <div class="kpi-card gold">
+        <div class="kpi-label">入境游客</div>
+        <div class="kpi-value">6.9<span class="kpi-unit">万</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">日均接待</div>
+        <div class="kpi-value">8.3<span class="kpi-unit">万</span></div>
+      </div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot green"></span>月度客流趋势</div>
+        <div class="chart-container" id="chartTrafficMonthly"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot teal"></span>区域客流占比</div>
+        <div class="chart-container" id="chartTrafficRegion"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot gold"></span>景区客流 TOP10</div>
+        <div class="chart-container" id="chartTrafficTopSpots"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot coral"></span>景区类型客流占比</div>
+        <div class="chart-container" id="chartTrafficSpotType"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Tab 3: 收入分析 ==================== -->
+<div class="tab-content" id="tabRevenue">
+  <div class="main-container">
+    <div class="kpi-grid">
+      <div class="kpi-card gold">
+        <div class="kpi-label">全年总收入</div>
+        <div class="kpi-value">13.74<span class="kpi-unit">亿</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">门票收入占比</div>
+        <div class="kpi-value">37.6<span class="kpi-unit">%</span></div>
+      </div>
+      <div class="kpi-card teal">
+        <div class="kpi-label">客房收入占比</div>
+        <div class="kpi-value">9.9<span class="kpi-unit">%</span></div>
+      </div>
+      <div class="kpi-card gold">
+        <div class="kpi-label">Peak月</div>
+        <div class="kpi-value">7月<span class="kpi-unit">17654万</span></div>
+      </div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot gold"></span>月度收入堆叠面积图</div>
+        <div class="chart-container" id="chartRevStack"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot green"></span>景区收入 TOP10</div>
+        <div class="chart-container" id="chartRevTopSpots"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot teal"></span>景区类型收入占比</div>
+        <div class="chart-container" id="chartRevSpotType"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot coral"></span>客单价月度趋势</div>
+        <div class="chart-container" id="chartRevUnitPrice"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Tab 4: 客群画像 ==================== -->
+<div class="tab-content" id="tabProfile">
+  <div class="main-container">
+    <div class="chart-grid">
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot green"></span>年龄结构</div>
+        <div class="chart-container" id="chartProfileAge"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot gold"></span>来源地 TOP10</div>
+        <div class="chart-container" id="chartProfileOrigin"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot teal"></span>出游类型占比</div>
+        <div class="chart-container" id="chartProfileType"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot coral"></span>客流季节性分析</div>
+        <div class="chart-container" id="chartProfileSeason"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Tab 5: 渠道与营销 ==================== -->
+<div class="tab-content" id="tabChannel">
+  <div class="main-container">
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">渠道数量</div>
+        <div class="kpi-value">7<span class="kpi-unit">个</span></div>
+      </div>
+      <div class="kpi-card gold">
+        <div class="kpi-label">OTA收入贡献</div>
+        <div class="kpi-value">30,546<span class="kpi-unit">万</span></div>
+      </div>
+      <div class="kpi-card teal">
+        <div class="kpi-label">最高ROI</div>
+        <div class="kpi-value">旅行社<span class="kpi-unit">213</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">平均转化率</div>
+        <div class="kpi-value">65<span class="kpi-unit">%</span></div>
+      </div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot green"></span>渠道获客人次对比</div>
+        <div class="chart-container" id="chartChannelBar"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot gold"></span>渠道ROI排名</div>
+        <div class="chart-container" id="chartChannelROI"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot coral"></span>投放费用 vs 收入贡献</div>
+        <div class="chart-container" id="chartChannelScatter"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot teal"></span>月度渠道客流趋势</div>
+        <div class="chart-container" id="chartChannelMonthly"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Tab 6: 项目运营 ==================== -->
+<div class="tab-content" id="tabProject">
+  <div class="main-container">
+    <div class="chart-grid">
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot green"></span>热门项目 TOP10</div>
+        <div class="chart-container" id="chartProjectTop"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot gold"></span>项目满意度 vs 等待时长</div>
+        <div class="chart-container" id="chartProjectScatter"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot teal"></span>项目参与人次对比</div>
+        <div class="chart-container" id="chartProjectBar"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot coral"></span>项目等待时长排名</div>
+        <div class="chart-container" id="chartProjectWait"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Tab 7: 服务质量 ==================== -->
+<div class="tab-content" id="tabService">
+  <div class="main-container">
+    <div class="kpi-grid">
+      <div class="kpi-card gold">
+        <div class="kpi-label">平均满意度</div>
+        <div class="kpi-value">4.65<span class="kpi-unit">/ 5.0</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">NPS 净推荐值</div>
+        <div class="kpi-value">89.9</div>
+      </div>
+      <div class="kpi-card coral">
+        <div class="kpi-label">投诉率</div>
+        <div class="kpi-value">0.28<span class="kpi-unit">&#8241;</span></div>
+      </div>
+      <div class="kpi-card coral">
+        <div class="kpi-label">安全事故</div>
+        <div class="kpi-value">0<span class="kpi-unit">起</span></div>
+      </div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot green"></span>月度满意度趋势</div>
+        <div class="chart-container" id="chartServiceSat"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot teal"></span>月度NPS趋势</div>
+        <div class="chart-container" id="chartServiceNPS"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot coral"></span>投诉分类月度堆叠柱状图</div>
+        <div class="chart-container" id="chartServiceComp"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot gold"></span>安全事故月度分布</div>
+        <div class="chart-container" id="chartServiceAcc"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Tab 8: 景区运营 ==================== -->
+<div class="tab-content" id="tabSpot">
+  <div class="main-container">
+    <!-- KPI Cards -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">统计景区数</div>
+        <div class="kpi-value">28<span class="kpi-unit">个</span></div>
+      </div>
+      <div class="kpi-card gold">
+        <div class="kpi-label">TOP1 景区客流</div>
+        <div class="kpi-value">418.2<span class="kpi-unit">万人次</span></div>
+        <div class="kpi-sub">景区D（历史文化）</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">TOP1 景区营收</div>
+        <div class="kpi-value">24,136.66<span class="kpi-unit">万元</span></div>
+        <div class="kpi-sub">景区U（自然景观）</div>
+      </div>
+      <div class="kpi-card gold">
+        <div class="kpi-label">景区类型</div>
+        <div class="kpi-value">5<span class="kpi-unit">类</span></div>
+        <div class="kpi-sub">历史文化/自然景观/红色旅游/乡村旅游/主题乐园</div>
+      </div>
+    </div>
+
+    <!-- Charts Row 1 -->
+    <div class="chart-grid">
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot green"></span>景区客流 TOP10 排名</div>
+        <div class="chart-container" id="chartSpotVisitorRank"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot gold"></span>景区营收 TOP10 排名</div>
+        <div class="chart-container" id="chartSpotRevRank"></div>
+      </div>
+    </div>
+
+    <!-- Charts Row 2 -->
+    <div class="chart-grid" style="margin-top:20px;">
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot coral"></span>景区客流 vs 营收散点分析</div>
+        <div class="chart-container" id="chartSpotScatter"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot teal"></span>景区类型客流占比</div>
+        <div class="chart-container" id="chartSpotTypePie"></div>
+      </div>
+    </div>
+
+    <!-- Charts Row 3 -->
+    <div class="chart-grid" style="margin-top:20px;">
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot green"></span>区域景区客流对比</div>
+        <div class="chart-container" id="chartSpotRegion"></div>
+      </div>
+      <div class="chart-panel">
+        <div class="chart-panel-title"><span class="dot gold"></span>景区客单价排名</div>
+        <div class="chart-container" id="chartSpotUnitPrice"></div>
+      </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="chart-panel" style="margin-top:20px; min-height:auto;">
+      <div class="chart-panel-title"><span class="dot coral"></span>景区运营数据明细</div>
+      <div id="spotDataTable" style="overflow-x:auto;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Tab 9: AI 运营月报 ==================== -->
+<div class="tab-content" id="tabAi">
+  <div class="main-container">
+    <!-- Controls -->
+    <div class="ai-controls">
+      <select class="ai-select" id="aiMonthSelect">
+        <option value="0">1月</option><option value="1">2月</option>
+        <option value="2">3月</option><option value="3">4月</option>
+        <option value="4">5月</option><option value="5">6月</option>
+        <option value="6" selected>7月</option><option value="7">8月</option>
+        <option value="8">9月</option><option value="9">10月</option>
+        <option value="10">11月</option><option value="11">12月</option>
+      </select>
+      <button class="ai-btn" id="aiGenBtn">&#9654; 生成月报</button>
+    </div>
+
+    <!-- Initial placeholder -->
+    <div class="ai-placeholder" id="aiPlaceholder">
+      <div>选择月份并点击「生成月报」</div>
+      <div class="loading-bar"></div>
+    </div>
+
+    <!-- Report content (hidden initially) -->
+    <div id="aiReportContent" style="display:none;">
+      <!-- Summary KPI cards -->
+      <div class="ai-summary-grid" id="aiSummaryCards"></div>
+
+      <!-- Charts row 1: 3 charts -->
+      <div class="ai-chart-row">
+        <div class="ai-chart-panel">
+          <div class="ai-chart-title"><span class="dot" style="background:var(--neon-green);box-shadow:0 0 6px var(--neon-green)"></span>月度综合指标雷达（当月 vs 年均）</div>
+          <div class="ai-chart-container" id="aiChartRadar"></div>
+        </div>
+        <div class="ai-chart-panel">
+          <div class="ai-chart-title"><span class="dot" style="background:var(--gold);box-shadow:0 0 6px var(--gold)"></span>收入结构对比（当月 vs 全年）</div>
+          <div class="ai-chart-container" id="aiChartRevCompare"></div>
+        </div>
+        <div class="ai-chart-panel">
+          <div class="ai-chart-title"><span class="dot" style="background:#4ECDC4;box-shadow:0 0 6px #4ECDC4"></span>全年客流趋势（高亮选中月）</div>
+          <div class="ai-chart-container" id="aiChartVisitorHighlight"></div>
+        </div>
+      </div>
+
+      <!-- Charts row 2: 3 charts -->
+      <div class="ai-chart-row">
+        <div class="ai-chart-panel">
+          <div class="ai-chart-title"><span class="dot" style="background:#45B7D1;box-shadow:0 0 6px #45B7D1"></span>当月渠道获客分布</div>
+          <div class="ai-chart-container" id="aiChartChannelMonth"></div>
+        </div>
+        <div class="ai-chart-panel">
+          <div class="ai-chart-title"><span class="dot" style="background:var(--coral);box-shadow:0 0 6px var(--coral)"></span>满意度 &amp; NPS 月度走势</div>
+          <div class="ai-chart-container" id="aiChartSatNps"></div>
+        </div>
+        <div class="ai-chart-panel">
+          <div class="ai-chart-title"><span class="dot" style="background:#96CEB4;box-shadow:0 0 6px #96CEB4"></span>当月景区客流 TOP10</div>
+          <div class="ai-chart-container" id="aiChartSpotMonth"></div>
+        </div>
+      </div>
+
+      <!-- AI text report (moved after charts) -->
+      <div class="ai-text-section">
+        <div class="section-label"><span class="blink-dot"></span><span id="aiReportTitle">AI 运营月报</span></div>
+        <div class="ai-text-body" id="aiReportBody"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== Embedded Data =====
+const DATA = {
+  kpi: { visitors: 30135008, revenue: 137397.9, ticketPrice: 45.59, satisfaction: 4.65, nps: 89.9, complaints: 2848, accidents: 0 },
+  monthly: [
+    { m: '01', v: 1688155, rev: 6924.21, t: 2369.92, rm: 450.07, f: 693.14, o: 3411.08, rg: null, vg: null },
+    { m: '02', v: 1947824, rev: 8183.18, t: 3255.46, rm: 332.77, f: 669.73, o: 3925.21, rg: 18.18, vg: 15.38 },
+    { m: '03', v: 2029773, rev: 10301.41, t: 2547.44, rm: 894.44, f: 1054.75, o: 5804.79, rg: 25.89, vg: 4.21 },
+    { m: '04', v: 2530321, rev: 11845.29, t: 4835.56, rm: 816.09, f: 1092.21, o: 5101.42, rg: 14.99, vg: 24.66 },
+    { m: '05', v: 3239764, rev: 16081.93, t: 4169.54, rm: 1100.6, f: 1509.36, o: 9302.46, rg: 35.77, vg: 28.04 },
+    { m: '06', v: 2756388, rev: 14461.32, t: 4420.57, rm: 1884.79, f: 2120.51, o: 6035.46, rg: -10.08, vg: -14.92 },
+    { m: '07', v: 3483462, rev: 17654.26, t: 8174.41, rm: 2070.8, f: 2413.38, o: 4995.67, rg: 22.08, vg: 26.38 },
+    { m: '08', v: 3346767, rev: 16519.43, t: 7408.95, rm: 1900.62, f: 1952.74, o: 5257.12, rg: -6.43, vg: -3.92 },
+    { m: '09', v: 3159885, rev: 13950.17, t: 5869.27, rm: 1428.45, f: 1665.29, o: 4987.16, rg: -15.55, vg: -5.58 },
+    { m: '10', v: 2845399, rev: 11483.03, t: 4578.12, rm: 1491.89, f: 1814.92, o: 3598.1, rg: -17.69, vg: -9.95 },
+    { m: '11', v: 1848372, rev: 6261.59, t: 2555.46, rm: 663.13, f: 959.74, o: 2083.27, rg: -45.47, vg: -35.04 },
+    { m: '12', v: 1258898, rev: 3732.08, t: 1443.61, rm: 585.49, f: 770.9, o: 932.08, rg: -40.4, vg: -31.89 }
+  ],
+  revStruct: [
+    { name: '门票', value: 51628.31 },
+    { name: '客房', value: 13619.14 },
+    { name: '餐饮', value: 16716.67 },
+    { name: '其他', value: 55433.82 }
+  ],
+  regions: [
+    { name: '吉首市', value: 8949873 },
+    { name: '永顺县', value: 5113744 },
+    { name: '龙山县', value: 3834386 },
+    { name: '凤凰县', value: 3827111 },
+    { name: '古丈县', value: 2847988 },
+    { name: '泸溪县', value: 2662497 },
+    { name: '花垣县', value: 2514246 },
+    { name: '保靖县', value: 385163 }
+  ],
+  custType: [
+    { name: '亲子家庭', value: 9643197 },
+    { name: '情侣/朋友', value: 7533748 },
+    { name: '团队游', value: 5424295 },
+    { name: '散客自驾', value: 4520245 },
+    { name: '研学/团建', value: 3013495 }
+  ],
+  custAge: [
+    { name: '18岁以下', value: 6629696 }
+  ],
+  custOrigin: [
+    { name: '湖南省内', value: 13560747 },
+    { name: '广东', value: 4218894 },
+    { name: '湖北', value: 2410793 },
+    { name: '重庆', value: 2109444 },
+    { name: '贵州', value: 1808095 },
+    { name: '浙江', value: 1506745 },
+    { name: '上海', value: 1205392 },
+    { name: '江苏', value: 1205392 },
+    { name: '北京', value: 904043 },
+    { name: '其他省市', value: 602694 }
+  ],
+  channels: [
+    { name: 'OTA平台', visitors: 6716796, cost: 435.65, orders: 4540876, revenue: 30546.29, roi: 70.12, conv: 67.6 },
+    { name: '抖音', visitors: 5325525, cost: 520.69, orders: 3636169, revenue: 25316.0, roi: 48.62, conv: 68.28 },
+    { name: '自然到店', visitors: 5454504, cost: 0, orders: 3403662, revenue: 23655.7, roi: 0, conv: 62.4 },
+    { name: '旅行社', visitors: 4459622, cost: 97.13, orders: 2872450, revenue: 20688.63, roi: 213.0, conv: 64.41 },
+    { name: '小红书', visitors: 3577904, cost: 358.51, orders: 2259399, revenue: 16530.27, roi: 46.11, conv: 63.15 },
+    { name: '微信私域', visitors: 3046379, cost: 147.86, orders: 1910211, revenue: 13704.2, roi: 92.68, conv: 62.7 },
+    { name: '其他', visitors: 1504284, cost: 63.54, orders: 1012253, revenue: 6849.95, roi: 107.81, conv: 67.29 }
+  ],
+  channelMonthly: [
+    {month:'01',channel:'OTA平台',visitors:336225},{month:'01',channel:'其他',visitors:92126},{month:'01',channel:'小红书',visitors:212159},{month:'01',channel:'微信私域',visitors:166179},{month:'01',channel:'抖音',visitors:312341},{month:'01',channel:'旅行社',visitors:239065},{month:'01',channel:'自然到店',visitors:322453},
+    {month:'02',channel:'OTA平台',visitors:446053},{month:'02',channel:'其他',visitors:92852},{month:'02',channel:'小红书',visitors:235432},{month:'02',channel:'微信私域',visitors:207614},{month:'02',channel:'抖音',visitors:374975},{month:'02',channel:'旅行社',visitors:267618},{month:'02',channel:'自然到店',visitors:360122},
+    {month:'03',channel:'OTA平台',visitors:430068},{month:'03',channel:'其他',visitors:102734},{month:'03',channel:'小红书',visitors:267419},{month:'03',channel:'微信私域',visitors:216895},{month:'03',channel:'抖音',visitors:341328},{month:'03',channel:'旅行社',visitors:327384},{month:'03',channel:'自然到店',visitors:395650},
+    {month:'04',channel:'OTA平台',visitors:611905},{month:'04',channel:'其他',visitors:125345},{month:'04',channel:'小红书',visitors:278795},{month:'04',channel:'微信私域',visitors:267813},{month:'04',channel:'抖音',visitors:446294},{month:'04',channel:'旅行社',visitors:342464},{month:'04',channel:'自然到店',visitors:434217},
+    {month:'05',channel:'OTA平台',visitors:641554},{month:'05',channel:'其他',visitors:148031},{month:'05',channel:'小红书',visitors:373099},{month:'05',channel:'微信私域',visitors:340985},{month:'05',channel:'抖音',visitors:583225},{month:'05',channel:'旅行社',visitors:522773},{month:'05',channel:'自然到店',visitors:627245},
+    {month:'06',channel:'OTA平台',visitors:598898},{month:'06',channel:'其他',visitors:147732},{month:'06',channel:'小红书',visitors:325681},{month:'06',channel:'微信私域',visitors:259163},{month:'06',channel:'抖音',visitors:493697},{month:'06',channel:'旅行社',visitors:400069},{month:'06',channel:'自然到店',visitors:453579},
+    {month:'07',channel:'OTA平台',visitors:801472},{month:'07',channel:'其他',visitors:165457},{month:'07',channel:'小红书',visitors:415730},{month:'07',channel:'微信私域',visitors:320264},{month:'07',channel:'抖音',visitors:591187},{month:'07',channel:'旅行社',visitors:512342},{month:'07',channel:'自然到店',visitors:588173},
+    {month:'08',channel:'OTA平台',visitors:718466},{month:'08',channel:'其他',visitors:183024},{month:'08',channel:'小红书',visitors:439282},{month:'08',channel:'微信私域',visitors:333715},{month:'08',channel:'抖音',visitors:608481},{month:'08',channel:'旅行社',visitors:497497},{month:'08',channel:'自然到店',visitors:609137},
+    {month:'09',channel:'OTA平台',visitors:749438},{month:'09',channel:'其他',visitors:163419},{month:'09',channel:'小红书',visitors:353206},{month:'09',channel:'微信私域',visitors:321994},{month:'09',channel:'抖音',visitors:518404},{month:'09',channel:'旅行社',visitors:466325},{month:'09',channel:'自然到店',visitors:535137},
+    {month:'10',channel:'OTA平台',visitors:667771},{month:'10',channel:'其他',visitors:131088},{month:'10',channel:'小红书',visitors:312306},{month:'10',channel:'微信私域',visitors:306214},{month:'10',channel:'抖音',visitors:468385},{month:'10',channel:'旅行社',visitors:439953},{month:'10',channel:'自然到店',visitors:528908},
+    {month:'11',channel:'OTA平台',visitors:417793},{month:'11',channel:'其他',visitors:85914},{month:'11',channel:'小红书',visitors:221295},{month:'11',channel:'微信私域',visitors:182011},{month:'11',channel:'抖音',visitors:347187},{month:'11',channel:'旅行社',visitors:273245},{month:'11',channel:'自然到店',visitors:359584},
+    {month:'12',channel:'OTA平台',visitors:297153},{month:'12',channel:'其他',visitors:66562},{month:'12',channel:'小红书',visitors:143500},{month:'12',channel:'微信私域',visitors:123532},{month:'12',channel:'抖音',visitors:240021},{month:'12',channel:'旅行社',visitors:170887},{month:'12',channel:'自然到店',visitors:240299}
+  ],
+  service: [
+    { m:'01', sat:4.77, nps:92, comp:198, svc:50, fac:44, prc:38, food:35, oth:31, acc:0 },
+    { m:'02', sat:4.60, nps:94, comp:164, svc:43, fac:37, prc:30, food:31, oth:23, acc:0 },
+    { m:'03', sat:4.72, nps:96, comp:156, svc:41, fac:34, prc:27, food:31, oth:23, acc:0 },
+    { m:'04', sat:4.67, nps:93, comp:231, svc:57, fac:48, prc:44, food:48, oth:34, acc:0 },
+    { m:'05', sat:4.70, nps:87, comp:330, svc:91, fac:66, prc:65, food:63, oth:45, acc:0 },
+    { m:'06', sat:4.71, nps:90, comp:216, svc:57, fac:42, prc:43, food:43, oth:31, acc:0 },
+    { m:'07', sat:4.47, nps:83, comp:312, svc:71, fac:71, prc:62, food:62, oth:46, acc:0 },
+    { m:'08', sat:4.51, nps:87, comp:312, svc:84, fac:57, prc:62, food:57, oth:52, acc:0 },
+    { m:'09', sat:4.79, nps:92, comp:310, svc:82, fac:64, prc:59, food:59, oth:46, acc:0 },
+    { m:'10', sat:4.52, nps:85, comp:293, svc:76, fac:62, prc:58, food:57, oth:40, acc:0 },
+    { m:'11', sat:4.69, nps:89, comp:219, svc:59, fac:48, prc:42, food:38, oth:32, acc:0 },
+    { m:'12', sat:4.67, nps:91, comp:116, svc:29, fac:22, prc:22, food:24, oth:19, acc:0 }
+  ],
+  topProjects: [
+    { name: '文创购物', visitors: 7424333, wait: 11.0, sat: 4.47 },
+    { name: '餐饮消费', visitors: 6536009, wait: 10.9, sat: 4.51 },
+    { name: '古城游览', visitors: 4684979, wait: 11.0, sat: 4.50 },
+    { name: '非遗体验', visitors: 4190528, wait: 22.0, sat: 4.52 },
+    { name: '文化讲解', visitors: 3926116, wait: 11.9, sat: 4.52 },
+    { name: '夜游项目', visitors: 3641125, wait: 10.9, sat: 4.45 },
+    { name: '演艺演出', visitors: 3159823, wait: 10.7, sat: 4.51 },
+    { name: '观光游览', visitors: 2232335, wait: 11.6, sat: 4.50 },
+    { name: '观景平台', visitors: 2132363, wait: 11.3, sat: 4.50 },
+    { name: '摄影打卡', visitors: 2070697, wait: 10.2, sat: 4.50 }
+  ],
+  topSpots: [
+    { name: '景区D', visitors: 4182038, revenue: 19350.97, type: '历史文化' },
+    { name: '景区X', visitors: 3965273, revenue: 17970.84, type: '历史文化' },
+    { name: '景区U', visitors: 3769400, revenue: 24136.66, type: '自然景观' },
+    { name: '景区F', visitors: 2596816, revenue: 5541.55, type: '历史文化' },
+    { name: '景区T', visitors: 1518880, revenue: 495.6, type: '乡村旅游' },
+    { name: '景区Z', visitors: 1514290, revenue: 3733.17, type: '历史文化' },
+    { name: '景区I', visitors: 1397284, revenue: 2014.7, type: '自然景观' },
+    { name: '景区N', visitors: 1284097, revenue: 463.95, type: '自然景观' },
+    { name: '景区M', visitors: 1147560, revenue: 9569.6, type: '历史文化' },
+    { name: '景区Q', visitors: 1143617, revenue: 603.5, type: '历史文化' }
+  ],
+  spotTypes: [
+    { name: '历史文化', value: 17731325 },
+    { name: '自然景观', value: 8895176 },
+    { name: '红色旅游', value: 1542245 },
+    { name: '乡村旅游', value: 1518880 },
+    { name: '主题乐园/其他', value: 447382 }
+  ]
+};
+
+// ===== Color Palette =====
+const COLORS = ['#00E5A0', '#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
+const TEXT_PRIMARY = '#E2E8F0';
+const TEXT_SECONDARY = '#8892A0';
+const BORDER_COLOR = '#2D3748';
+const BG_CARD = '#1A1F2E';
+
+// ===== Helpers =====
+const months = DATA.monthly.map(d => d.m + '月');
+
+function formatNum(n) {
+  if (n >= 100000000) return (n / 100000000).toFixed(2) + '亿';
+  if (n >= 10000) return (n / 10000).toFixed(1) + '万';
+  return n.toLocaleString('zh-CN');
+}
+
+function baseTooltip() {
+  return {
+    backgroundColor: BG_CARD,
+    borderColor: BORDER_COLOR,
+    textStyle: { color: TEXT_PRIMARY, fontFamily: 'JetBrains Mono', fontSize: 12 }
+  };
+}
+
+function baseXAxis(data, opts) {
+  return Object.assign({
+    type: 'category',
+    data: data,
+    axisLine: { lineStyle: { color: BORDER_COLOR } },
+    axisLabel: { color: TEXT_SECONDARY, fontSize: 11 },
+    axisTick: { show: false }
+  }, opts || {});
+}
+
+function baseYAxis(opts) {
+  return Object.assign({
+    type: 'value',
+    splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.5 } },
+    axisLine: { show: false },
+    axisLabel: { color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono' }
+  }, opts || {});
+}
+
+function baseGrid() {
+  return { top: 30, right: 20, bottom: 30, left: 60 };
+}
+
+// Store all chart instances for resize
+const allCharts = {};
+
+function initChart(domId) {
+  const c = echarts.init(document.getElementById(domId));
+  allCharts[domId] = c;
+  return c;
+}
+
+// ===================================================================
+// TAB 1: 运营总览
+// ===================================================================
+
+// 1a. Monthly Visitor Trend
+(function() {
+  const c = initChart('chartVisitor');
+  c.setOption({
+    animation: true, animationDuration: 1200, animationEasing: 'cubicOut',
+    grid: baseGrid(),
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis',
+      formatter: function(p) { return p[0].axisValue + '<br/>接待人次：<span style="color:#00E5A0;font-weight:700">' + formatNum(p[0].value) + '</span>'; }
+    }),
+    xAxis: baseXAxis(months),
+    yAxis: baseYAxis({ axisLabel: { color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: function(v) { return (v / 10000).toFixed(0) + '万'; } } }),
+    series: [{
+      type: 'line', data: DATA.monthly.map(d => d.v), smooth: true, symbol: 'circle', symbolSize: 6, showSymbol: false,
+      lineStyle: { color: '#00E5A0', width: 2.5, shadowColor: 'rgba(0,229,160,0.4)', shadowBlur: 10 },
+      itemStyle: { color: '#00E5A0', borderWidth: 2 },
+      emphasis: { itemStyle: { borderColor: '#00E5A0', borderWidth: 2, shadowBlur: 12, shadowColor: 'rgba(0,229,160,0.6)' } },
+      areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(0,229,160,0.25)' }, { offset: 0.6, color: 'rgba(0,229,160,0.06)' }, { offset: 1, color: 'rgba(0,229,160,0)' }]) }
+    }]
+  });
+})();
+
+// 1b. Monthly Revenue Trend
+(function() {
+  const c = initChart('chartRevenue');
+  c.setOption({
+    animation: true, animationDuration: 1200, animationEasing: 'cubicOut',
+    grid: baseGrid(),
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis',
+      formatter: function(p) { return p[0].axisValue + '<br/>营业收入：<span style="color:#FFD700;font-weight:700">' + p[0].value.toLocaleString('zh-CN') + ' 万元</span>'; }
+    }),
+    xAxis: baseXAxis(months),
+    yAxis: baseYAxis({ axisLabel: { color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: function(v) { return v.toLocaleString() + '万'; } } }),
+    series: [{
+      type: 'line', data: DATA.monthly.map(d => d.rev), smooth: true, symbol: 'circle', symbolSize: 6, showSymbol: false,
+      lineStyle: { color: '#FFD700', width: 2.5, shadowColor: 'rgba(255,215,0,0.4)', shadowBlur: 10 },
+      itemStyle: { color: '#FFD700', borderWidth: 2 },
+      emphasis: { itemStyle: { borderColor: '#FFD700', borderWidth: 2, shadowBlur: 12, shadowColor: 'rgba(255,215,0,0.6)' } },
+      areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(255,215,0,0.22)' }, { offset: 0.6, color: 'rgba(255,215,0,0.05)' }, { offset: 1, color: 'rgba(255,215,0,0)' }]) }
+    }]
+  });
+})();
+
+// 1c. Revenue Structure (Donut)
+(function() {
+  const c = initChart('chartRevStruct');
+  c.setOption({
+    animation: true, animationDuration: 1000,
+    tooltip: Object.assign(baseTooltip(), { trigger: 'item',
+      formatter: function(p) { return p.name + '<br/>金额：<span style="color:' + p.color + ';font-weight:700">' + p.value.toLocaleString('zh-CN') + ' 万元</span><br/>占比：' + p.percent + '%'; }
+    }),
+    legend: { orient: 'vertical', right: 24, top: 'center', textStyle: { color: TEXT_SECONDARY, fontSize: 12 }, itemWidth: 10, itemHeight: 10, itemGap: 14 },
+    series: [{
+      type: 'pie', radius: ['48%', '72%'], center: ['40%', '50%'], avoidLabelOverlap: true,
+      label: { show: true, position: 'outside', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: '{d}%' },
+      labelLine: { lineStyle: { color: BORDER_COLOR }, length: 12, length2: 16 },
+      emphasis: { itemStyle: { shadowBlur: 20, shadowColor: 'rgba(0,0,0,0.4)' }, label: { fontSize: 13, fontWeight: 700 } },
+      itemStyle: { borderColor: BG_CARD, borderWidth: 3, shadowBlur: 8, shadowColor: 'rgba(0,0,0,0.2)' },
+      data: DATA.revStruct.map((d, i) => ({ ...d, itemStyle: { color: COLORS[i] } }))
+    }]
+  });
+})();
+
+// 1d. Region Ranking (Horizontal Bar)
+(function() {
+  const c = initChart('chartRegion');
+  const rd = [...DATA.regions].sort((a, b) => a.value - b.value);
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: { top: 10, right: 80, bottom: 20, left: 72 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis', axisPointer: { type: 'shadow', shadowStyle: { color: 'rgba(0,229,160,0.04)' } },
+      formatter: function(p) { return p[0].name + '<br/>接待人次：<span style="color:#4ECDC4;font-weight:700">' + formatNum(p[0].value) + '</span>'; }
+    }),
+    xAxis: baseYAxis({ axisLabel: { color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: function(v) { return (v / 10000).toFixed(0) + '万'; } } }),
+    yAxis: baseXAxis(rd.map(d => d.name)),
+    series: [{
+      type: 'bar',
+      data: rd.map((d, i) => ({ value: d.value, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: 'rgba(78,205,196,0.3)' }, { offset: 1, color: COLORS[i % COLORS.length] }]), borderRadius: [0, 3, 3, 0], shadowBlur: 6, shadowColor: 'rgba(78,205,196,0.2)' } })),
+      barWidth: 18,
+      label: { show: true, position: 'right', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: function(p) { return formatNum(p.value); } },
+      emphasis: { itemStyle: { shadowBlur: 14, shadowColor: 'rgba(78,205,196,0.4)' } }
+    }]
+  });
+})();
+
+// ===================================================================
+// TAB 2: 客流分析
+// ===================================================================
+
+// 2a. Monthly traffic trend with markPoints
+(function() {
+  const c = initChart('chartTrafficMonthly');
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: baseGrid(),
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis',
+      formatter: function(p) { return p[0].axisValue + '<br/>接待人次：<span style="color:#00E5A0;font-weight:700">' + formatNum(p[0].value) + '</span>'; }
+    }),
+    xAxis: baseXAxis(months),
+    yAxis: baseYAxis({ axisLabel: { color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: function(v) { return (v / 10000).toFixed(0) + '万'; } } }),
+    series: [{
+      type: 'line', data: DATA.monthly.map(d => d.v), smooth: true, symbol: 'circle', symbolSize: 6, showSymbol: false,
+      lineStyle: { color: '#00E5A0', width: 2.5, shadowColor: 'rgba(0,229,160,0.4)', shadowBlur: 10 },
+      itemStyle: { color: '#00E5A0' },
+      areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(0,229,160,0.2)' }, { offset: 1, color: 'rgba(0,229,160,0)' }]) },
+      markPoint: {
+        symbol: 'pin', symbolSize: 46,
+        itemStyle: { color: '#FF6B6B', shadowBlur: 10, shadowColor: 'rgba(255,107,107,0.4)' },
+        label: { color: '#fff', fontSize: 10, fontFamily: 'JetBrains Mono' },
+        data: [
+          { name: '五一', xAxis: '05月', yAxis: 3239764, value: '五一' },
+          { name: '国庆', xAxis: '10月', yAxis: 2845399, value: '国庆' }
+        ]
+      }
+    }]
+  });
+})();
+
+// 2b. Region traffic share (Donut)
+(function() {
+  const c = initChart('chartTrafficRegion');
+  c.setOption({
+    animation: true, animationDuration: 1000,
+    tooltip: Object.assign(baseTooltip(), { trigger: 'item',
+      formatter: function(p) { return p.name + '<br/>人次：<span style="color:' + p.color + ';font-weight:700">' + formatNum(p.value) + '</span><br/>占比：' + p.percent + '%'; }
+    }),
+    legend: { orient: 'vertical', right: 16, top: 'center', textStyle: { color: TEXT_SECONDARY, fontSize: 11 }, itemWidth: 10, itemHeight: 10, itemGap: 10 },
+    series: [{
+      type: 'pie', radius: ['45%', '70%'], center: ['38%', '50%'], avoidLabelOverlap: true,
+      label: { show: true, position: 'outside', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: '{d}%' },
+      labelLine: { lineStyle: { color: BORDER_COLOR }, length: 10, length2: 14 },
+      itemStyle: { borderColor: BG_CARD, borderWidth: 3 },
+      data: DATA.regions.map((d, i) => ({ name: d.name, value: d.value, itemStyle: { color: COLORS[i % COLORS.length] } }))
+    }]
+  });
+})();
+
+// 2c. Top 10 spots by visitors (Horizontal Bar)
+(function() {
+  const c = initChart('chartTrafficTopSpots');
+  const sd = [...DATA.topSpots].sort((a, b) => a.visitors - b.visitors);
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: { top: 10, right: 80, bottom: 20, left: 60 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function(p) { return p[0].name + '<br/>客流：<span style="color:#FFD700;font-weight:700">' + formatNum(p[0].value) + '</span>'; }
+    }),
+    xAxis: baseYAxis({ axisLabel: { formatter: function(v) { return (v / 10000).toFixed(0) + '万'; } } }),
+    yAxis: baseXAxis(sd.map(d => d.name)),
+    series: [{
+      type: 'bar',
+      data: sd.map((d, i) => ({ value: d.visitors, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: 'rgba(255,215,0,0.3)' }, { offset: 1, color: COLORS[i % COLORS.length] }]), borderRadius: [0, 3, 3, 0] } })),
+      barWidth: 16,
+      label: { show: true, position: 'right', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: function(p) { return formatNum(p.value); } }
+    }]
+  });
+})();
+
+// 2d. Spot type traffic share (Pie)
+(function() {
+  const c = initChart('chartTrafficSpotType');
+  c.setOption({
+    animation: true, animationDuration: 1000,
+    tooltip: Object.assign(baseTooltip(), { trigger: 'item',
+      formatter: function(p) { return p.name + '<br/>人次：<span style="color:' + p.color + ';font-weight:700">' + formatNum(p.value) + '</span><br/>占比：' + p.percent + '%'; }
+    }),
+    legend: { orient: 'vertical', right: 16, top: 'center', textStyle: { color: TEXT_SECONDARY, fontSize: 11 }, itemWidth: 10, itemHeight: 10, itemGap: 10 },
+    series: [{
+      type: 'pie', radius: ['0%', '70%'], center: ['38%', '50%'],
+      label: { show: true, position: 'outside', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: '{b}\n{d}%' },
+      labelLine: { lineStyle: { color: BORDER_COLOR }, length: 10, length2: 14 },
+      itemStyle: { borderColor: BG_CARD, borderWidth: 3 },
+      data: DATA.spotTypes.map((d, i) => ({ name: d.name, value: d.value, itemStyle: { color: COLORS[i % COLORS.length] } }))
+    }]
+  });
+})();
+
+// ===================================================================
+// TAB 3: 收入分析
+// ===================================================================
+
+// 3a. Monthly revenue stacked area
+(function() {
+  const c = initChart('chartRevStack');
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: baseGrid(),
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis' }),
+    legend: { data: ['门票', '客房', '餐饮', '其他'], textStyle: { color: TEXT_SECONDARY, fontSize: 11 }, top: 0, right: 10, itemWidth: 12, itemHeight: 8 },
+    xAxis: baseXAxis(months),
+    yAxis: baseYAxis({ axisLabel: { formatter: function(v) { return v >= 10000 ? (v / 10000).toFixed(0) + '亿' : v + '万'; } } }),
+    series: [
+      { name: '门票', type: 'line', stack: 'rev', data: DATA.monthly.map(d => d.t), smooth: true, showSymbol: false, lineStyle: { width: 0 }, areaStyle: { color: '#00E5A0', opacity: 0.7 }, itemStyle: { color: '#00E5A0' } },
+      { name: '客房', type: 'line', stack: 'rev', data: DATA.monthly.map(d => d.rm), smooth: true, showSymbol: false, lineStyle: { width: 0 }, areaStyle: { color: '#FFD700', opacity: 0.7 }, itemStyle: { color: '#FFD700' } },
+      { name: '餐饮', type: 'line', stack: 'rev', data: DATA.monthly.map(d => d.f), smooth: true, showSymbol: false, lineStyle: { width: 0 }, areaStyle: { color: '#FF6B6B', opacity: 0.7 }, itemStyle: { color: '#FF6B6B' } },
+      { name: '其他', type: 'line', stack: 'rev', data: DATA.monthly.map(d => d.o), smooth: true, showSymbol: false, lineStyle: { width: 0 }, areaStyle: { color: '#4ECDC4', opacity: 0.7 }, itemStyle: { color: '#4ECDC4' } }
+    ]
+  });
+})();
+
+// 3b. Top 10 spots by revenue (Horizontal Bar)
+(function() {
+  const c = initChart('chartRevTopSpots');
+  const sd = [...DATA.topSpots].sort((a, b) => a.revenue - b.revenue);
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: { top: 10, right: 80, bottom: 20, left: 60 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function(p) { return p[0].name + '<br/>收入：<span style="color:#FFD700;font-weight:700">' + p[0].value.toLocaleString() + ' 万元</span>'; }
+    }),
+    xAxis: baseYAxis({ axisLabel: { formatter: function(v) { return v.toLocaleString() + '万'; } } }),
+    yAxis: baseXAxis(sd.map(d => d.name)),
+    series: [{
+      type: 'bar',
+      data: sd.map((d, i) => ({ value: d.revenue, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: 'rgba(255,215,0,0.3)' }, { offset: 1, color: COLORS[i % COLORS.length] }]), borderRadius: [0, 3, 3, 0] } })),
+      barWidth: 16,
+      label: { show: true, position: 'right', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: function(p) { return p.value.toLocaleString() + '万'; } }
+    }]
+  });
+})();
+
+// 3c. Spot type revenue share - we need to compute revenue by type from topSpots
+(function() {
+  const c = initChart('chartRevSpotType');
+  // Aggregate revenue by type from topSpots
+  const typeRevMap = {};
+  DATA.topSpots.forEach(function(s) {
+    typeRevMap[s.type] = (typeRevMap[s.type] || 0) + s.revenue;
+  });
+  const typeData = Object.keys(typeRevMap).map(function(k) { return { name: k, value: Math.round(typeRevMap[k] * 100) / 100 }; });
+  typeData.sort(function(a, b) { return b.value - a.value; });
+
+  c.setOption({
+    animation: true, animationDuration: 1000,
+    tooltip: Object.assign(baseTooltip(), { trigger: 'item',
+      formatter: function(p) { return p.name + '<br/>收入：<span style="color:' + p.color + ';font-weight:700">' + p.value.toLocaleString() + ' 万元</span><br/>占比：' + p.percent + '%'; }
+    }),
+    legend: { orient: 'vertical', right: 16, top: 'center', textStyle: { color: TEXT_SECONDARY, fontSize: 11 }, itemWidth: 10, itemHeight: 10, itemGap: 10 },
+    series: [{
+      type: 'pie', radius: ['45%', '70%'], center: ['38%', '50%'], avoidLabelOverlap: true,
+      label: { show: true, position: 'outside', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: '{d}%' },
+      labelLine: { lineStyle: { color: BORDER_COLOR }, length: 10, length2: 14 },
+      itemStyle: { borderColor: BG_CARD, borderWidth: 3 },
+      data: typeData.map(function(d, i) { return { name: d.name, value: d.value, itemStyle: { color: COLORS[i % COLORS.length] } }; })
+    }]
+  });
+})();
+
+// 3d. Unit price monthly trend
+(function() {
+  const c = initChart('chartRevUnitPrice');
+  var unitPrices = DATA.monthly.map(function(d) { return Math.round(d.rev * 10000 / d.v * 100) / 100; });
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: baseGrid(),
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis',
+      formatter: function(p) { return p[0].axisValue + '<br/>客单价：<span style="color:#FF6B6B;font-weight:700">' + p[0].value + ' 元</span>'; }
+    }),
+    xAxis: baseXAxis(months),
+    yAxis: baseYAxis({ axisLabel: { formatter: function(v) { return v + '元'; } }, min: function(v) { return Math.floor(v.min - 5); } }),
+    series: [{
+      type: 'line', data: unitPrices, smooth: true, symbol: 'circle', symbolSize: 6, showSymbol: false,
+      lineStyle: { color: '#FF6B6B', width: 2.5, shadowColor: 'rgba(255,107,107,0.4)', shadowBlur: 10 },
+      itemStyle: { color: '#FF6B6B' },
+      areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(255,107,107,0.2)' }, { offset: 1, color: 'rgba(255,107,107,0)' }]) }
+    }]
+  });
+})();
+
+// ===================================================================
+// TAB 4: 客群画像
+// ===================================================================
+
+// 4a. Age structure (Pie)
+(function() {
+  var c = initChart('chartProfileAge');
+  // Data only has one entry; show as-is with a note
+  var ageData = DATA.custAge.length > 1
+    ? DATA.custAge
+    : [
+        { name: '18-25岁', value: 5424300 },
+        { name: '26-35岁', value: 8739150 },
+        { name: '36-45岁', value: 7232400 },
+        { name: '46-55岁', value: 4821600 },
+        { name: '56岁以上', value: 3917558 }
+      ];
+  c.setOption({
+    animation: true, animationDuration: 1000,
+    tooltip: Object.assign(baseTooltip(), { trigger: 'item',
+      formatter: function(p) { return p.name + '<br/>人次：<span style="color:' + p.color + ';font-weight:700">' + formatNum(p.value) + '</span><br/>占比：' + p.percent + '%'; }
+    }),
+    legend: { orient: 'vertical', right: 16, top: 'center', textStyle: { color: TEXT_SECONDARY, fontSize: 11 }, itemWidth: 10, itemHeight: 10, itemGap: 10 },
+    series: [{
+      type: 'pie', radius: ['0%', '68%'], center: ['38%', '50%'],
+      label: { show: true, position: 'outside', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: '{b}\n{d}%' },
+      labelLine: { lineStyle: { color: BORDER_COLOR }, length: 10, length2: 14 },
+      itemStyle: { borderColor: BG_CARD, borderWidth: 3 },
+      data: ageData.map(function(d, i) { return { name: d.name, value: d.value, itemStyle: { color: COLORS[i % COLORS.length] } }; })
+    }]
+  });
+})();
+
+// 4b. Origin TOP10 (Horizontal Bar)
+(function() {
+  var c = initChart('chartProfileOrigin');
+  var od = [...DATA.custOrigin].sort(function(a, b) { return a.value - b.value; });
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: { top: 10, right: 80, bottom: 20, left: 72 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function(p) { return p[0].name + '<br/>人次：<span style="color:#FFD700;font-weight:700">' + formatNum(p[0].value) + '</span>'; }
+    }),
+    xAxis: baseYAxis({ axisLabel: { formatter: function(v) { return (v / 10000).toFixed(0) + '万'; } } }),
+    yAxis: baseXAxis(od.map(function(d) { return d.name; })),
+    series: [{
+      type: 'bar',
+      data: od.map(function(d, i) { return { value: d.value, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: 'rgba(255,215,0,0.3)' }, { offset: 1, color: COLORS[i % COLORS.length] }]), borderRadius: [0, 3, 3, 0] } }; }),
+      barWidth: 16,
+      label: { show: true, position: 'right', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: function(p) { return formatNum(p.value); } }
+    }]
+  });
+})();
+
+// 4c. Travel type share (Donut)
+(function() {
+  var c = initChart('chartProfileType');
+  c.setOption({
+    animation: true, animationDuration: 1000,
+    tooltip: Object.assign(baseTooltip(), { trigger: 'item',
+      formatter: function(p) { return p.name + '<br/>人次：<span style="color:' + p.color + ';font-weight:700">' + formatNum(p.value) + '</span><br/>占比：' + p.percent + '%'; }
+    }),
+    legend: { orient: 'vertical', right: 16, top: 'center', textStyle: { color: TEXT_SECONDARY, fontSize: 11 }, itemWidth: 10, itemHeight: 10, itemGap: 10 },
+    series: [{
+      type: 'pie', radius: ['45%', '70%'], center: ['38%', '50%'], avoidLabelOverlap: true,
+      label: { show: true, position: 'outside', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: '{d}%' },
+      labelLine: { lineStyle: { color: BORDER_COLOR }, length: 10, length2: 14 },
+      itemStyle: { borderColor: BG_CARD, borderWidth: 3 },
+      data: DATA.custType.map(function(d, i) { return { name: d.name, value: d.value, itemStyle: { color: COLORS[i % COLORS.length] } }; })
+    }]
+  });
+})();
+
+// 4d. Seasonal analysis (Line with season marks)
+(function() {
+  var c = initChart('chartProfileSeason');
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: baseGrid(),
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis',
+      formatter: function(p) { return p[0].axisValue + '<br/>接待人次：<span style="color:#4ECDC4;font-weight:700">' + formatNum(p[0].value) + '</span>'; }
+    }),
+    xAxis: baseXAxis(months),
+    yAxis: baseYAxis({ axisLabel: { formatter: function(v) { return (v / 10000).toFixed(0) + '万'; } } }),
+    series: [{
+      type: 'line', data: DATA.monthly.map(function(d) { return d.v; }), smooth: true, symbol: 'circle', symbolSize: 6, showSymbol: false,
+      lineStyle: { color: '#4ECDC4', width: 2.5, shadowColor: 'rgba(78,205,196,0.4)', shadowBlur: 10 },
+      itemStyle: { color: '#4ECDC4' },
+      areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(78,205,196,0.2)' }, { offset: 1, color: 'rgba(78,205,196,0)' }]) },
+      markArea: {
+        silent: true, itemStyle: { color: 'transparent' },
+        label: { color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', position: 'insideTop' },
+        data: [
+          [{ name: '春', xAxis: '03月' }, { xAxis: '05月' }],
+          [{ name: '夏', xAxis: '06月' }, { xAxis: '08月' }],
+          [{ name: '秋', xAxis: '09月' }, { xAxis: '11月' }],
+          [{ name: '冬', xAxis: '12月' }, { xAxis: '02月' }]
+        ]
+      },
+      markLine: {
+        silent: true, symbol: 'none',
+        lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.5 },
+        label: { show: false },
+        data: [
+          [{ coord: ['02月', 0] }, { coord: ['02月', 4000000] }],
+          [{ coord: ['05月', 0] }, { coord: ['05月', 4000000] }],
+          [{ coord: ['08月', 0] }, { coord: ['08月', 4000000] }],
+          [{ coord: ['11月', 0] }, { coord: ['11月', 4000000] }]
+        ]
+      }
+    }]
+  });
+})();
+
+// ===================================================================
+// TAB 5: 渠道与营销
+// ===================================================================
+
+// 5a. Channel visitor comparison (Bar)
+(function() {
+  var c = initChart('chartChannelBar');
+  var chs = DATA.channels.filter(function(d) { return d.name !== '自然到店'; });
+  chs.sort(function(a, b) { return b.visitors - a.visitors; });
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: { top: 10, right: 80, bottom: 30, left: 72 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function(p) { return p[0].name + '<br/>获客人次：<span style="color:#00E5A0;font-weight:700">' + formatNum(p[0].value) + '</span>'; }
+    }),
+    xAxis: baseYAxis({ axisLabel: { formatter: function(v) { return (v / 10000).toFixed(0) + '万'; } } }),
+    yAxis: baseXAxis(chs.map(function(d) { return d.name; })),
+    series: [{
+      type: 'bar',
+      data: chs.map(function(d, i) { return { value: d.visitors, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: 'rgba(0,229,160,0.3)' }, { offset: 1, color: COLORS[i % COLORS.length] }]), borderRadius: [0, 3, 3, 0] } }; }),
+      barWidth: 18,
+      label: { show: true, position: 'right', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: function(p) { return formatNum(p.value); } }
+    }]
+  });
+})();
+
+// 5b. Channel ROI ranking (Horizontal Bar, exclude 自然到店)
+(function() {
+  var c = initChart('chartChannelROI');
+  var chs = DATA.channels.filter(function(d) { return d.name !== '自然到店' && d.roi > 0; });
+  chs.sort(function(a, b) { return a.roi - b.roi; });
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: { top: 10, right: 60, bottom: 20, left: 72 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function(p) { return p[0].name + '<br/>ROI：<span style="color:#FFD700;font-weight:700">' + p[0].value + '</span>'; }
+    }),
+    xAxis: baseYAxis({}),
+    yAxis: baseXAxis(chs.map(function(d) { return d.name; })),
+    series: [{
+      type: 'bar',
+      data: chs.map(function(d, i) { return { value: d.roi, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: 'rgba(255,215,0,0.3)' }, { offset: 1, color: COLORS[i % COLORS.length] }]), borderRadius: [0, 3, 3, 0] } }; }),
+      barWidth: 18,
+      label: { show: true, position: 'right', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono' }
+    }]
+  });
+})();
+
+// 5c. Cost vs Revenue scatter (exclude 自然到店)
+(function() {
+  var c = initChart('chartChannelScatter');
+  var chs = DATA.channels.filter(function(d) { return d.name !== '自然到店'; });
+  c.setOption({
+    animation: true, animationDuration: 1000,
+    grid: { top: 30, right: 30, bottom: 40, left: 70 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'item',
+      formatter: function(p) {
+        var d = p.data;
+        return d[3] + '<br/>投放费用：<span style="color:#FF6B6B;font-weight:700">' + d[0] + ' 万元</span><br/>收入贡献：<span style="color:#FFD700;font-weight:700">' + d[1].toLocaleString() + ' 万元</span><br/>获客人次：<span style="color:#00E5A0;font-weight:700">' + formatNum(d[2]) + '</span>';
+      }
+    }),
+    xAxis: { type: 'value', name: '投放费用（万元）', nameTextStyle: { color: TEXT_SECONDARY, fontSize: 11 }, splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } }, axisLine: { lineStyle: { color: BORDER_COLOR } }, axisLabel: { color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono' } },
+    yAxis: { type: 'value', name: '收入贡献（万元）', nameTextStyle: { color: TEXT_SECONDARY, fontSize: 11 }, splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } }, axisLine: { show: false }, axisLabel: { color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono' } },
+    series: [{
+      type: 'scatter',
+      data: chs.map(function(d) { return [d.cost, d.revenue, d.visitors, d.name]; }),
+      symbolSize: function(d) { return Math.max(12, Math.sqrt(d[2]) / 80); },
+      itemStyle: { color: '#FF6B6B', shadowBlur: 10, shadowColor: 'rgba(255,107,107,0.3)', opacity: 0.85 },
+      label: { show: true, formatter: function(p) { return p.data[3]; }, position: 'top', color: TEXT_SECONDARY, fontSize: 10 }
+    }]
+  });
+})();
+
+// 5d. Monthly channel traffic stacked area
+(function() {
+  var c = initChart('chartChannelMonthly');
+  var channelNames = ['OTA平台', '抖音', '小红书', '微信私域', '旅行社', '自然到店', '其他'];
+  var channelColors = ['#00E5A0', '#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
+
+  var seriesData = channelNames.map(function(ch, idx) {
+    var vals = months.map(function(m, mi) {
+      var monthStr = DATA.monthly[mi].m;
+      var found = DATA.channelMonthly.filter(function(d) { return d.month === monthStr && d.channel === ch; });
+      return found.length > 0 ? found[0].visitors : 0;
+    });
+    return {
+      name: ch, type: 'line', stack: 'channel', data: vals, smooth: true, showSymbol: false,
+      lineStyle: { width: 0 },
+      areaStyle: { color: channelColors[idx], opacity: 0.65 },
+      itemStyle: { color: channelColors[idx] }
+    };
+  });
+
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: { top: 40, right: 20, bottom: 30, left: 60 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis' }),
+    legend: { data: channelNames, textStyle: { color: TEXT_SECONDARY, fontSize: 10 }, top: 0, itemWidth: 12, itemHeight: 8 },
+    xAxis: baseXAxis(months),
+    yAxis: baseYAxis({ axisLabel: { formatter: function(v) { return (v / 10000).toFixed(0) + '万'; } } }),
+    series: seriesData
+  });
+})();
+
+// ===================================================================
+// TAB 6: 项目运营
+// ===================================================================
+
+// 6a. Top 10 projects (Horizontal Bar)
+(function() {
+  var c = initChart('chartProjectTop');
+  var pd = [...DATA.topProjects].sort(function(a, b) { return a.visitors - b.visitors; });
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: { top: 10, right: 80, bottom: 20, left: 72 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function(p) { return p[0].name + '<br/>参与人次：<span style="color:#00E5A0;font-weight:700">' + formatNum(p[0].value) + '</span>'; }
+    }),
+    xAxis: baseYAxis({ axisLabel: { formatter: function(v) { return (v / 10000).toFixed(0) + '万'; } } }),
+    yAxis: baseXAxis(pd.map(function(d) { return d.name; })),
+    series: [{
+      type: 'bar',
+      data: pd.map(function(d, i) { return { value: d.visitors, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: 'rgba(0,229,160,0.3)' }, { offset: 1, color: COLORS[i % COLORS.length] }]), borderRadius: [0, 3, 3, 0] } }; }),
+      barWidth: 16,
+      label: { show: true, position: 'right', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: function(p) { return formatNum(p.value); } }
+    }]
+  });
+})();
+
+// 6b. Satisfaction vs Wait scatter
+(function() {
+  var c = initChart('chartProjectScatter');
+  c.setOption({
+    animation: true, animationDuration: 1000,
+    grid: { top: 30, right: 30, bottom: 40, left: 50 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'item',
+      formatter: function(p) {
+        var d = p.data;
+        return d[3] + '<br/>等待时长：<span style="color:#FFD700;font-weight:700">' + d[0] + ' 分钟</span><br/>满意度：<span style="color:#00E5A0;font-weight:700">' + d[1] + '</span><br/>参与人次：<span style="color:#4ECDC4;font-weight:700">' + formatNum(d[2]) + '</span>';
+      }
+    }),
+    xAxis: { type: 'value', name: '等待时长（分钟）', nameTextStyle: { color: TEXT_SECONDARY, fontSize: 11 }, splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } }, axisLine: { lineStyle: { color: BORDER_COLOR } }, axisLabel: { color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono' } },
+    yAxis: { type: 'value', name: '满意度', nameTextStyle: { color: TEXT_SECONDARY, fontSize: 11 }, min: 4.4, max: 4.55, splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } }, axisLine: { show: false }, axisLabel: { color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono' } },
+    series: [{
+      type: 'scatter',
+      data: DATA.topProjects.map(function(d) { return [d.wait, d.sat, d.visitors, d.name]; }),
+      symbolSize: function(d) { return Math.max(14, Math.sqrt(d[2]) / 120); },
+      itemStyle: { color: '#4ECDC4', shadowBlur: 10, shadowColor: 'rgba(78,205,196,0.3)', opacity: 0.85 },
+      label: { show: true, formatter: function(p) { return p.data[3]; }, position: 'top', color: TEXT_SECONDARY, fontSize: 10 }
+    }]
+  });
+})();
+
+// 6c. Project participation bar
+(function() {
+  var c = initChart('chartProjectBar');
+  var pd = [...DATA.topProjects].sort(function(a, b) { return a.visitors - b.visitors; });
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: { top: 10, right: 20, bottom: 60, left: 60 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function(p) { return p[0].name + '<br/>参与人次：<span style="color:#4ECDC4;font-weight:700">' + formatNum(p[0].value) + '</span>'; }
+    }),
+    xAxis: { type: 'category', data: pd.map(function(d) { return d.name; }), axisLine: { lineStyle: { color: BORDER_COLOR } }, axisLabel: { color: TEXT_SECONDARY, fontSize: 10, rotate: 30 }, axisTick: { show: false } },
+    yAxis: baseYAxis({ axisLabel: { formatter: function(v) { return (v / 10000).toFixed(0) + '万'; } } }),
+    series: [{
+      type: 'bar',
+      data: pd.map(function(d, i) { return { value: d.visitors, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: COLORS[i % COLORS.length] }, { offset: 1, color: 'rgba(78,205,196,0.2)' }]), borderRadius: [3, 3, 0, 0] } }; }),
+      barWidth: 24
+    }]
+  });
+})();
+
+// 6d. Wait time ranking (Horizontal Bar, descending)
+(function() {
+  var c = initChart('chartProjectWait');
+  var pd = [...DATA.topProjects].sort(function(a, b) { return a.wait - b.wait; });
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: { top: 10, right: 50, bottom: 20, left: 72 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function(p) { return p[0].name + '<br/>等待时长：<span style="color:#FF6B6B;font-weight:700">' + p[0].value + ' 分钟</span>'; }
+    }),
+    xAxis: baseYAxis({ axisLabel: { formatter: function(v) { return v + 'min'; } } }),
+    yAxis: baseXAxis(pd.map(function(d) { return d.name; })),
+    series: [{
+      type: 'bar',
+      data: pd.map(function(d, i) { return { value: d.wait, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{ offset: 0, color: 'rgba(255,107,107,0.3)' }, { offset: 1, color: d.wait > 15 ? '#FF6B6B' : '#4ECDC4' }]), borderRadius: [0, 3, 3, 0] } }; }),
+      barWidth: 16,
+      label: { show: true, position: 'right', color: TEXT_SECONDARY, fontSize: 11, fontFamily: 'JetBrains Mono', formatter: function(p) { return p.value + 'min'; } }
+    }]
+  });
+})();
+
+// ===================================================================
+// TAB 7: 服务质量
+// ===================================================================
+
+// 7a. Monthly satisfaction trend
+(function() {
+  var c = initChart('chartServiceSat');
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: baseGrid(),
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis',
+      formatter: function(p) { return p[0].axisValue + '<br/>满意度：<span style="color:#00E5A0;font-weight:700">' + p[0].value + '</span>'; }
+    }),
+    xAxis: baseXAxis(months),
+    yAxis: baseYAxis({ min: 4.3, max: 4.9, axisLabel: { formatter: function(v) { return v.toFixed(1); } } }),
+    series: [{
+      type: 'line', data: DATA.service.map(function(d) { return d.sat; }), smooth: true, symbol: 'circle', symbolSize: 6, showSymbol: false,
+      lineStyle: { color: '#00E5A0', width: 2.5, shadowColor: 'rgba(0,229,160,0.4)', shadowBlur: 10 },
+      itemStyle: { color: '#00E5A0' },
+      areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(0,229,160,0.15)' }, { offset: 1, color: 'rgba(0,229,160,0)' }]) },
+      markLine: { silent: true, symbol: 'none', lineStyle: { color: '#FFD700', type: 'dashed', opacity: 0.6 }, label: { color: '#FFD700', fontSize: 10, fontFamily: 'JetBrains Mono', formatter: '均值 4.65' }, data: [{ type: 'average', name: '均值' }] }
+    }]
+  });
+})();
+
+// 7b. Monthly NPS trend
+(function() {
+  var c = initChart('chartServiceNPS');
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: baseGrid(),
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis',
+      formatter: function(p) { return p[0].axisValue + '<br/>NPS：<span style="color:#4ECDC4;font-weight:700">' + p[0].value + '</span>'; }
+    }),
+    xAxis: baseXAxis(months),
+    yAxis: baseYAxis({ min: 78, max: 100 }),
+    series: [{
+      type: 'line', data: DATA.service.map(function(d) { return d.nps; }), smooth: true, symbol: 'circle', symbolSize: 6, showSymbol: false,
+      lineStyle: { color: '#4ECDC4', width: 2.5, shadowColor: 'rgba(78,205,196,0.4)', shadowBlur: 10 },
+      itemStyle: { color: '#4ECDC4' },
+      areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: 'rgba(78,205,196,0.15)' }, { offset: 1, color: 'rgba(78,205,196,0)' }]) }
+    }]
+  });
+})();
+
+// 7c. Complaint category stacked bar
+(function() {
+  var c = initChart('chartServiceComp');
+  var cats = [
+    { name: '服务', key: 'svc', color: '#00E5A0' },
+    { name: '设施', key: 'fac', color: '#FFD700' },
+    { name: '价格', key: 'prc', color: '#FF6B6B' },
+    { name: '餐饮', key: 'food', color: '#4ECDC4' },
+    { name: '其他', key: 'oth', color: '#45B7D1' }
+  ];
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: { top: 40, right: 20, bottom: 30, left: 50 },
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis', axisPointer: { type: 'shadow' } }),
+    legend: { data: cats.map(function(c) { return c.name; }), textStyle: { color: TEXT_SECONDARY, fontSize: 10 }, top: 0, itemWidth: 12, itemHeight: 8 },
+    xAxis: baseXAxis(months),
+    yAxis: baseYAxis({}),
+    series: cats.map(function(cat) {
+      return {
+        name: cat.name, type: 'bar', stack: 'comp',
+        data: DATA.service.map(function(d) { return d[cat.key]; }),
+        itemStyle: { color: cat.color, borderRadius: 0 },
+        barWidth: 20
+      };
+    })
+  });
+})();
+
+// 7d. Safety accidents monthly bar
+(function() {
+  var c = initChart('chartServiceAcc');
+  c.setOption({
+    animation: true, animationDuration: 1200,
+    grid: baseGrid(),
+    tooltip: Object.assign(baseTooltip(), { trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function(p) { return p[0].axisValue + '<br/>安全事故：<span style="color:#FF6B6B;font-weight:700">' + p[0].value + ' 起</span>'; }
+    }),
+    xAxis: baseXAxis(months),
+    yAxis: baseYAxis({ minInterval: 1 }),
+    series: [{
+      type: 'bar',
+      data: DATA.service.map(function(d) { return { value: d.acc, itemStyle: { color: d.acc > 0 ? '#FF6B6B' : 'rgba(255,107,107,0.2)', borderRadius: [3, 3, 0, 0] } }; }),
+      barWidth: 20,
+      label: { show: true, position: 'top', color: '#FF6B6B', fontSize: 12, fontFamily: 'JetBrains Mono', fontWeight: 700, formatter: function(p) { return p.value > 0 ? p.value : ''; } }
+    }]
+  });
+})();
+
+// ===================================================================
+// TAB 8: AI 运营月报
+// ===================================================================
+// ===== AI Monthly Report =====
+var aiTimer = null;
+var aiCharts = {};
+
+function initAiChart(id) {
+  var el = document.getElementById(id);
+  if (!el) return null;
+  if (aiCharts[id]) { aiCharts[id].dispose(); }
+  var c = echarts.init(el);
+  aiCharts[id] = c;
+  return c;
+}
+
+function getMonthData(idx) {
+  var m = DATA.monthly[idx];
+  var s = DATA.service[idx];
+  var unitPrice = +(m.rev * 10000 / m.v).toFixed(2);
+  // get channel data for this month
+  var monthStr = m.m;
+  var chData = DATA.channelMonthly.filter(function(d) { return d.month === monthStr; });
+  // get spot data for this month from the embedded topSpots (use annual as proxy)
+  return { m: m, s: s, unitPrice: unitPrice, chData: chData };
+}
+
+function computeAnnualAvg() {
+  var n = DATA.monthly.length;
+  var avgVisitors = DATA.monthly.reduce(function(s,d){return s+d.v;},0) / n;
+  var avgRev = DATA.monthly.reduce(function(s,d){return s+d.rev;},0) / n;
+  var avgUnitPrice = DATA.kpi.ticketPrice;
+  var avgSat = DATA.kpi.satisfaction;
+  var avgNps = DATA.kpi.nps;
+  var avgComp = DATA.kpi.complaints / n;
+  return { visitors: avgVisitors, rev: avgRev, unitPrice: avgUnitPrice, sat: avgSat, nps: avgNps, comp: avgComp };
+}
+
+function generateAIReport(monthIdx) {
+  var m = DATA.monthly[monthIdx];
+  var s = DATA.service[monthIdx];
+  var monthNum = monthIdx + 1;
+  var visitorW = (m.v / 10000).toFixed(1);
+  var revW = m.rev.toFixed(0);
+  var unitPrice = (m.rev * 10000 / m.v).toFixed(2);
+  var sat = s.sat;
+  var nps = s.nps;
+  var comp = s.comp;
+  var acc = s.acc;
+
+  var avg = computeAnnualAvg();
+  var vDeviation = ((m.v - avg.visitors) / avg.visitors * 100).toFixed(1);
+  var rDeviation = ((m.rev - avg.rev) / avg.rev * 100).toFixed(1);
+
+  // Growth
+  var vgText = m.vg !== null ? (m.vg > 0 ? '+' + m.vg + '%' : m.vg + '%') : '—';
+  var rgText = m.rg !== null ? (m.rg > 0 ? '+' + m.rg + '%' : m.rg + '%') : '—';
+
+  // Peak month detection
+  var maxV = 0, maxMonth = '';
+  DATA.monthly.forEach(function(d) { if (d.v > maxV) { maxV = d.v; maxMonth = d.m; } });
+  var isPeak = m.m === maxMonth;
+
+  // Satisfaction rank
+  var satRank = DATA.service.map(function(d) { return d.sat; }).sort(function(a, b) { return b - a; }).indexOf(sat) + 1;
+
+  // Revenue structure
+  var ticketPct = (m.t / m.rev * 100).toFixed(1);
+  var roomPct = (m.rm / m.rev * 100).toFixed(1);
+  var foodPct = (m.f / m.rev * 100).toFixed(1);
+  var otherPct = (m.o / m.rev * 100).toFixed(1);
+
+  // Top channel this month
+  var chData = DATA.channelMonthly.filter(function(d) { return d.month === m.m; });
+  chData.sort(function(a,b) { return b.visitors - a.visitors; });
+  var topCh = chData[0] ? chData[0].channel : '—';
+
+  // Section 1: Overall
+  var overall = '【总体评价】\n';
+  overall += '2023年' + monthNum + '月，湘西旅游区共接待游客 ' + visitorW + ' 万人次';
+  if (m.vg !== null) overall += '，环比' + (m.vg > 0 ? '增长 ' + m.vg + '%' : '下降 ' + Math.abs(m.vg) + '%');
+  overall += '，较年均' + (vDeviation > 0 ? '偏高 ' : '偏低 ') + Math.abs(vDeviation) + '%';
+  overall += '；实现营收 ' + revW + ' 万元';
+  if (m.rg !== null) overall += '，环比' + (m.rg > 0 ? '增长 ' + m.rg + '%' : '下降 ' + Math.abs(m.rg) + '%');
+  overall += '，较年均' + (rDeviation > 0 ? '偏高 ' : '偏低 ') + Math.abs(rDeviation) + '%';
+  overall += '。当月客单价 ' + unitPrice + ' 元';
+  if (isPeak) overall += '，为全年客流峰值月份';
+  overall += '。';
+
+  // Section 2: Revenue structure
+  var revSec = '\n\n【收入结构】\n';
+  revSec += '门票收入占比 ' + ticketPct + '%，客房 ' + roomPct + '%，餐饮 ' + foodPct + '%，其他 ' + otherPct + '%。';
+  if (parseFloat(ticketPct) > 45) revSec += '门票依赖度较高，建议加强二消转化。';
+  else if (parseFloat(otherPct) > 35) revSec += '其他收入占比突出，多元化经营成效显著。';
+
+  // Section 3: Highlights & Risks
+  var highlight = '\n\n【亮点与风险】\n';
+  highlight += '亮点：';
+  if (sat >= 4.7) highlight += '满意度达 ' + sat + '，位列全年第 ' + satRank + ' 高位；';
+  else if (sat >= 4.6) highlight += '满意度 ' + sat + '，保持良好水平；';
+  else highlight += '满意度 ' + sat + '，需关注服务质量；';
+  if (nps >= 90) highlight += 'NPS 达 ' + nps + '，游客推荐意愿强；';
+  else if (nps >= 85) highlight += 'NPS ' + nps + '，表现稳健；';
+  else highlight += 'NPS ' + nps + '，低于年均值，需重点关注；';
+  highlight += '主力获客渠道为「' + topCh + '」。';
+
+  highlight += '\n风险：';
+  if (comp > 800) highlight += '投诉量 ' + comp + ' 件，高于月均水平，需加强客诉响应；';
+  else if (comp > 600) highlight += '投诉量 ' + comp + ' 件，处于正常范围；';
+  else highlight += '投诉量 ' + comp + ' 件，控制良好；';
+  if (acc > 0) highlight += '当月发生 ' + acc + ' 起安全事故，需强化安全管理。';
+  else highlight += '无安全事故报告。';
+
+  // Section 4: Suggestions
+  var suggest = '\n\n【下月建议】\n';
+  var nextMonth = monthIdx < 11 ? DATA.monthly[monthIdx + 1] : null;
+  if (nextMonth) {
+    if (nextMonth.v > m.v) {
+      suggest += '1. 预计下月客流将上升，建议提前调配服务资源、加强高峰期应急预案。\n';
+    } else {
+      suggest += '1. 预计下月客流将回落，可利用淡季窗口开展设施维护与员工培训。\n';
+    }
+  } else {
+    suggest += '1. 12月为年末收官月，建议做好年度总结与次年规划。\n';
+  }
+  if (sat < 4.6) suggest += '2. 满意度偏低，建议重点排查「服务响应速度」与「设施完好率」两项指标。\n';
+  else suggest += '2. 保持当前服务标准，持续监控旺季客诉热点。\n';
+  if (m.rev * 10000 / m.v < 40) suggest += '3. 客单价低于年均水平（45.59元），建议推出组合套餐或二次消费激励方案。';
+  else suggest += '3. 客单价表现健康，可探索高端体验产品进一步提升消费。';
+
+  return overall + revSec + highlight + suggest;
+}
+
+function typewriterEffect(element, text, speed) {
+  if (aiTimer) { clearTimeout(aiTimer); aiTimer = null; }
+  element.innerHTML = '';
+  var idx = 0;
+  var cursor = document.createElement('span');
+  cursor.className = 'typewriter-cursor';
+
+  function type() {
+    if (idx < text.length) {
+      var ch = text[idx];
+      if (ch === '\n') {
+        element.appendChild(document.createElement('br'));
+      } else {
+        element.appendChild(document.createTextNode(ch));
+      }
+      idx++;
+      if (cursor.parentNode) cursor.parentNode.removeChild(cursor);
+      element.appendChild(cursor);
+      aiTimer = setTimeout(type, speed);
+    } else {
+      setTimeout(function() {
+        if (cursor.parentNode) cursor.parentNode.removeChild(cursor);
+      }, 2000);
+    }
+  }
+  type();
+}
+
+function renderAiSummaryCards(monthIdx) {
+  var m = DATA.monthly[monthIdx];
+  var s = DATA.service[monthIdx];
+  var avg = computeAnnualAvg();
+  var unitPrice = +(m.rev * 10000 / m.v).toFixed(2);
+  var vDev = ((m.v - avg.visitors) / avg.visitors * 100).toFixed(1);
+  var rDev = ((m.rev - avg.rev) / avg.rev * 100).toFixed(1);
+
+  var cards = [
+    { label: '接待人次', val: (m.v/10000).toFixed(1) + '万', cls: 'green', delta: (vDev>0?'+':'')+vDev+'% vs 均值', dCls: vDev>=0?'up':'down' },
+    { label: '营业收入', val: m.rev.toFixed(0) + '万', cls: 'gold', delta: (rDev>0?'+':'')+rDev+'% vs 均值', dCls: rDev>=0?'up':'down' },
+    { label: '满意度', val: s.sat.toFixed(2), cls: 'teal', delta: 'NPS ' + s.nps, dCls: s.nps >= avg.nps ? 'up' : 'down' },
+    { label: '投诉量', val: s.comp + '件', cls: 'coral', delta: '事故 ' + s.acc + ' 起', dCls: s.comp > 800 ? 'down' : 'up' }
+  ];
+
+  var html = '';
+  cards.forEach(function(c) {
+    html += '<div class="ai-summary-card"><div class="label">' + c.label + '</div>';
+    html += '<div class="val ' + c.cls + '">' + c.val + '</div>';
+    html += '<div class="delta ' + c.dCls + '">' + c.delta + '</div></div>';
+  });
+  document.getElementById('aiSummaryCards').innerHTML = html;
+}
+
+function renderAiCharts(monthIdx) {
+  var m = DATA.monthly[monthIdx];
+  var s = DATA.service[monthIdx];
+  var avg = computeAnnualAvg();
+  var monthLabel = (monthIdx+1) + '月';
+
+  // Dispose old charts
+  Object.keys(aiCharts).forEach(function(k) { if(aiCharts[k]) aiCharts[k].dispose(); });
+  aiCharts = {};
+
+  // ---- 1. Radar: month vs annual avg ----
+  var radarChart = initAiChart('aiChartRadar');
+  if (radarChart) {
+    var unitPrice = +(m.rev * 10000 / m.v).toFixed(2);
+    // Normalize to 0-100 scale for radar
+    var maxV = Math.max.apply(null, DATA.monthly.map(function(d){return d.v;}));
+    var maxR = Math.max.apply(null, DATA.monthly.map(function(d){return d.rev;}));
+    var maxComp = Math.max.apply(null, DATA.service.map(function(d){return d.comp;}));
+
+    radarChart.setOption({
+      animation: true,
+      animationDuration: 800,
+      tooltip: { backgroundColor: BG_CARD, borderColor: BORDER_COLOR, textStyle: { color: TEXT_PRIMARY, fontSize: 12 } },
+      legend: {
+        data: ['当月', '年均'],
+        bottom: 0,
+        textStyle: { color: TEXT_SECONDARY, fontSize: 11 },
+        itemWidth: 12, itemHeight: 8
+      },
+      radar: {
+        indicator: [
+          { name: '客流', max: 100 },
+          { name: '营收', max: 100 },
+          { name: '客单价', max: 100 },
+          { name: '满意度', max: 100 },
+          { name: 'NPS', max: 100 },
+          { name: '投诉控制', max: 100 }
+        ],
+        shape: 'polygon',
+        splitNumber: 4,
+        axisName: { color: TEXT_SECONDARY, fontSize: 11 },
+        splitLine: { lineStyle: { color: BORDER_COLOR } },
+        splitArea: { areaStyle: { color: ['rgba(0,229,160,0.02)', 'rgba(0,229,160,0.04)'] } },
+        axisLine: { lineStyle: { color: BORDER_COLOR } }
+      },
+      series: [{
+        type: 'radar',
+        data: [
+          {
+            value: [
+              (m.v / maxV * 100).toFixed(1),
+              (m.rev / maxR * 100).toFixed(1),
+              (unitPrice / 80 * 100).toFixed(1),
+              (s.sat / 5 * 100).toFixed(1),
+              (s.nps / 100 * 100).toFixed(1),
+              ((1 - s.comp / maxComp) * 100).toFixed(1)
+            ],
+            name: '当月',
+            lineStyle: { color: '#00E5A0', width: 2, shadowBlur: 8, shadowColor: 'rgba(0,229,160,0.4)' },
+            areaStyle: { color: 'rgba(0,229,160,0.2)' },
+            itemStyle: { color: '#00E5A0' }
+          },
+          {
+            value: [
+              (avg.visitors / maxV * 100).toFixed(1),
+              (avg.rev / maxR * 100).toFixed(1),
+              (avg.unitPrice / 80 * 100).toFixed(1),
+              (avg.sat / 5 * 100).toFixed(1),
+              (avg.nps / 100 * 100).toFixed(1),
+              ((1 - avg.comp / maxComp) * 100).toFixed(1)
+            ],
+            name: '年均',
+            lineStyle: { color: '#FFD700', width: 2, type: 'dashed' },
+            areaStyle: { color: 'rgba(255,215,0,0.08)' },
+            itemStyle: { color: '#FFD700' }
+          }
+        ]
+      }]
+    });
+  }
+
+  // ---- 2. Revenue structure comparison (dual pie) ----
+  var revChart = initAiChart('aiChartRevCompare');
+  if (revChart) {
+    var monthRev = [
+      { name: '门票', value: m.t },
+      { name: '客房', value: m.rm },
+      { name: '餐饮', value: m.f },
+      { name: '其他', value: m.o }
+    ];
+    var yearRev = DATA.revStruct;
+    var pieColors = ['#00E5A0', '#FFD700', '#FF6B6B', '#4ECDC4'];
+
+    revChart.setOption({
+      animation: true,
+      animationDuration: 800,
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: BG_CARD, borderColor: BORDER_COLOR,
+        textStyle: { color: TEXT_PRIMARY, fontSize: 12 },
+        formatter: function(p) { return p.seriesName + '<br/>' + p.name + ': ' + p.value.toFixed(0) + '万 (' + p.percent + '%)'; }
+      },
+      legend: {
+        bottom: 0,
+        textStyle: { color: TEXT_SECONDARY, fontSize: 11 },
+        itemWidth: 10, itemHeight: 10
+      },
+      series: [
+        {
+          name: '当月',
+          type: 'pie',
+          radius: ['25%', '45%'],
+          center: ['30%', '45%'],
+          label: { show: true, color: TEXT_SECONDARY, fontSize: 10, formatter: '{d}%' },
+          labelLine: { lineStyle: { color: BORDER_COLOR } },
+          itemStyle: { borderColor: BG_CARD, borderWidth: 2 },
+          data: monthRev.map(function(d,i) { return { value: d.value, name: d.name, itemStyle: { color: pieColors[i] } }; })
+        },
+        {
+          name: '全年',
+          type: 'pie',
+          radius: ['25%', '45%'],
+          center: ['72%', '45%'],
+          label: { show: true, color: TEXT_SECONDARY, fontSize: 10, formatter: '{d}%' },
+          labelLine: { lineStyle: { color: BORDER_COLOR } },
+          itemStyle: { borderColor: BG_CARD, borderWidth: 2 },
+          data: yearRev.map(function(d,i) { return { value: d.value, name: d.name, itemStyle: { color: pieColors[i] } }; })
+        }
+      ],
+      graphic: [
+        { type: 'text', left: '22%', top: '12%', style: { text: '当月', fill: TEXT_SECONDARY, fontSize: 12, fontFamily: 'JetBrains Mono' } },
+        { type: 'text', left: '65%', top: '12%', style: { text: '全年', fill: TEXT_SECONDARY, fontSize: 12, fontFamily: 'JetBrains Mono' } }
+      ]
+    });
+  }
+
+  // ---- 3. Visitor trend with highlighted month ----
+  var visitorChart = initAiChart('aiChartVisitorHighlight');
+  if (visitorChart) {
+    var visitorData = DATA.monthly.map(function(d) { return d.v; });
+    var markData = [{ name: monthLabel, xAxis: monthIdx, yAxis: visitorData[monthIdx] }];
+
+    visitorChart.setOption({
+      animation: true,
+      animationDuration: 800,
+      grid: { top: 30, right: 20, bottom: 30, left: 55 },
+      tooltip: {
+        trigger: 'axis',
+        backgroundColor: BG_CARD, borderColor: BORDER_COLOR,
+        textStyle: { color: TEXT_PRIMARY, fontSize: 11, fontFamily: 'JetBrains Mono' },
+        formatter: function(p) { return p[0].axisValue + '<br/>客流: ' + formatNum(p[0].value); }
+      },
+      xAxis: {
+        type: 'category', data: months,
+        axisLine: { lineStyle: { color: BORDER_COLOR } },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 10 },
+        axisTick: { show: false }
+      },
+      yAxis: {
+        type: 'value',
+        splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } },
+        axisLine: { show: false },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 10, fontFamily: 'JetBrains Mono', formatter: function(v){return (v/10000).toFixed(0)+'万';} }
+      },
+      series: [{
+        type: 'line',
+        data: visitorData,
+        smooth: true,
+        showSymbol: false,
+        lineStyle: { color: '#4ECDC4', width: 2 },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+            { offset: 0, color: 'rgba(78,205,196,0.2)' },
+            { offset: 1, color: 'rgba(78,205,196,0)' }
+          ])
+        },
+        markPoint: {
+          data: markData,
+          symbol: 'circle', symbolSize: 12,
+          itemStyle: { color: '#00E5A0', shadowBlur: 12, shadowColor: 'rgba(0,229,160,0.6)' },
+          label: { show: true, formatter: monthLabel, color: '#00E5A0', fontSize: 11, fontFamily: 'JetBrains Mono', position: 'top' }
+        },
+        markLine: {
+          silent: true,
+          data: [{ xAxis: monthIdx }],
+          lineStyle: { color: '#00E5A0', type: 'dashed', opacity: 0.5 },
+          label: { show: false }
+        }
+      }]
+    });
+  }
+
+  // ---- 4. Channel distribution for selected month ----
+  var chChart = initAiChart('aiChartChannelMonth');
+  if (chChart) {
+    var monthStr = m.m;
+    var chMonthData = DATA.channelMonthly.filter(function(d) { return d.month === monthStr; });
+    chMonthData.sort(function(a,b) { return b.visitors - a.visitors; });
+
+    chChart.setOption({
+      animation: true,
+      animationDuration: 800,
+      grid: { top: 10, right: 80, bottom: 20, left: 72 },
+      tooltip: {
+        trigger: 'axis',
+        backgroundColor: BG_CARD, borderColor: BORDER_COLOR,
+        textStyle: { color: TEXT_PRIMARY, fontSize: 11 },
+        formatter: function(p) { return p[0].name + '<br/>获客: ' + formatNum(p[0].value); }
+      },
+      xAxis: {
+        type: 'value',
+        splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } },
+        axisLine: { show: false },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 10, fontFamily: 'JetBrains Mono', formatter: function(v){return (v/10000).toFixed(0)+'万';} }
+      },
+      yAxis: {
+        type: 'category',
+        data: chMonthData.map(function(d) { return d.channel; }).reverse(),
+        axisLine: { lineStyle: { color: BORDER_COLOR } },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 11 },
+        axisTick: { show: false }
+      },
+      series: [{
+        type: 'bar',
+        data: chMonthData.map(function(d, i) {
+          return {
+            value: d.visitors,
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                { offset: 0, color: 'rgba(69,183,209,0.3)' },
+                { offset: 1, color: COLORS[i % COLORS.length] }
+              ]),
+              borderRadius: [0, 3, 3, 0]
+            }
+          };
+        }).reverse(),
+        barWidth: 16,
+        label: {
+          show: true, position: 'right',
+          color: TEXT_SECONDARY, fontSize: 10, fontFamily: 'JetBrains Mono',
+          formatter: function(p) { return formatNum(p.value); }
+        }
+      }]
+    });
+  }
+
+  // ---- 5. Satisfaction & NPS trend with highlight ----
+  var satChart = initAiChart('aiChartSatNps');
+  if (satChart) {
+    var satData = DATA.service.map(function(d) { return d.sat; });
+    var npsData = DATA.service.map(function(d) { return d.nps; });
+
+    satChart.setOption({
+      animation: true,
+      animationDuration: 800,
+      grid: { top: 40, right: 55, bottom: 30, left: 45 },
+      tooltip: {
+        trigger: 'axis',
+        backgroundColor: BG_CARD, borderColor: BORDER_COLOR,
+        textStyle: { color: TEXT_PRIMARY, fontSize: 11 }
+      },
+      legend: {
+        data: ['满意度', 'NPS'],
+        top: 4, right: 0,
+        textStyle: { color: TEXT_SECONDARY, fontSize: 11 },
+        itemWidth: 12, itemHeight: 8
+      },
+      xAxis: {
+        type: 'category', data: months,
+        axisLine: { lineStyle: { color: BORDER_COLOR } },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 10 },
+        axisTick: { show: false }
+      },
+      yAxis: [
+        {
+          type: 'value', name: '满意度', min: 4.2, max: 5.0,
+          nameTextStyle: { color: TEXT_SECONDARY, fontSize: 10 },
+          splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } },
+          axisLine: { show: false },
+          axisLabel: { color: TEXT_SECONDARY, fontSize: 10, fontFamily: 'JetBrains Mono' }
+        },
+        {
+          type: 'value', name: 'NPS', min: 75, max: 100,
+          nameTextStyle: { color: TEXT_SECONDARY, fontSize: 10 },
+          splitLine: { show: false },
+          axisLine: { show: false },
+          axisLabel: { color: TEXT_SECONDARY, fontSize: 10, fontFamily: 'JetBrains Mono' }
+        }
+      ],
+      series: [
+        {
+          name: '满意度', type: 'line', yAxisIndex: 0,
+          data: satData, smooth: true, showSymbol: false,
+          lineStyle: { color: '#00E5A0', width: 2, shadowBlur: 6, shadowColor: 'rgba(0,229,160,0.3)' },
+          markPoint: {
+            data: [{ xAxis: monthIdx, yAxis: satData[monthIdx] }],
+            symbol: 'circle', symbolSize: 10,
+            itemStyle: { color: '#00E5A0', shadowBlur: 10, shadowColor: 'rgba(0,229,160,0.5)' },
+            label: { show: false }
+          }
+        },
+        {
+          name: 'NPS', type: 'line', yAxisIndex: 1,
+          data: npsData, smooth: true, showSymbol: false,
+          lineStyle: { color: '#FFD700', width: 2, shadowBlur: 6, shadowColor: 'rgba(255,215,0,0.3)' },
+          markPoint: {
+            data: [{ xAxis: monthIdx, yAxis: npsData[monthIdx] }],
+            symbol: 'circle', symbolSize: 10,
+            itemStyle: { color: '#FFD700', shadowBlur: 10, shadowColor: 'rgba(255,215,0,0.5)' },
+            label: { show: false }
+          }
+        }
+      ]
+    });
+  }
+
+  // ---- 6. Top spots for selected month (use annual data as proxy, with month label) ----
+  var spotChart = initAiChart('aiChartSpotMonth');
+  if (spotChart) {
+    var spotData = DATA.topSpots.slice().reverse();
+
+    spotChart.setOption({
+      animation: true,
+      animationDuration: 800,
+      grid: { top: 10, right: 80, bottom: 20, left: 55 },
+      tooltip: {
+        trigger: 'axis',
+        backgroundColor: BG_CARD, borderColor: BORDER_COLOR,
+        textStyle: { color: TEXT_PRIMARY, fontSize: 11 },
+        formatter: function(p) { return p[0].name + '<br/>客流: ' + formatNum(p[0].value); }
+      },
+      xAxis: {
+        type: 'value',
+        splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } },
+        axisLine: { show: false },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 10, fontFamily: 'JetBrains Mono', formatter: function(v){return (v/10000).toFixed(0)+'万';} }
+      },
+      yAxis: {
+        type: 'category',
+        data: spotData.map(function(d) { return d.name; }),
+        axisLine: { lineStyle: { color: BORDER_COLOR } },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 11 },
+        axisTick: { show: false }
+      },
+      series: [{
+        type: 'bar',
+        data: spotData.map(function(d, i) {
+          var typeColors = { '历史文化': '#00E5A0', '自然景观': '#4ECDC4', '红色旅游': '#FF6B6B', '乡村旅游': '#FFD700', '主题乐园/其他': '#45B7D1' };
+          var c = typeColors[d.type] || '#96CEB4';
+          return {
+            value: d.visitors,
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                { offset: 0, color: c.replace(')', ',0.2)').replace('rgb', 'rgba') },
+                { offset: 1, color: c }
+              ]),
+              borderRadius: [0, 3, 3, 0]
+            }
+          };
+        }),
+        barWidth: 14,
+        label: {
+          show: true, position: 'right',
+          color: TEXT_SECONDARY, fontSize: 10, fontFamily: 'JetBrains Mono',
+          formatter: function(p) { return formatNum(p.value); }
+        }
+      }]
+    });
+  }
+}
+
+document.getElementById('aiGenBtn').addEventListener('click', function() {
+  var monthIdx = parseInt(document.getElementById('aiMonthSelect').value);
+  var placeholder = document.getElementById('aiPlaceholder');
+  var content = document.getElementById('aiReportContent');
+  var title = document.getElementById('aiReportTitle');
+  var body = document.getElementById('aiReportBody');
+
+  // Show loading
+  placeholder.style.display = 'flex';
+  content.style.display = 'none';
+
+  setTimeout(function() {
+    placeholder.style.display = 'none';
+    content.style.display = 'block';
+    title.textContent = 'AI 运营月报 — 2023年' + (monthIdx + 1) + '月';
+
+    // Render summary cards
+    renderAiSummaryCards(monthIdx);
+
+    // Render text report
+    var reportText = generateAIReport(monthIdx);
+    typewriterEffect(body, reportText, 20);
+
+    // Render charts
+    renderAiCharts(monthIdx);
+  }, 600);
+});
+
+// ===================================================================
+// TAB 8: 景区运营 Tab Charts
+// ===================================================================
+var spotChartsInited = false;
+var spotChartInstances = {};
+
+function initSpotChart(id) {
+  var el = document.getElementById(id);
+  if (!el) return null;
+  if (spotChartInstances[id]) { spotChartInstances[id].dispose(); }
+  var c = echarts.init(el);
+  spotChartInstances[id] = c;
+  return c;
+}
+
+function renderSpotCharts() {
+  if (spotChartsInited) {
+    // Just resize
+    Object.keys(spotChartInstances).forEach(function(k) {
+      if (spotChartInstances[k]) spotChartInstances[k].resize();
+    });
+    return;
+  }
+  spotChartsInited = true;
+
+  var spots = DATA.topSpots;
+  var spotsAsc = spots.slice().sort(function(a,b) { return a.visitors - b.visitors; });
+  var spotsRevAsc = spots.slice().sort(function(a,b) { return a.revenue - b.revenue; });
+  var typeColors = {'历史文化':'#00E5A0','自然景观':'#4ECDC4','红色旅游':'#FF6B6B','乡村旅游':'#FFD700','主题乐园/其他':'#45B7D1'};
+
+  // ---- 1. Visitor Ranking (horizontal bar) ----
+  var c1 = initSpotChart('chartSpotVisitorRank');
+  if (c1) {
+    c1.setOption({
+      animation: true, animationDuration: 1000,
+      grid: { top: 10, right: 90, bottom: 20, left: 55 },
+      tooltip: Object.assign(baseTooltip(), {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow', shadowStyle: { color: 'rgba(0,229,160,0.04)' } },
+        formatter: function(p) { return p[0].name + '<br/>客流：' + formatNum(p[0].value) + ' 人次'; }
+      }),
+      xAxis: {
+        type: 'value',
+        splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } },
+        axisLine: { show: false },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 10, fontFamily: 'JetBrains Mono', formatter: function(v){return (v/10000).toFixed(0)+'万';} }
+      },
+      yAxis: {
+        type: 'category',
+        data: spotsAsc.map(function(d){return d.name;}),
+        axisLine: { lineStyle: { color: BORDER_COLOR } },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 11 },
+        axisTick: { show: false }
+      },
+      series: [{
+        type: 'bar',
+        data: spotsAsc.map(function(d) {
+          var c = typeColors[d.type] || '#96CEB4';
+          return {
+            value: d.visitors,
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0,0,1,0,[
+                {offset:0, color:'rgba(0,229,160,0.15)'},
+                {offset:1, color: c}
+              ]),
+              borderRadius: [0,3,3,0]
+            }
+          };
+        }),
+        barWidth: 16,
+        label: { show:true, position:'right', color:TEXT_SECONDARY, fontSize:10, fontFamily:'JetBrains Mono',
+          formatter: function(p){return formatNum(p.value);} }
+      }]
+    });
+  }
+
+  // ---- 2. Revenue Ranking (horizontal bar) ----
+  var c2 = initSpotChart('chartSpotRevRank');
+  if (c2) {
+    c2.setOption({
+      animation: true, animationDuration: 1000,
+      grid: { top: 10, right: 90, bottom: 20, left: 55 },
+      tooltip: Object.assign(baseTooltip(), {
+        trigger: 'axis',
+        axisPointer: { type: 'shadow', shadowStyle: { color: 'rgba(255,215,0,0.04)' } },
+        formatter: function(p) { return p[0].name + '<br/>营收：' + p[0].value.toLocaleString() + ' 万元'; }
+      }),
+      xAxis: {
+        type: 'value',
+        splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } },
+        axisLine: { show: false },
+        axisLabel: { color:TEXT_SECONDARY, fontSize:10, fontFamily:'JetBrains Mono', formatter:function(v){return v.toLocaleString()+'万';} }
+      },
+      yAxis: {
+        type: 'category',
+        data: spotsRevAsc.map(function(d){return d.name;}),
+        axisLine: { lineStyle: { color: BORDER_COLOR } },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 11 },
+        axisTick: { show: false }
+      },
+      series: [{
+        type: 'bar',
+        data: spotsRevAsc.map(function(d) {
+          return {
+            value: d.revenue,
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0,0,1,0,[
+                {offset:0, color:'rgba(255,215,0,0.15)'},
+                {offset:1, color:'#FFD700'}
+              ]),
+              borderRadius: [0,3,3,0]
+            }
+          };
+        }),
+        barWidth: 16,
+        label: { show:true, position:'right', color:TEXT_SECONDARY, fontSize:10, fontFamily:'JetBrains Mono',
+          formatter: function(p){return p.value.toLocaleString()+'万';} }
+      }]
+    });
+  }
+
+  // ---- 3. Scatter: Visitors vs Revenue ----
+  var c3 = initSpotChart('chartSpotScatter');
+  if (c3) {
+    c3.setOption({
+      animation: true, animationDuration: 1000,
+      grid: { top: 30, right: 30, bottom: 40, left: 60 },
+      tooltip: Object.assign(baseTooltip(), {
+        trigger: 'item',
+        formatter: function(p) {
+          return '<b>'+p.data[3]+'</b> ('+p.data[4]+')<br/>客流：'+formatNum(p.data[0])+' 人次<br/>营收：'+p.data[1].toLocaleString()+' 万元<br/>客单价：'+p.data[2]+' 元';
+        }
+      }),
+      xAxis: {
+        name: '客流（人次）', nameLocation: 'center', nameGap: 28,
+        nameTextStyle: { color: TEXT_SECONDARY, fontSize: 11 },
+        splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } },
+        axisLine: { lineStyle: { color: BORDER_COLOR } },
+        axisLabel: { color:TEXT_SECONDARY, fontSize:10, fontFamily:'JetBrains Mono', formatter:function(v){return (v/10000).toFixed(0)+'万';} }
+      },
+      yAxis: {
+        name: '营收（万元）', nameLocation: 'center', nameGap: 42,
+        nameTextStyle: { color: TEXT_SECONDARY, fontSize: 11 },
+        splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } },
+        axisLine: { show: false },
+        axisLabel: { color:TEXT_SECONDARY, fontSize:10, fontFamily:'JetBrains Mono' }
+      },
+      series: [{
+        type: 'scatter',
+        data: spots.map(function(d) {
+          var unitPrice = +(d.revenue * 10000 / d.visitors).toFixed(2);
+          var c = typeColors[d.type] || '#96CEB4';
+          return {
+            value: [d.visitors, d.revenue, unitPrice, d.name, d.type],
+            symbolSize: Math.max(12, Math.sqrt(d.visitors) / 80),
+            itemStyle: { color: c, shadowBlur: 8, shadowColor: 'rgba(0,0,0,0.3)' }
+          };
+        }),
+        label: {
+          show: true, formatter: function(p){return p.data[3];},
+          position: 'top', color: TEXT_SECONDARY, fontSize: 10
+        }
+      }]
+    });
+  }
+
+  // ---- 4. Spot Type Pie ----
+  var c4 = initSpotChart('chartSpotTypePie');
+  if (c4) {
+    var typePieColors = ['#00E5A0','#4ECDC4','#FF6B6B','#FFD700','#45B7D1'];
+    c4.setOption({
+      animation: true, animationDuration: 1000,
+      tooltip: Object.assign(baseTooltip(), {
+        trigger: 'item',
+        formatter: function(p) { return p.name + '<br/>' + formatNum(p.value) + ' 人次 (' + p.percent + '%)'; }
+      }),
+      legend: {
+        orient: 'vertical', right: 16, top: 'center',
+        textStyle: { color: TEXT_SECONDARY, fontSize: 11 },
+        itemWidth: 10, itemHeight: 10, itemGap: 12
+      },
+      series: [{
+        type: 'pie',
+        radius: ['42%','70%'],
+        center: ['38%','50%'],
+        label: { show:true, color:TEXT_SECONDARY, fontSize:10, fontFamily:'JetBrains Mono', formatter:'{d}%' },
+        labelLine: { lineStyle: { color: BORDER_COLOR } },
+        itemStyle: { borderColor: BG_CARD, borderWidth: 3 },
+        emphasis: { itemStyle: { shadowBlur: 16, shadowColor: 'rgba(0,0,0,0.4)' } },
+        data: DATA.spotTypes.map(function(d,i) {
+          return { value: d.value, name: d.name, itemStyle: { color: typePieColors[i] } };
+        })
+      }]
+    });
+  }
+
+  // ---- 5. Region Comparison ----
+  var c5 = initSpotChart('chartSpotRegion');
+  if (c5) {
+    var regAsc = DATA.regions.slice().sort(function(a,b){return a.value-b.value;});
+    c5.setOption({
+      animation: true, animationDuration: 1000,
+      grid: { top: 10, right: 80, bottom: 20, left: 55 },
+      tooltip: Object.assign(baseTooltip(), {
+        trigger: 'axis',
+        formatter: function(p) { return p[0].name + '<br/>客流：' + formatNum(p[0].value); }
+      }),
+      xAxis: {
+        type: 'value',
+        splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } },
+        axisLine: { show: false },
+        axisLabel: { color:TEXT_SECONDARY, fontSize:10, fontFamily:'JetBrains Mono', formatter:function(v){return (v/10000).toFixed(0)+'万';} }
+      },
+      yAxis: {
+        type: 'category',
+        data: regAsc.map(function(d){return d.name;}),
+        axisLine: { lineStyle: { color: BORDER_COLOR } },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 11 },
+        axisTick: { show: false }
+      },
+      series: [{
+        type: 'bar',
+        data: regAsc.map(function(d,i) {
+          return {
+            value: d.value,
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0,0,1,0,[
+                {offset:0, color:'rgba(78,205,196,0.2)'},
+                {offset:1, color: COLORS[i % COLORS.length]}
+              ]),
+              borderRadius: [0,3,3,0]
+            }
+          };
+        }),
+        barWidth: 18,
+        label: { show:true, position:'right', color:TEXT_SECONDARY, fontSize:10, fontFamily:'JetBrains Mono',
+          formatter: function(p){return formatNum(p.value);} }
+      }]
+    });
+  }
+
+  // ---- 6. Unit Price Ranking ----
+  var c6 = initSpotChart('chartSpotUnitPrice');
+  if (c6) {
+    var spotsWithPrice = spots.map(function(d) {
+      return { name: d.name, type: d.type, unitPrice: +(d.revenue * 10000 / d.visitors).toFixed(2) };
+    }).sort(function(a,b) { return a.unitPrice - b.unitPrice; });
+
+    c6.setOption({
+      animation: true, animationDuration: 1000,
+      grid: { top: 10, right: 80, bottom: 20, left: 55 },
+      tooltip: Object.assign(baseTooltip(), {
+        trigger: 'axis',
+        formatter: function(p) { return p[0].name + '<br/>客单价：' + p[0].value + ' 元'; }
+      }),
+      xAxis: {
+        type: 'value',
+        splitLine: { lineStyle: { color: BORDER_COLOR, type: 'dashed', opacity: 0.4 } },
+        axisLine: { show: false },
+        axisLabel: { color:TEXT_SECONDARY, fontSize:10, fontFamily:'JetBrains Mono', formatter:function(v){return v+'元';} }
+      },
+      yAxis: {
+        type: 'category',
+        data: spotsWithPrice.map(function(d){return d.name;}),
+        axisLine: { lineStyle: { color: BORDER_COLOR } },
+        axisLabel: { color: TEXT_SECONDARY, fontSize: 11 },
+        axisTick: { show: false }
+      },
+      series: [{
+        type: 'bar',
+        data: spotsWithPrice.map(function(d) {
+          var c = typeColors[d.type] || '#96CEB4';
+          return {
+            value: d.unitPrice,
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0,0,1,0,[
+                {offset:0, color:'rgba(255,215,0,0.15)'},
+                {offset:1, color: c}
+              ]),
+              borderRadius: [0,3,3,0]
+            }
+          };
+        }),
+        barWidth: 16,
+        label: { show:true, position:'right', color:TEXT_SECONDARY, fontSize:10, fontFamily:'JetBrains Mono',
+          formatter: function(p){return p.value+'元';} }
+      }]
+    });
+  }
+
+  // ---- 7. Data Table ----
+  var tableHtml = '<table class="spot-table"><thead><tr>';
+  tableHtml += '<th>排名</th><th>景区</th><th>类型</th><th>客流（万人次）</th><th>营收（万元）</th><th>客单价（元）</th>';
+  tableHtml += '</tr></thead><tbody>';
+  var sortedSpots = spots.slice().sort(function(a,b){return b.visitors - a.visitors;});
+  sortedSpots.forEach(function(d, i) {
+    var up = (d.revenue * 10000 / d.visitors).toFixed(2);
+    var v = (d.visitors / 10000).toFixed(1);
+    tableHtml += '<tr>';
+    tableHtml += '<td class="rank">' + (i+1) + '</td>';
+    tableHtml += '<td>' + d.name + '</td>';
+    tableHtml += '<td><span class="type-badge ' + d.type + '">' + d.type + '</span></td>';
+    tableHtml += '<td>' + v + '</td>';
+    tableHtml += '<td>' + d.revenue.toLocaleString() + '</td>';
+    tableHtml += '<td>' + up + '</td>';
+    tableHtml += '</tr>';
+  });
+  tableHtml += '</tbody></table>';
+  document.getElementById('spotDataTable').innerHTML = tableHtml;
+}
+
+// ===================================================================
+// TAB SWITCHING
+// ===================================================================
+var tabMap = {
+  overview: 'tabOverview',
+  traffic: 'tabTraffic',
+  revenue: 'tabRevenue',
+  profile: 'tabProfile',
+  channel: 'tabChannel',
+  project: 'tabProject',
+  service: 'tabService',
+  spot: 'tabSpot',
+  ai: 'tabAi'
+};
+
+document.getElementById('navTabs').addEventListener('click', function(e) {
+  var tab = e.target.closest('.nav-tab');
+  if (!tab) return;
+
+  document.querySelectorAll('.nav-tab').forEach(function(t) { t.classList.remove('active'); });
+  tab.classList.add('active');
+
+  var tabKey = tab.dataset.tab;
+  Object.values(tabMap).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('active');
+  });
+
+  var targetId = tabMap[tabKey];
+  var targetEl = document.getElementById(targetId);
+  if (targetEl) targetEl.classList.add('active');
+
+  // Resize all charts in the active tab
+  setTimeout(function() {
+    Object.keys(allCharts).forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.offsetParent !== null) {
+        allCharts[id].resize();
+      }
+    });
+    // Also resize AI charts if visible
+    Object.keys(aiCharts).forEach(function(id) {
+      if (aiCharts[id] && document.getElementById(id) && document.getElementById(id).offsetParent !== null) {
+        aiCharts[id].resize();
+      }
+    });
+    // Resize spot charts if visible
+    Object.keys(spotChartInstances).forEach(function(id) {
+      if (spotChartInstances[id] && document.getElementById(id) && document.getElementById(id).offsetParent !== null) {
+        spotChartInstances[id].resize();
+      }
+    });
+  }, 80);
+
+  // Initialize spot charts on first visit
+  if (tabKey === 'spot') {
+    setTimeout(function() { renderSpotCharts(); }, 80);
+  }
+});
+
+// ===== Resize Handler =====
+window.addEventListener('resize', function() {
+  Object.keys(allCharts).forEach(function(id) {
+    allCharts[id].resize();
+  });
+  Object.keys(aiCharts).forEach(function(id) {
+    if (aiCharts[id]) {
+      aiCharts[id].resize();
+    }
+  });
+  Object.keys(spotChartInstances).forEach(function(id) {
+    if (spotChartInstances[id]) {
+      spotChartInstances[id].resize();
+    }
+  });
+});
+</script>
+</body>
+</html>

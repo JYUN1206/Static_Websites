@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>悬崖康养·云中茶修 · 云崖茶隐 完整策划方案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   全局设计系统 · 森林墨主题 · 1920×1080 投影规格
+   ============================================================ */
+:root {
+  /* Type scale — 投影级（≥ 24px） */
+  --type-display:  120px;  /* 封面/尾页大字 */
+  --type-h1:        72px;  /* 章节主标题 */
+  --type-h2:        54px;  /* 页主标题 */
+  --type-h3:        40px;  /* 副标题 */
+  --type-body:      32px;  /* 正文 */
+  --type-small:     26px;  /* 注释/小字 */
+  --type-micro:     22px;  /* 标签/编号 */
+
+  /* Spacing */
+  --pad-x:  110px;
+  --pad-y:  90px;
+  --gap-lg:  56px;
+  --gap-md:  36px;
+  --gap-sm:  22px;
+
+  /* 森林墨主题色 */
+  --c-ink:        #1a2e1f;   /* 深森林绿·主背景 */
+  --c-ink-deep:   #0f1d12;   /* 更深 */
+  --c-ink-soft:   #2a4434;   /* 略浅 */
+  --c-paper:      #f5f1e8;   /* 象牙白·亮页背景 */
+  --c-paper-warm: #efe9da;   /* 暖米 */
+  --c-green-deep: #2a6e3b;   /* 茶绿主 */
+  --c-green-mid:  #5C8C5A;   /* 中绿 */
+  --c-green-soft: #8BAB87;   /* 浅绿 */
+  --c-amber:      #D89B5C;   /* 茶褐点缀 */
+  --c-bronze:     #8B6F47;   /* 茶褐深 */
+  --c-red:        #B85450;   /* 警示/风险 */
+  --c-blue:       #4A7C8C;   /* 蓝点缀 */
+
+  /* 字体 */
+  --font-serif: 'Noto Serif SC', 'Songti SC', '宋体', serif;
+  --font-sans:  'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-mono:  'JetBrains Mono', 'IBM Plex Mono', 'Consolas', monospace;
+}
+
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+deck-stage { font-family: var(--font-sans); color: var(--c-paper); }
+
+/* 关键：deck-stage 拉伸 section，但里面的 wrapper 不会自动填充 */
+section[data-label] > *:not(img):not(picture):not(video):not(svg):not(canvas) {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* 通用 slide wrapper */
+.slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--pad-y) var(--pad-x);
+  overflow: hidden;
+}
+
+/* Chrome 顶部/底部栏 */
+.chrome {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-mono); font-size: 20px; letter-spacing: 0.18em;
+  text-transform: uppercase; opacity: 0.4; margin-bottom: 28px;
+}
+.chrome-r { display: flex; gap: 24px; }
+.foot {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.2em;
+  text-transform: uppercase; opacity: 0.35; margin-top: auto; padding-top: 20px;
+}
+.foot .brand { font-family: var(--font-serif); font-size: 22px; font-weight: 500; letter-spacing: 0.05em; text-transform: none; opacity: 0.55; }
+.page-num { font-family: var(--font-mono); }
+
+/* Kicker / rule / tag */
+.kicker {
+  font-family: var(--font-mono); font-size: 20px; letter-spacing: 0.32em;
+  text-transform: uppercase; opacity: 0.5; margin-bottom: 18px;
+}
+.rule { width: 80px; height: 3px; background: currentColor; opacity: 0.25; margin: 18px 0 28px; }
+.tag {
+  display: inline-block; font-family: var(--font-mono); font-size: 18px;
+  letter-spacing: 0.3em; text-transform: uppercase; padding: 8px 22px;
+  border: 1px solid currentColor; opacity: 0.7; margin-bottom: 20px;
+}
+
+/* Title styles */
+.t-display { font-family: var(--font-serif); font-weight: 900; font-size: var(--type-display); line-height: 0.95; letter-spacing: -0.02em; }
+.t-h1 { font-family: var(--font-serif); font-weight: 900; font-size: var(--type-h1); line-height: 1.05; letter-spacing: -0.01em; }
+.t-h2 { font-family: var(--font-serif); font-weight: 700; font-size: var(--type-h2); line-height: 1.1; letter-spacing: -0.01em; }
+.t-h3 { font-family: var(--font-serif); font-weight: 600; font-size: var(--type-h3); line-height: 1.2; }
+.t-body { font-size: var(--type-body); line-height: 1.5; }
+.t-small { font-size: var(--type-small); line-height: 1.45; }
+.t-mono { font-family: var(--font-mono); letter-spacing: 0.1em; }
+
+/* 背景 */
+.bg-ink { background: var(--c-ink); color: var(--c-paper); }
+.bg-paper { background: var(--c-paper); color: var(--c-ink); }
+.bg-paper .chrome, .bg-paper .foot { color: var(--c-ink); }
+.bg-ink::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 25% 25%, rgba(92,140,90,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 80% 80%, rgba(20,40,25,0.4) 0%, transparent 60%);
+}
+.bg-paper::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 30%, rgba(42,110,59,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(216,155,92,0.06) 0%, transparent 60%);
+}
+.slide > * { position: relative; z-index: 1; }
+
+/* ============================================================
+   Animations
+   ============================================================ */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+@keyframes popIn { 0% { opacity: 0; transform: scale(0.5); } 60% { transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes slideInR { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideInL { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes drawLine { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+@keyframes growBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes growHeight { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+@keyframes glow { 0%, 100% { filter: drop-shadow(0 0 8px currentColor); } 50% { filter: drop-shadow(0 0 20px currentColor); } }
+
+.anm { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anm-d1 { animation-delay: 0.1s; }
+.anm-d2 { animation-delay: 0.2s; }
+.anm-d3 { animation-delay: 0.3s; }
+.anm-d4 { animation-delay: 0.45s; }
+.anm-d5 { animation-delay: 0.6s; }
+.anm-d6 { animation-delay: 0.75s; }
+.anm-d7 { animation-delay: 0.9s; }
+.anm-d8 { animation-delay: 1.05s; }
+.anm-d9 { animation-delay: 1.2s; }
+
+.anm-pop { animation: popIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.anm-p1 { animation-delay: 0.3s; }
+.anm-p2 { animation-delay: 0.5s; }
+.anm-p3 { animation-delay: 0.7s; }
+.anm-p4 { animation-delay: 0.9s; }
+.anm-p5 { animation-delay: 1.1s; }
+
+.anm-r { animation: slideInR 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anm-l { animation: slideInL 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anm-r-d2 { animation: slideInR 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
+.anm-r-d3 { animation: slideInR 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both; }
+
+.anm-fade { animation: fadeIn 0.6s ease both; }
+.anm-fade-d3 { animation: fadeIn 0.6s ease 0.3s both; }
+.anm-fade-d5 { animation: fadeIn 0.6s ease 0.5s both; }
+
+/* ============================================================
+   P1 封面
+   ============================================================ */
+.p1 { display: flex; flex-direction: column; justify-content: space-between; padding: 100px 110px; }
+.p1 .center { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 1400px; }
+.p1 .meta-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.p1 .vline { width: 2px; height: 56px; background: var(--c-paper); opacity: 0.15; margin: 28px 0; }
+.p1 .sub { font-family: var(--font-serif); font-weight: 400; font-size: 38px; line-height: 1.4; opacity: 0.7; max-width: 800px; margin-top: 32px; }
+.p1 .meta-bot { display: flex; gap: 64px; font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.45; }
+.p1 .accent { color: var(--c-green-soft); }
+
+/* ============================================================
+   P2 目录
+   ============================================================ */
+.p2 .toc { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 80px; flex: 1; align-content: center; max-width: 1500px; }
+.p2 .toc-card { padding: 20px 0; border-top: 1px solid rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 6px; }
+.bg-ink .p2 .toc-card { border-top-color: rgba(245,241,232,0.08); }
+.p2 .toc-card .label { font-family: var(--font-mono); font-size: 20px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.35; }
+.p2 .toc-card .name { font-family: var(--font-serif); font-weight: 700; font-size: 42px; }
+.p2 .toc-card .desc { font-size: 24px; opacity: 0.55; line-height: 1.4; }
+.p2 .toc-card .pages { font-family: var(--font-mono); font-size: 18px; opacity: 0.4; letter-spacing: 0.1em; }
+
+/* ============================================================
+   P3 三重风口
+   ============================================================ */
+.p3 .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin: 32px 0; }
+.p3 .wind-card { padding: 36px 30px; border-radius: 4px; position: relative; overflow: hidden; }
+.bg-paper .p3 .wind-card { background: rgba(42,110,59,0.04); border: 1px solid rgba(42,110,59,0.15); }
+.bg-ink .p3 .wind-card { background: rgba(245,241,232,0.04); border: 1px solid rgba(245,241,232,0.1); }
+.p3 .wind-card .ix { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.25em; opacity: 0.3; margin-bottom: 12px; }
+.p3 .wind-card .nm { font-family: var(--font-serif); font-weight: 600; font-size: 32px; margin-bottom: 18px; }
+.p3 .wind-card .num { font-family: var(--font-serif); font-weight: 900; font-size: 96px; line-height: 0.9; letter-spacing: -0.02em; color: var(--c-green-deep); }
+.bg-ink .p3 .wind-card .num { color: var(--c-green-soft); }
+.p3 .wind-card .num .u { font-size: 30px; font-weight: 500; opacity: 0.5; margin-left: 4px; }
+.p3 .wind-card .ds { font-size: 24px; line-height: 1.5; opacity: 0.65; margin-top: 16px; }
+.p3 .wind-card .src { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.3; margin-top: 18px; }
+.p3 .callout { padding: 24px 32px; border-left: 4px solid var(--c-green-deep); background: rgba(42,110,59,0.06); font-family: var(--font-serif); font-size: 28px; line-height: 1.5; opacity: 0.85; }
+.bg-ink .p3 .callout { background: rgba(92,140,90,0.12); }
+
+/* ============================================================
+   P4 区位
+   ============================================================ */
+.p4 .hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; flex: 1; align-content: center; }
+.p4 .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+.p4 .stat { padding: 18px 0; border-top: 2px solid rgba(245,241,232,0.1); }
+.p4 .stat .lb { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.4; margin-bottom: 6px; }
+.p4 .stat .vl { font-family: var(--font-serif); font-weight: 700; font-size: 56px; color: var(--c-green-soft); line-height: 1; }
+.p4 .stat .vl .u { font-size: 24px; font-weight: 400; opacity: 0.5; margin-left: 4px; }
+.p4 .stat .dt { font-size: 22px; line-height: 1.4; opacity: 0.55; margin-top: 6px; }
+.p4 .tags { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.p4 .tags span { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.15em; padding: 8px 20px; border: 1px solid rgba(245,241,232,0.18); opacity: 0.6; }
+.p4 .quote { font-family: var(--font-serif); font-size: 26px; line-height: 1.4; opacity: 0.55; font-style: italic; margin-top: 32px; padding-left: 24px; border-left: 3px solid var(--c-green-soft); }
+.p4 .map-panel { padding: 36px; border: 1px solid rgba(245,241,232,0.1); border-radius: 4px; background: rgba(245,241,232,0.03); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.p4 .map-pin { width: 24px; height: 24px; border-radius: 50%; background: var(--c-green-soft); position: relative; margin: 24px 0; }
+.p4 .map-pin::after { content: ''; position: absolute; inset: -8px; border: 2px solid var(--c-green-soft); border-radius: 50%; opacity: 0.3; animation: pulse 2s ease-in-out infinite; }
+.p4 .map-circle { position: absolute; border: 1px dashed rgba(245,241,232,0.15); border-radius: 50%; }
+
+/* ============================================================
+   P5 五维资源
+   ============================================================ */
+.p5 .hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; flex: 1; align-content: center; }
+.p5 .res-card { padding: 22px 0; border-top: 1px solid rgba(0,0,0,0.07); display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+.bg-ink .p5 .res-card { border-top-color: rgba(245,241,232,0.07); }
+.p5 .res-card .lb { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.4; margin-bottom: 6px; }
+.p5 .res-card .stars { font-family: var(--font-serif); font-weight: 700; font-size: 36px; letter-spacing: 0.06em; }
+.p5 .res-card .kw { font-size: 22px; line-height: 1.45; opacity: 0.6; margin-top: 6px; }
+.p5 .res-card .stars-5 { color: var(--c-green-deep); }
+.bg-ink .p5 .res-card .stars-5 { color: var(--c-green-soft); }
+.p5 .res-card .stars-4 { color: var(--c-amber); }
+.p5 .res-card .stars-3 { color: var(--c-bronze); }
+.p5 .res-card.hl { background: linear-gradient(90deg, rgba(42,110,59,0.08) 0%, transparent 100%); border-left: 4px solid var(--c-green-deep); padding-left: 24px; margin: 8px -24px; }
+.bg-ink .p5 .res-card.hl { background: linear-gradient(90deg, rgba(92,140,90,0.15) 0%, transparent 100%); border-left-color: var(--c-green-soft); }
+.p5 .radar { padding: 32px; border: 1px solid rgba(0,0,0,0.08); border-radius: 4px; background: rgba(0,0,0,0.02); }
+.bg-ink .p5 .radar { background: rgba(245,241,232,0.03); border-color: rgba(245,241,232,0.08); }
+
+/* ============================================================
+   P6 SWOT
+   ============================================================ */
+.p6 .swot { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; flex: 1; align-content: center; }
+.p6 .sq { padding: 32px; border-radius: 4px; }
+.p6 .sq .label { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.5; margin-bottom: 12px; }
+.p6 .sq .hd { font-family: var(--font-serif); font-weight: 700; font-size: 36px; margin-bottom: 18px; }
+.p6 .sq ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.p6 .sq li { font-size: 24px; line-height: 1.45; padding-left: 24px; position: relative; }
+.p6 .sq li::before { content: '◆'; position: absolute; left: 0; opacity: 0.55; }
+.p6 .sq.s { background: rgba(42,110,59,0.06); border-left: 4px solid var(--c-green-deep); }
+.p6 .sq.s .hd { color: var(--c-green-deep); }
+.bg-ink .p6 .sq.s { background: rgba(92,140,90,0.1); border-left-color: var(--c-green-soft); }
+.bg-ink .p6 .sq.s .hd { color: var(--c-green-soft); }
+.p6 .sq.w { background: rgba(184,84,80,0.06); border-left: 4px solid var(--c-red); }
+.p6 .sq.w .hd { color: var(--c-red); }
+.bg-ink .p6 .sq.w { background: rgba(184,84,80,0.12); }
+.p6 .sq.o { background: rgba(74,124,140,0.06); border-left: 4px solid var(--c-blue); }
+.p6 .sq.o .hd { color: var(--c-blue); }
+.bg-ink .p6 .sq.o { background: rgba(74,124,140,0.12); }
+.p6 .sq.t { background: rgba(139,111,71,0.06); border-left: 4px solid var(--c-bronze); }
+.p6 .sq.t .hd { color: var(--c-bronze); }
+.bg-ink .p6 .sq.t { background: rgba(139,111,71,0.12); }
+
+/* ============================================================
+   P7 客群
+   ============================================================ */
+.p7 .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; flex: 1; align-content: center; }
+.p7 .seg-card { padding: 36px; border-radius: 4px; border: 1px solid rgba(245,241,232,0.08); background: rgba(245,241,232,0.03); }
+.bg-paper .p7 .seg-card { border-color: rgba(0,0,0,0.08); background: rgba(0,0,0,0.02); }
+.p7 .seg-card.primary { border-color: var(--c-green-soft); background: rgba(92,140,90,0.08); }
+.p7 .seg-card .pct { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.4; margin-bottom: 8px; }
+.p7 .seg-card .nm { font-family: var(--font-serif); font-weight: 700; font-size: 48px; color: var(--c-green-soft); margin-bottom: 24px; }
+.p7 .seg-card .meta { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.p7 .seg-card .meta .r { display: flex; gap: 16px; font-size: 22px; opacity: 0.7; }
+.p7 .seg-card .meta .r .k { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.5; min-width: 100px; }
+.p7 .seg-card .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.p7 .seg-card .tags span { font-size: 20px; padding: 6px 16px; border: 1px solid currentColor; opacity: 0.55; border-radius: 20px; }
+
+/* ============================================================
+   P8 圈层
+   ============================================================ */
+.p8 .hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; flex: 1; align-content: center; }
+.p8 .lr { padding: 22px 0; border-top: 1px solid rgba(0,0,0,0.08); }
+.bg-ink .p8 .lr { border-top-color: rgba(245,241,232,0.08); }
+.p8 .lr .dm { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.4; margin-bottom: 6px; }
+.p8 .lr .dn { font-family: var(--font-serif); font-weight: 700; font-size: 30px; margin-bottom: 6px; }
+.p8 .lr .dd { font-size: 22px; line-height: 1.45; opacity: 0.55; }
+.p8 .ring-viz { position: relative; width: 380px; height: 380px; margin: auto; }
+.p8 .ring { position: absolute; border-radius: 50%; border: 1px dashed; display: flex; align-items: flex-start; justify-content: center; padding-top: 14px; }
+.p8 .ring-1 { width: 380px; height: 380px; top: 0; left: 0; border-color: rgba(184,84,80,0.3); }
+.p8 .ring-2 { width: 270px; height: 270px; top: 55px; left: 55px; border-color: rgba(74,124,140,0.35); }
+.p8 .ring-3 { width: 160px; height: 160px; top: 110px; left: 110px; border-color: rgba(42,110,59,0.4); }
+.p8 .ring-center { position: absolute; width: 60px; height: 60px; top: 160px; left: 160px; background: var(--c-ink); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--c-paper); font-family: var(--font-serif); font-weight: 700; font-size: 22px; z-index: 2; }
+.p8 .ring-lb { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; }
+
+/* ============================================================
+   P9 竞品对比
+   ============================================================ */
+.p9 .table-wrap { flex: 1; display: flex; align-items: center; }
+.p9 table { width: 100%; border-collapse: collapse; font-size: 24px; }
+.p9 th { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.45; padding: 16px 24px; text-align: left; border-bottom: 2px solid currentColor; }
+.p9 th.hl { color: var(--c-green-soft); opacity: 1; }
+.p9 td { padding: 22px 24px; border-bottom: 1px solid rgba(0,0,0,0.06); opacity: 0.75; line-height: 1.4; }
+.bg-ink .p9 td { border-bottom-color: rgba(245,241,232,0.06); }
+.p9 td.lb { font-family: var(--font-serif); font-weight: 600; opacity: 0.9; }
+.p9 td.hl-val { color: var(--c-green-soft); font-weight: 600; opacity: 1; }
+.bg-ink .p9 td.hl-val { color: var(--c-green-soft); }
+.p9 .pct-bar { display: flex; align-items: center; gap: 12px; }
+.p9 .pct-bar .bf { flex: 1; height: 8px; background: currentColor; opacity: 0.2; border-radius: 4px; overflow: hidden; }
+.p9 .pct-bar .bf i { display: block; height: 100%; background: currentColor; opacity: 0.7; transform-origin: left; animation: growBar 1.2s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* ============================================================
+   P10 品牌
+   ============================================================ */
+.p10 .hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; flex: 1; align-content: center; }
+.p10 .brand-card { padding: 40px 32px; border: 1px solid currentColor; opacity: 0.9; }
+.p10 .brand-card .slogan { font-family: var(--font-serif); font-weight: 700; font-size: 42px; line-height: 1.3; margin-bottom: 12px; }
+.p10 .brand-card .name-en { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.3em; opacity: 0.5; }
+.p10 .pyr { display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 800px; margin: 0 auto; }
+.p10 .pyr-row { width: 100%; padding: 24px 32px; border-radius: 4px; display: flex; flex-direction: column; gap: 6px; }
+.p10 .pyr-row.t { background: rgba(42,110,59,0.18); border: 1px solid rgba(42,110,59,0.4); }
+.p10 .pyr-row.t .lb { color: var(--c-green-soft); }
+.bg-paper .p10 .pyr-row.t { background: rgba(42,110,59,0.08); }
+.p10 .pyr-row.m { width: 90%; background: rgba(74,124,140,0.15); border: 1px solid rgba(74,124,140,0.3); }
+.p10 .pyr-row.m .lb { color: var(--c-blue); }
+.bg-paper .p10 .pyr-row.m { background: rgba(74,124,140,0.08); }
+.p10 .pyr-row.b { width: 80%; background: rgba(139,111,71,0.12); border: 1px solid rgba(139,111,71,0.25); }
+.p10 .pyr-row.b .lb { color: var(--c-bronze); }
+.bg-paper .p10 .pyr-row.b { background: rgba(139,111,71,0.06); }
+.p10 .pyr-row .lb { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.8; }
+.p10 .pyr-row .tx { font-family: var(--font-serif); font-weight: 600; font-size: 26px; }
+.p10 .pyr-row .tx.slogan { font-weight: 700; font-size: 32px; }
+
+/* ============================================================
+   P11 定价
+   ============================================================ */
+.p11 .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; flex: 1; align-content: center; }
+.p11 .pc { padding: 32px 24px; border-radius: 4px; position: relative; }
+.bg-paper .p11 .pc { background: rgba(42,110,59,0.04); border: 1px solid rgba(42,110,59,0.12); }
+.bg-ink .p11 .pc { background: rgba(245,241,232,0.04); border: 1px solid rgba(245,241,232,0.1); }
+.p11 .pc.featured { background: rgba(42,110,59,0.1); border: 1px solid var(--c-green-soft); transform: scale(1.05); }
+.bg-ink .p11 .pc.featured { background: rgba(92,140,90,0.15); }
+.p11 .pc .badge { position: absolute; top: -12px; right: 16px; padding: 4px 12px; background: var(--c-green-soft); color: var(--c-ink); font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; border-radius: 2px; }
+.p11 .pc .nm { font-family: var(--font-serif); font-weight: 700; font-size: 30px; margin-bottom: 6px; }
+.p11 .pc .dur { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.15em; opacity: 0.4; margin-bottom: 18px; }
+.p11 .pc .pr { font-family: var(--font-serif); font-weight: 900; font-size: 56px; line-height: 1; color: var(--c-green-deep); letter-spacing: -0.02em; margin-bottom: 8px; }
+.bg-ink .p11 .pc .pr { color: var(--c-green-soft); }
+.p11 .pc .pr .u { font-size: 18px; font-weight: 500; opacity: 0.5; margin-left: 4px; }
+.p11 .pc .avg { font-family: var(--font-mono); font-size: 18px; opacity: 0.5; margin-bottom: 16px; }
+.p11 .pc .inc { font-size: 20px; line-height: 1.5; opacity: 0.65; }
+.p11 .footer-note { text-align: center; font-family: var(--font-mono); font-size: 20px; letter-spacing: 0.15em; opacity: 0.5; margin-top: 24px; }
+
+/* ============================================================
+   P12 课程
+   ============================================================ */
+.p12 .grid6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; flex: 1; align-content: center; }
+.p12 .cc { padding: 28px 24px; border-radius: 4px; position: relative; }
+.bg-paper .p12 .cc { background: rgba(0,0,0,0.025); border: 1px solid rgba(0,0,0,0.06); }
+.bg-ink .p12 .cc { background: rgba(245,241,232,0.04); border: 1px solid rgba(245,241,232,0.08); }
+.p12 .cc.featured { background: rgba(42,110,59,0.1); border: 1px solid var(--c-green-soft); }
+.bg-ink .p12 .cc.featured { background: rgba(92,140,90,0.15); }
+.p12 .cc .lv { font-family: var(--font-mono); font-size: 18px; font-weight: 600; letter-spacing: 0.2em; opacity: 0.5; margin-bottom: 8px; }
+.p12 .cc .nm { font-family: var(--font-serif); font-weight: 700; font-size: 26px; line-height: 1.25; margin-bottom: 12px; }
+.p12 .cc .meta { display: flex; gap: 16px; font-size: 20px; opacity: 0.65; margin-bottom: 12px; }
+.p12 .cc .meta .d { display: flex; align-items: center; gap: 6px; }
+.p12 .cc .meta .d::before { content: '·'; opacity: 0.4; }
+.p12 .cc .meta .d:first-child::before { display: none; }
+.p12 .cc .desc { font-size: 18px; line-height: 1.5; opacity: 0.55; margin-bottom: 16px; min-height: 50px; }
+.p12 .cc .tag { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; padding: 5px 12px; border: 1px solid currentColor; display: inline-block; opacity: 0.6; margin: 0; }
+.p12 .cc.featured .lv { color: var(--c-green-soft); opacity: 1; }
+
+/* ============================================================
+   P13 空间
+   ============================================================ */
+.p13 .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; flex: 1; align-content: center; }
+.p13 .rm-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.p13 .rm { padding: 22px 24px; border-radius: 4px; }
+.bg-paper .p13 .rm { background: rgba(42,110,59,0.04); border: 1px solid rgba(42,110,59,0.1); }
+.bg-ink .p13 .rm { background: rgba(245,241,232,0.04); border: 1px solid rgba(245,241,232,0.1); }
+.p13 .rm .num { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.2em; opacity: 0.45; margin-bottom: 4px; }
+.p13 .rm .nm { font-family: var(--font-serif); font-weight: 700; font-size: 32px; color: var(--c-green-soft); margin-bottom: 6px; }
+.p13 .rm .ds { font-size: 18px; line-height: 1.4; opacity: 0.6; }
+.p13 .rm.span2 { grid-column: span 2; }
+.p13 .rm .num-big { font-size: 30px; font-weight: 700; color: var(--c-green-soft); font-family: var(--font-serif); }
+
+/* ============================================================
+   P14 一日作息
+   ============================================================ */
+.p14 .tl { display: grid; grid-template-columns: repeat(10, 1fr); gap: 8px; flex: 1; align-content: center; padding: 24px 0; }
+.p14 .ts { position: relative; padding: 18px 12px; border-radius: 4px; text-align: center; }
+.bg-paper .p14 .ts { background: rgba(42,110,59,0.04); border: 1px solid rgba(42,110,59,0.1); }
+.bg-ink .p14 .ts { background: rgba(245,241,232,0.04); border: 1px solid rgba(245,241,232,0.08); }
+.p14 .ts::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 8px; height: 8px; border-radius: 50%; background: var(--c-green-soft); z-index: 1; }
+.p14 .ts::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; border: 2px solid var(--c-green-soft); border-radius: 50%; opacity: 0.3; }
+.p14 .ts .tp { font-family: var(--font-mono); font-size: 20px; font-weight: 600; color: var(--c-green-soft); margin-bottom: 8px; }
+.p14 .ts .tl-lb { font-size: 18px; line-height: 1.4; opacity: 0.75; }
+
+/* ============================================================
+   P15 组织架构
+   ============================================================ */
+.p15 .hero { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; flex: 1; align-content: center; }
+.p15 .org-list { display: flex; flex-direction: column; gap: 14px; }
+.p15 .org-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 18px 24px; border-radius: 4px; align-items: center; }
+.bg-paper .p15 .org-row { background: rgba(0,0,0,0.025); border: 1px solid rgba(0,0,0,0.05); }
+.bg-ink .p15 .org-row { background: rgba(245,241,232,0.04); border: 1px solid rgba(245,241,232,0.08); }
+.p15 .org-row.head { background: rgba(42,110,59,0.1); border: 1px solid var(--c-green-soft); }
+.bg-ink .p15 .org-row.head { background: rgba(92,140,90,0.15); }
+.p15 .org-row .lb { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.4; margin-bottom: 4px; }
+.p15 .org-row .vl { font-family: var(--font-serif); font-weight: 700; font-size: 30px; }
+.p15 .org-row.head .vl { color: var(--c-green-soft); }
+.p15 .org-row .ds { font-size: 18px; opacity: 0.55; }
+.p15 .org-row .price { font-family: var(--font-mono); font-size: 22px; opacity: 0.7; }
+.p15 .tot { display: flex; gap: 32px; padding: 18px 24px; background: rgba(42,110,59,0.06); border-left: 3px solid var(--c-green-deep); border-radius: 4px; margin-top: 8px; }
+.bg-ink .p15 .tot { background: rgba(92,140,90,0.12); border-left-color: var(--c-green-soft); }
+.p15 .tot .it { font-size: 22px; }
+.p15 .tot .it .v { font-family: var(--font-serif); font-weight: 700; font-size: 32px; color: var(--c-green-soft); margin-right: 8px; }
+
+/* ============================================================
+   P16 B角
+   ============================================================ */
+.p16 .flow { display: flex; align-items: center; justify-content: center; gap: 28px; flex: 1; padding: 24px 0; }
+.p16 .fn { padding: 28px 36px; border-radius: 6px; text-align: center; min-width: 200px; }
+.bg-paper .p16 .fn { background: rgba(42,110,59,0.04); border: 1px solid rgba(42,110,59,0.15); }
+.bg-ink .p16 .fn { background: rgba(245,241,232,0.04); border: 1px solid rgba(245,241,232,0.12); }
+.p16 .fn.x { background: rgba(42,110,59,0.12); border: 1px solid var(--c-green-soft); }
+.bg-ink .p16 .fn.x { background: rgba(92,140,90,0.2); }
+.p16 .fn .nm { font-family: var(--font-serif); font-weight: 700; font-size: 32px; margin-bottom: 6px; }
+.p16 .fn .sk { font-size: 18px; opacity: 0.6; }
+.p16 .arw { font-size: 38px; opacity: 0.4; color: var(--c-green-soft); }
+.p16 .principle { padding: 32px; background: rgba(42,110,59,0.05); border-left: 4px solid var(--c-green-deep); border-radius: 4px; margin-top: 16px; }
+.bg-ink .p16 .principle { background: rgba(92,140,90,0.12); border-left-color: var(--c-green-soft); }
+.p16 .principle .hd { font-family: var(--font-serif); font-weight: 700; font-size: 28px; margin-bottom: 8px; }
+.p16 .principle .tx { font-size: 22px; line-height: 1.5; opacity: 0.75; }
+.p16 .save { display: flex; gap: 60px; align-items: center; justify-content: center; margin-top: 16px; padding: 24px; }
+.p16 .save .it { text-align: center; }
+.p16 .save .v { font-family: var(--font-serif); font-weight: 900; font-size: 56px; color: var(--c-green-soft); }
+.p16 .save .v.red { color: var(--c-red); }
+.p16 .save .l { font-size: 18px; opacity: 0.6; margin-top: 4px; }
+
+/* ============================================================
+   P17 营销
+   ============================================================ */
+.p17 .hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; flex: 1; align-content: center; }
+.p17 .ch { padding: 24px 0; border-top: 1px solid rgba(245,241,232,0.07); display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.p17 .ch .l { flex: 1; }
+.p17 .ch .cn { font-family: var(--font-serif); font-weight: 700; font-size: 28px; margin-bottom: 4px; }
+.p17 .ch .cd { font-size: 20px; opacity: 0.55; line-height: 1.4; }
+.p17 .ch .pct { font-family: var(--font-serif); font-weight: 700; font-size: 48px; color: var(--c-green-soft); min-width: 140px; text-align: right; }
+.p17 .ch .pct.s { font-size: 28px; }
+.p17 .ch .bar { width: 100%; height: 6px; background: currentColor; opacity: 0.15; border-radius: 3px; overflow: hidden; margin-top: 12px; }
+.p17 .ch .bar i { display: block; height: 100%; background: var(--c-green-soft); transform-origin: left; animation: growBar 1.5s cubic-bezier(0.22,1,0.36,1) both; }
+.p17 .ch.full { display: block; }
+.p17 .ch.full .bar { margin-top: 8px; }
+.p17 .ch.full .ct { display: flex; justify-content: space-between; align-items: baseline; }
+
+/* ============================================================
+   P18 营销日历
+   ============================================================ */
+.p18 .tl-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px; flex: 1; align-content: center; padding: 16px 0; }
+.p18 .tl-c { padding: 24px 18px; border-radius: 4px; position: relative; }
+.bg-paper .p18 .tl-c { background: rgba(0,0,0,0.025); border: 1px solid rgba(0,0,0,0.06); }
+.bg-ink .p18 .tl-c { background: rgba(245,241,232,0.04); border: 1px solid rgba(245,241,232,0.08); }
+.p18 .tl-c.hot { background: rgba(42,110,59,0.1); border: 1px solid var(--c-green-soft); }
+.bg-ink .p18 .tl-c.hot { background: rgba(92,140,90,0.18); }
+.p18 .tl-c .q { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.45; margin-bottom: 8px; }
+.p18 .tl-c .ti { font-family: var(--font-serif); font-weight: 700; font-size: 22px; line-height: 1.3; margin-bottom: 8px; }
+.p18 .tl-c .ds { font-size: 18px; line-height: 1.4; opacity: 0.6; }
+.p18 .note { text-align: center; font-family: var(--font-mono); font-size: 20px; letter-spacing: 0.18em; opacity: 0.45; margin-top: 16px; }
+
+/* ============================================================
+   P19 投资
+   ============================================================ */
+.p19 .hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; flex: 1; align-content: center; }
+.p19 .bar-row { padding: 16px 0; border-top: 1px solid rgba(0,0,0,0.06); }
+.bg-ink .p19 .bar-row { border-top-color: rgba(245,241,232,0.06); }
+.p19 .bar-row .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+.p19 .bar-row .bn { font-family: var(--font-serif); font-weight: 600; font-size: 24px; }
+.p19 .bar-row .bv { font-family: var(--font-mono); font-size: 24px; font-weight: 600; color: var(--c-green-deep); }
+.bg-ink .p19 .bar-row .bv { color: var(--c-green-soft); }
+.p19 .bar-row .bf { width: 100%; height: 16px; background: currentColor; opacity: 0.08; border-radius: 2px; overflow: hidden; }
+.p19 .bar-row .bf i { display: block; height: 100%; background: var(--c-green-deep); border-radius: 2px; transform-origin: left; animation: growBar 1.2s cubic-bezier(0.22,1,0.36,1) both; }
+.bg-ink .p19 .bar-row .bf i { background: var(--c-green-soft); }
+.p19 .total { margin-top: 18px; padding: 24px 32px; background: rgba(42,110,59,0.08); border: 1px solid var(--c-green-deep); border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+.bg-ink .p19 .total { background: rgba(92,140,90,0.15); border-color: var(--c-green-soft); }
+.p19 .total .l { font-family: var(--font-serif); font-weight: 600; font-size: 28px; }
+.p19 .total .v { font-family: var(--font-serif); font-weight: 900; font-size: 48px; color: var(--c-green-deep); }
+.bg-ink .p19 .total .v { color: var(--c-green-soft); }
+.p19 .side-svg { padding: 24px; border: 1px solid rgba(0,0,0,0.08); border-radius: 4px; background: rgba(0,0,0,0.02); }
+.bg-ink .p19 .side-svg { border-color: rgba(245,241,232,0.08); background: rgba(245,241,232,0.03); }
+
+/* ============================================================
+   P20 收入预测
+   ============================================================ */
+.p20 .hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; flex: 1; align-content: center; }
+.p20 .yr { padding: 22px 0; border-top: 1px solid rgba(0,0,0,0.06); }
+.bg-ink .p20 .yr { border-top-color: rgba(245,241,232,0.06); }
+.p20 .yr .y-l { display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px; }
+.p20 .yr .y-l .y-n { font-family: var(--font-mono); font-size: 20px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.4; }
+.p20 .yr .y-l .y-v { font-family: var(--font-serif); font-weight: 700; font-size: 38px; }
+.p20 .yr .y-v.g { color: var(--c-green-deep); }
+.bg-ink .p20 .yr .y-v.g { color: var(--c-green-soft); }
+.p20 .yr .y-v.r { color: var(--c-red); }
+.p20 .yr .y-d { font-size: 20px; opacity: 0.55; line-height: 1.4; margin-top: 4px; }
+.p20 .yr .y-bar { display: flex; height: 12px; background: rgba(0,0,0,0.05); border-radius: 2px; overflow: hidden; margin-top: 12px; }
+.bg-ink .p20 .yr .y-bar { background: rgba(245,241,232,0.06); }
+.p20 .yr .y-bar .seg { transform-origin: left; animation: growBar 1.4s cubic-bezier(0.22,1,0.36,1) both; }
+.p20 .yr .y-bar .rev { background: var(--c-green-deep); }
+.bg-ink .p20 .yr .y-bar .rev { background: var(--c-green-soft); }
+.p20 .yr .y-bar .cost { background: var(--c-red); }
+.p20 .yr.hot { background: linear-gradient(90deg, rgba(42,110,59,0.08) 0%, transparent 100%); border-left: 3px solid var(--c-green-deep); padding-left: 24px; margin: 0 -24px; padding-right: 24px; }
+
+/* ============================================================
+   P21 三情景
+   ============================================================ */
+.p21 .sc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; flex: 1; align-content: center; }
+.p21 .sc { padding: 32px 28px; border-radius: 4px; }
+.p21 .sc.optimistic { background: rgba(42,110,59,0.08); border: 1px solid var(--c-green-soft); }
+.p21 .sc.baseline { background: rgba(74,124,140,0.08); border: 1px solid var(--c-blue); }
+.p21 .sc.pessimistic { background: rgba(184,84,80,0.06); border: 1px solid var(--c-red); }
+.bg-ink .p21 .sc.optimistic { background: rgba(92,140,90,0.15); }
+.bg-ink .p21 .sc.baseline { background: rgba(74,124,140,0.15); }
+.bg-ink .p21 .sc.pessimistic { background: rgba(184,84,80,0.12); }
+.p21 .sc .lb { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.5; margin-bottom: 12px; }
+.p21 .sc .nm { font-family: var(--font-serif); font-weight: 700; font-size: 32px; margin-bottom: 20px; }
+.p21 .sc.optimistic .nm { color: var(--c-green-soft); }
+.p21 .sc.baseline .nm { color: var(--c-blue); }
+.p21 .sc.pessimistic .nm { color: var(--c-red); }
+.p21 .sc .v-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-top: 1px solid currentColor; opacity: 0.8; }
+.p21 .sc .v-row .k { font-size: 18px; }
+.p21 .sc .v-row .v { font-family: var(--font-serif); font-weight: 700; font-size: 28px; }
+.p21 .sc .v-row.hot { border-top-width: 2px; opacity: 1; }
+.p21 .sens { padding: 24px 32px; background: rgba(184,84,80,0.06); border: 1px solid rgba(184,84,80,0.2); border-radius: 4px; margin-top: 18px; }
+.p21 .sens .hd { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.5; margin-bottom: 12px; }
+.p21 .sens .it { display: flex; gap: 16px; align-items: center; padding: 8px 0; font-size: 22px; }
+.p21 .sens .it .arr { color: var(--c-red); font-family: var(--font-mono); font-weight: 700; }
+.p21 .sens .it .v { font-family: var(--font-mono); font-weight: 700; color: var(--c-red); margin-left: auto; }
+
+/* ============================================================
+   P22 盈亏平衡
+   ============================================================ */
+.p22 .hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; flex: 1; align-content: center; }
+.p22 .kp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.p22 .kp { padding: 24px 28px; border-radius: 4px; }
+.bg-paper .p22 .kp { background: rgba(0,0,0,0.025); border: 1px solid rgba(0,0,0,0.06); }
+.bg-ink .p22 .kp { background: rgba(245,241,232,0.04); border: 1px solid rgba(245,241,232,0.08); }
+.p22 .kp .kl { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.45; margin-bottom: 8px; }
+.p22 .kp .kv { font-family: var(--font-serif); font-weight: 700; font-size: 40px; line-height: 1; }
+.p22 .kp .kv.g { color: var(--c-green-deep); }
+.bg-ink .p22 .kp .kv.g { color: var(--c-green-soft); }
+.p22 .kp .kv.r { color: var(--c-red); }
+.p22 .kp .kd { font-size: 18px; opacity: 0.55; margin-top: 6px; }
+.p22 .kp.full { grid-column: span 2; background: rgba(184,84,80,0.06); border-color: var(--c-red); }
+.bg-ink .p22 .kp.full { background: rgba(184,84,80,0.12); }
+.p22 .chart-side { padding: 24px; border: 1px solid rgba(0,0,0,0.08); border-radius: 4px; }
+.bg-ink .p22 .chart-side { border-color: rgba(245,241,232,0.08); }
+
+/* ============================================================
+   P23 Dashboard
+   ============================================================ */
+.p23 .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 20px; flex: 1; align-content: center; padding: 8px 0; }
+.p23 .dc { padding: 28px 28px; border-radius: 4px; position: relative; overflow: hidden; }
+.bg-paper .p23 .dc { background: rgba(0,0,0,0.025); border: 1px solid rgba(0,0,0,0.06); }
+.bg-ink .p23 .dc { background: rgba(245,241,232,0.04); border: 1px solid rgba(245,241,232,0.08); }
+.p23 .dc.warn { background: rgba(184,84,80,0.06); border: 1px solid rgba(184,84,80,0.2); }
+.bg-ink .p23 .dc.warn { background: rgba(184,84,80,0.12); }
+.p23 .dc.good { background: rgba(42,110,59,0.08); border: 1px solid rgba(42,110,59,0.25); }
+.bg-ink .p23 .dc.good { background: rgba(92,140,90,0.15); }
+.p23 .dc .dl { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.5; margin-bottom: 12px; }
+.p23 .dc .dv { font-family: var(--font-serif); font-weight: 900; font-size: 64px; line-height: 1; letter-spacing: -0.02em; }
+.p23 .dc .dv.g { color: var(--c-green-deep); }
+.bg-ink .p23 .dc .dv.g { color: var(--c-green-soft); }
+.p23 .dc .dv.r { color: var(--c-red); }
+.p23 .dc .dv.b { color: var(--c-blue); }
+.p23 .dc .dv .u { font-size: 24px; font-weight: 500; opacity: 0.5; margin-left: 4px; }
+.p23 .dc .dd { font-size: 18px; opacity: 0.55; margin-top: 12px; line-height: 1.4; }
+.p23 .concl { padding: 20px 28px; background: rgba(42,110,59,0.08); border: 1px solid var(--c-green-soft); border-radius: 4px; text-align: center; font-family: var(--font-serif); font-size: 22px; line-height: 1.5; margin-top: 12px; }
+.bg-ink .p23 .concl { background: rgba(92,140,90,0.15); }
+
+/* ============================================================
+   P24 路线图
+   ============================================================ */
+.p24 .gantt { padding: 24px 0; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.p24 .gnt { display: flex; align-items: center; padding: 18px 0; border-top: 1px solid rgba(0,0,0,0.06); }
+.bg-ink .p24 .gnt { border-top-color: rgba(245,241,232,0.06); }
+.p24 .gnt .lbl { width: 220px; flex-shrink: 0; }
+.p24 .gnt .lbl .n { font-family: var(--font-serif); font-weight: 700; font-size: 26px; }
+.p24 .gnt .lbl .d { font-family: var(--font-mono); font-size: 16px; opacity: 0.45; letter-spacing: 0.1em; margin-top: 2px; }
+.p24 .gnt .track { flex: 1; height: 28px; position: relative; background: rgba(0,0,0,0.04); border-radius: 4px; }
+.bg-ink .p24 .gnt .track { background: rgba(245,241,232,0.05); }
+.p24 .gnt .fill { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; transform-origin: left; animation: growBar 1.4s cubic-bezier(0.22,1,0.36,1) both; }
+.p24 .gnt .ph { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; border-radius: 50%; background: currentColor; border: 3px solid var(--c-paper); z-index: 2; }
+.bg-ink .p24 .gnt .ph { border-color: var(--c-ink); }
+.p24 .gnt .f1 .fill { background: rgba(74,124,140,0.6); left: 0; width: 25%; }
+.p24 .gnt .f2 .fill { background: rgba(92,140,90,0.7); left: 25%; width: 37.5%; }
+.p24 .gnt .f3 .fill { background: rgba(216,155,92,0.7); left: 62.5%; width: 12.5%; }
+.p24 .gnt .f4 .fill { background: rgba(184,84,80,0.7); left: 75%; width: 12.5%; }
+.p24 .gnt .f5 .fill { background: rgba(139,111,71,0.7); left: 87.5%; width: 12.5%; }
+.p24 .gnt .f1 .ph { left: 25%; color: #4A7C8C; }
+.p24 .gnt .f2 .ph { left: 62.5%; color: #5C8C5A; }
+.p24 .gnt .f3 .ph { left: 75%; color: #D89B5C; }
+.p24 .gnt .f4 .ph { left: 87.5%; color: #B85450; }
+.p24 .gnt .f5 .ph { left: 100%; color: #8B6F47; }
+.p24 .timeline { display: flex; padding-top: 16px; border-top: 2px solid currentColor; margin-left: 220px; }
+.p24 .timeline .seg { flex: 1; font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.15em; opacity: 0.55; text-align: left; padding-left: 4px; border-left: 1px solid currentColor; }
+
+/* ============================================================
+   P25 分期
+   ============================================================ */
+.p25 .ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; flex: 1; align-content: center; }
+.p25 .ph { padding: 36px 32px; border-radius: 4px; }
+.p25 .ph.p1 { background: rgba(42,110,59,0.1); border: 1px solid var(--c-green-deep); }
+.bg-ink .p25 .ph.p1 { background: rgba(92,140,90,0.18); border-color: var(--c-green-soft); }
+.p25 .ph.p2 { background: rgba(74,124,140,0.06); border: 1px solid rgba(74,124,140,0.2); opacity: 0.85; }
+.bg-ink .p25 .ph.p2 { background: rgba(74,124,140,0.12); }
+.p25 .ph .ph-lb { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+.p25 .ph .ph-n { font-family: var(--font-serif); font-weight: 700; font-size: 36px; }
+.p25 .ph.p1 .ph-n { color: var(--c-green-soft); }
+.p25 .ph .ph-d { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.5; }
+.p25 .ph .ph-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.p25 .ph .ph-list .r { display: flex; gap: 12px; align-items: flex-start; font-size: 22px; line-height: 1.5; opacity: 0.8; }
+.p25 .ph .ph-list .r::before { content: '◇'; color: currentColor; opacity: 0.6; flex-shrink: 0; }
+
+/* ============================================================
+   P26 风险
+   ============================================================ */
+.p26 .r-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; flex: 1; align-content: center; }
+.p26 .rc { padding: 24px 20px; border-radius: 4px; display: flex; flex-direction: column; gap: 10px; }
+.p26 .rc.r1 { background: rgba(184,84,80,0.08); border: 1px solid rgba(184,84,80,0.3); }
+.p26 .rc.r2 { background: rgba(184,84,80,0.08); border: 1px solid rgba(184,84,80,0.3); }
+.p26 .rc.r3 { background: rgba(216,155,92,0.08); border: 1px solid rgba(216,155,92,0.3); }
+.p26 .rc.r4 { background: rgba(216,155,92,0.08); border: 1px solid rgba(216,155,92,0.3); }
+.p26 .rc.r5 { background: rgba(216,155,92,0.08); border: 1px solid rgba(216,155,92,0.3); }
+.bg-ink .p26 .rc.r1, .bg-ink .p26 .rc.r2 { background: rgba(184,84,80,0.15); }
+.bg-ink .p26 .rc.r3, .bg-ink .p26 .rc.r4, .bg-ink .p26 .rc.r5 { background: rgba(216,155,92,0.15); }
+.p26 .rc .lvl { display: inline-block; font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; padding: 3px 10px; border-radius: 2px; align-self: flex-start; }
+.p26 .rc.r1 .lvl, .p26 .rc.r2 .lvl { background: var(--c-red); color: var(--c-paper); }
+.p26 .rc.r3 .lvl, .p26 .rc.r4 .lvl, .p26 .rc.r5 .lvl { background: var(--c-amber); color: var(--c-ink); }
+.p26 .rc .rn { font-family: var(--font-serif); font-weight: 700; font-size: 24px; }
+.p26 .rc .rd { font-size: 17px; line-height: 1.4; opacity: 0.7; }
+.p26 .rc .re { padding-top: 12px; border-top: 1px dashed currentColor; opacity: 0.75; }
+.p26 .rc .re .l { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.5; margin-bottom: 4px; }
+.p26 .rc .re .t { font-size: 17px; line-height: 1.4; }
+
+/* ============================================================
+   P27 政策
+   ============================================================ */
+.p27 .pol-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; flex: 1; align-content: center; }
+.p27 .pol { padding: 28px 24px; border-radius: 4px; }
+.bg-paper .p27 .pol { background: rgba(42,110,59,0.04); border: 1px solid rgba(42,110,59,0.12); }
+.bg-ink .p27 .pol { background: rgba(245,241,232,0.04); border: 1px solid rgba(245,241,232,0.1); }
+.p27 .pol .pl { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.4; margin-bottom: 8px; }
+.p27 .pol .pn { font-family: var(--font-serif); font-weight: 700; font-size: 24px; line-height: 1.25; color: var(--c-green-soft); margin-bottom: 14px; }
+.p27 .pol .pv { font-family: var(--font-serif); font-weight: 900; font-size: 38px; color: var(--c-green-deep); margin-bottom: 8px; }
+.bg-ink .p27 .pol .pv { color: var(--c-green-soft); }
+.p27 .pol .pd { font-size: 18px; line-height: 1.4; opacity: 0.6; }
+.p27 .tl { padding: 24px 32px; background: rgba(42,110,59,0.06); border-radius: 4px; margin-top: 18px; }
+.bg-ink .p27 .tl { background: rgba(92,140,90,0.12); }
+.p27 .tl .h { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.5; margin-bottom: 12px; }
+.p27 .tl .r { display: flex; gap: 16px; font-size: 20px; line-height: 1.5; }
+.p27 .tl .r .t { font-family: var(--font-mono); font-weight: 600; color: var(--c-green-soft); min-width: 130px; }
+.p27 .warn { text-align: center; font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.15em; opacity: 0.4; margin-top: 12px; }
+
+/* ============================================================
+   P28 尾页
+   ============================================================ */
+.p28 { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 100px 110px; }
+.p28 .vline { width: 2px; height: 64px; background: var(--c-paper); opacity: 0.15; margin: 24px 0; }
+.p28 .display { font-family: var(--font-serif); font-weight: 700; font-size: 96px; line-height: 1.1; }
+.p28 .sub { font-family: var(--font-serif); font-weight: 400; font-size: 32px; opacity: 0.6; margin-top: 16px; }
+.p28 .brand { font-family: var(--font-serif); font-size: 22px; opacity: 0.45; margin-top: 32px; letter-spacing: 0.05em; }
+.p28 .slogan { font-family: var(--font-serif); font-weight: 500; font-size: 26px; opacity: 0.55; margin-top: 12px; font-style: italic; }
+.p28 .contact { font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.2em; opacity: 0.35; margin-top: 28px; }
+
+</style>
+</head>
+<body>
+<deck-stage width="1920" height="1080" style="background: #1a2e1f;">
+
+<!-- ============================================
+     P1 · 封面
+     ============================================ -->
+<section data-label="封面">
+<div class="slide p1 bg-ink">
+  <div class="meta-top anm">
+    <div class="tag">YUN-YA · CHAYIN</div>
+    <div class="t-mono" style="opacity:0.4">2026.06 · V1.0</div>
+  </div>
+
+  <div class="center">
+    <div class="vline anm anm-d1"></div>
+    <div class="kicker anm anm-d2">湘西州 · 花垣县 · 金龙村</div>
+    <div class="t-display anm anm-d3">悬崖康养</div>
+    <div class="t-display anm anm-d4" style="margin-top:-12px"><span class="accent">云中茶修</span></div>
+    <div class="sub anm anm-d5">湘西第一个以「悬崖云海 + 高山茶修」为主题的<br>银发避暑康养精品目的地</div>
+    <div class="vline anm anm-d6"></div>
+  </div>
+
+  <div class="meta-bot anm anm-d7">
+    <div>云崖茶隐</div>
+    <div>完整策划方案</div>
+    <div>28 PAGES</div>
+    <div>云上茶修 · 静候佳音</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P2 · 目录
+     ============================================ -->
+<section data-label="目录">
+<div class="slide p2 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div class="chrome-r"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span></div>
+  </div>
+  <div class="kicker anm anm-d1">CONTENTS</div>
+  <div class="t-h1 anm anm-d2">目录</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="toc">
+    <div class="toc-card anm anm-d3">
+      <div class="label">第一幕 · P3 — P8</div>
+      <div class="name">项目总览</div>
+      <div class="pages">6 PAGES</div>
+      <div class="desc">项目背景 · 项目区位 · 资源盘点 · SWOT 分析</div>
+    </div>
+    <div class="toc-card anm anm-d3">
+      <div class="label">第二幕 · P9 — P13</div>
+      <div class="name">市场与定位</div>
+      <div class="pages">5 PAGES</div>
+      <div class="desc">客群画像 · 圈层分析 · 竞品对标 · 品牌 · 定价</div>
+    </div>
+    <div class="toc-card anm anm-d4">
+      <div class="label">第三幕 · P14 — P20</div>
+      <div class="name">产品与运营</div>
+      <div class="pages">7 PAGES</div>
+      <div class="desc">课程 · 空间 · 作息 · 组织 · B角 · 营销 · 日历</div>
+    </div>
+    <div class="toc-card anm anm-d5">
+      <div class="label">第四幕 · P21 — P25</div>
+      <div class="name">投资与财务</div>
+      <div class="pages">5 PAGES</div>
+      <div class="desc">投资 · 收入 · 三情景 · 盈亏 · Dashboard</div>
+    </div>
+    <div class="toc-card anm anm-d6">
+      <div class="label">第五幕 · P26 — P29</div>
+      <div class="name">实施与风险</div>
+      <div class="pages">4 PAGES</div>
+      <div class="desc">路线图 · 分期 · 风险矩阵 · 政策</div>
+    </div>
+    <div class="toc-card anm anm-d7">
+      <div class="label">尾页 · P30</div>
+      <div class="name">致谢</div>
+      <div class="pages">1 PAGE</div>
+      <div class="desc">联系方式 · 云端茶修，静候佳音</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">悬崖康养·云中茶修</div>
+    <div class="page-num">P2 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P3 · 三重风口
+     ============================================ -->
+<section data-label="三重风口">
+<div class="slide p3 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第一幕 · 项目总览</div>
+  </div>
+  <div class="kicker anm anm-d1">01 · MARKET TREND</div>
+  <div class="t-h2 anm anm-d2">三重风口叠加下的精准切入</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="grid3">
+    <div class="wind-card anm anm-d3">
+      <div class="ix">01</div>
+      <div class="nm">银发经济</div>
+      <div class="num anm-pop anm-p1">12<span class="u">万亿</span></div>
+      <div class="ds">2025 年全国银发经济规模突破 12 万亿元<br>康养旅居市场年增 25%</div>
+      <div class="src">来源 · 国家统计局</div>
+    </div>
+    <div class="wind-card anm anm-d4">
+      <div class="ix">02</div>
+      <div class="nm">避暑旅居</div>
+      <div class="num anm-pop anm-p2" style="color: var(--c-red);">+41<span class="u">%</span></div>
+      <div class="ds">2026 暑期 15 天以上长住订单同比 +41%<br>旺季入住率 80—90%</div>
+      <div class="src">来源 · 搜狐财经 / 民宿平台</div>
+    </div>
+    <div class="wind-card anm anm-d5">
+      <div class="ix">03</div>
+      <div class="nm">政策红利</div>
+      <div class="num anm-pop anm-p3" style="font-size: 56px; color: var(--c-blue);">大湘西</div>
+      <div class="ds">湖南省三大省级康养布局之一<br>花垣县政策资源富集</div>
+      <div class="src">来源 · 湖南省政府文件</div>
+    </div>
+  </div>
+
+  <div class="callout anm anm-d7">
+    核心判断 · 将「悬崖苗寨 + 高山茶修 + 银发避暑」三重稀缺资源<br>转化为湘西首个精品茶修康养目的地
+  </div>
+
+  <div class="foot">
+    <div class="brand">项目总览</div>
+    <div class="page-num">P3 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P4 · 项目区位
+     ============================================ -->
+<section data-label="项目区位">
+<div class="slide p4 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第一幕 · 项目总览</div>
+  </div>
+  <div class="kicker anm anm-d1">02 · LOCATION</div>
+  <div class="t-h2 anm anm-d2">金龙村 · 悬崖苗寨，云中秘境</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="hero">
+    <div>
+      <div class="stats">
+        <div class="stat anm anm-d3">
+          <div class="lb">位置</div>
+          <div class="vl">湘西<span class="u">·</span>花垣</div>
+          <div class="dt">双龙镇 · 武陵山脉腹地</div>
+        </div>
+        <div class="stat anm anm-d4">
+          <div class="lb">海拔</div>
+          <div class="vl">900<span class="u">m</span></div>
+          <div class="dt">年均云海 160 天 · 夏季 22—28°</div>
+        </div>
+        <div class="stat anm anm-d5">
+          <div class="lb">交通</div>
+          <div class="vl">23<span class="u">km</span></div>
+          <div class="dt">距高速口 23km · 吉首 1.5h · 高铁站 60km</div>
+        </div>
+        <div class="stat anm anm-d6">
+          <div class="lb">最近 5A</div>
+          <div class="vl">18<span class="u">km</span></div>
+          <div class="dt">紧邻十八洞 5A 景区 · 矮寨大桥 20km</div>
+        </div>
+      </div>
+      <div class="tags anm anm-d7">
+        <span>1H 圈层 · 吉首</span>
+        <span>2H 圈层 · 怀化</span>
+        <span>3H 圈层 · 张家界</span>
+        <span>5.5H · 长株潭</span>
+      </div>
+      <div class="quote anm anm-d8">" 悬崖苗寨 · 年 160 天云海 · 1,500 亩高山茶 · 三重稀缺组合 "</div>
+    </div>
+
+    <div class="map-panel anm anm-r-d3">
+      <div style="font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.2em; opacity: 0.4; text-transform: uppercase;">MAP · 圈层辐射</div>
+      <div style="position: relative; width: 320px; height: 320px; margin: 16px 0;">
+        <div class="map-circle" style="width: 320px; height: 320px; top: 0; left: 0;"></div>
+        <div class="map-circle" style="width: 220px; height: 220px; top: 50px; left: 50px; opacity: 0.7;"></div>
+        <div class="map-circle" style="width: 120px; height: 120px; top: 100px; left: 100px; opacity: 0.5;"></div>
+        <div class="map-pin" style="position: absolute; top: 148px; left: 148px;"></div>
+        <div style="position: absolute; top: 5px; right: 0; font-family: var(--font-mono); font-size: 14px; opacity: 0.4; letter-spacing: 0.1em;">5H+</div>
+        <div style="position: absolute; top: 80px; right: -10px; font-family: var(--font-mono); font-size: 14px; opacity: 0.4; letter-spacing: 0.1em;">3H</div>
+        <div style="position: absolute; top: 170px; right: -30px; font-family: var(--font-mono); font-size: 14px; opacity: 0.4; letter-spacing: 0.1em;">2H</div>
+        <div style="position: absolute; top: 290px; right: 0; font-family: var(--font-mono); font-size: 14px; opacity: 0.5; letter-spacing: 0.1em;">长沙 · 重庆 · 贵阳</div>
+      </div>
+      <div style="font-family: var(--font-serif); font-weight: 700; font-size: 28px; color: var(--c-green-soft);">金龙村</div>
+      <div style="font-family: var(--font-mono); font-size: 16px; opacity: 0.4; letter-spacing: 0.15em; margin-top: 4px;">109.95°E · 28.62°N</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">金龙村 · 区位概况</div>
+    <div class="page-num">P4 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P5 · 五维资源
+     ============================================ -->
+<section data-label="五维资源">
+<div class="slide p5 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第一幕 · 项目总览</div>
+  </div>
+  <div class="kicker anm anm-d1">03 · RESOURCES</div>
+  <div class="t-h2 anm anm-d2">五维资源禀赋评估</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="hero">
+    <div>
+      <div class="res-card anm anm-d3">
+        <div>
+          <div class="lb">01 · 自然资源</div>
+          <div class="kw">悬崖苗寨 · 年 160 天云海 · 蚩尤大峡谷 · 十里樱花</div>
+        </div>
+        <div class="stars stars-5">★★★★★</div>
+      </div>
+      <div class="res-card anm anm-d4">
+        <div>
+          <div class="lb">02 · 人文资源</div>
+          <div class="kw">樱桃会非遗 · 67 栋明清吊脚楼 · 苗鼓苗歌</div>
+        </div>
+        <div class="stars stars-4">★★★★</div>
+      </div>
+      <div class="res-card anm anm-d5">
+        <div>
+          <div class="lb">03 · 产业资源</div>
+          <div class="kw">1,500 亩金龙云雾茶 · 60 亩灵芝 · 17 家民宿</div>
+        </div>
+        <div class="stars stars-3">★★★</div>
+      </div>
+      <div class="res-card anm anm-d6">
+        <div>
+          <div class="lb">04 · 区位交通</div>
+          <div class="kw">高速出口 23km · 吉首 1.5h · 紧邻十八洞 5A</div>
+        </div>
+        <div class="stars stars-3">★★★</div>
+      </div>
+      <div class="res-card anm anm-d7">
+        <div>
+          <div class="lb">05 · 政策背景</div>
+          <div class="kw">传统村落 + 3A 景区 + 乡村振兴三重叠加</div>
+        </div>
+        <div class="stars stars-5">★★★★★</div>
+      </div>
+      <div class="res-card hl anm anm-d8">
+        <div>
+          <div class="lb">核心组合</div>
+          <div class="kw" style="opacity: 0.85; font-weight: 500;">悬崖 + 云海 + 茶山 · 湘西不可复制</div>
+        </div>
+        <div class="stars stars-5">★ 5+</div>
+      </div>
+    </div>
+
+    <div class="radar anm anm-r-d3">
+      <img src="svg/p06-swot.svg" style="display:none" alt=""><!-- placeholder - radar in svg/p06 actually SWOT, use embedded -->
+      <div style="font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; opacity: 0.4; text-transform: uppercase; margin-bottom: 16px; text-align: center;">资源雷达</div>
+      <svg viewBox="0 0 320 320" style="width: 100%; height: auto;">
+        <g transform="translate(160,160)">
+          <polygon points="0,-120 114,-37 70,97 -70,97 -114,-37" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+          <polygon points="0,-80 76,-25 47,65 -47,65 -76,-25" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+          <polygon points="0,-40 38,-12 23,32 -23,32 -38,-12" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+          <line x1="0" y1="0" x2="0" y2="-120" stroke="rgba(0,0,0,0.1)"/>
+          <line x1="0" y1="0" x2="114" y2="-37" stroke="rgba(0,0,0,0.1)"/>
+          <line x1="0" y1="0" x2="70" y2="97" stroke="rgba(0,0,0,0.1)"/>
+          <line x1="0" y1="0" x2="-70" y2="97" stroke="rgba(0,0,0,0.1)"/>
+          <line x1="0" y1="0" x2="-114" y2="-37" stroke="rgba(0,0,0,0.1)"/>
+          <polygon points="0,-120 76,-25 47,65 -47,65 -76,-25" fill="rgba(42,110,59,0.18)" stroke="#2a6e3b" stroke-width="2" style="animation: popIn 1.2s cubic-bezier(0.34,1.56,0.64,1) 0.5s both;"/>
+          <circle r="6" fill="#2a6e3b" cx="0" cy="-120"/>
+          <circle r="6" fill="#D89B5C" cx="76" cy="-25"/>
+          <circle r="6" fill="#8B6F47" cx="47" cy="65"/>
+          <circle r="6" fill="#8B6F47" cx="-47" cy="65"/>
+          <circle r="6" fill="#2a6e3b" cx="-76" cy="-25"/>
+          <text x="0" y="-135" text-anchor="middle" font-size="16" font-weight="600" fill="#1a2e1f" style="font-family: var(--font-serif);">自然 ★5</text>
+          <text x="130" y="-37" text-anchor="middle" font-size="16" font-weight="600" fill="#1a2e1f" style="font-family: var(--font-serif);">人文 ★4</text>
+          <text x="85" y="115" text-anchor="middle" font-size="16" font-weight="600" fill="#1a2e1f" style="font-family: var(--font-serif);">产业 ★3</text>
+          <text x="-85" y="115" text-anchor="middle" font-size="16" font-weight="600" fill="#1a2e1f" style="font-family: var(--font-serif);">区位 ★3</text>
+          <text x="-130" y="-37" text-anchor="middle" font-size="16" font-weight="600" fill="#1a2e1f" style="font-family: var(--font-serif);">政策 ★5</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">五维资源</div>
+    <div class="page-num">P5 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P6 · SWOT
+     ============================================ -->
+<section data-label="SWOT分析">
+<div class="slide p6 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第一幕 · 项目总览</div>
+  </div>
+  <div class="kicker anm anm-d1">04 · STRATEGIC</div>
+  <div class="t-h2 anm anm-d2">SWOT 战略分析</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="swot">
+    <div class="sq s anm anm-d3">
+      <div class="label">S · 优势 · Strengths</div>
+      <div class="hd">内部有利因素</div>
+      <ul>
+        <li>悬崖苗寨地貌独家，湘西不可复制</li>
+        <li>樱桃会非遗 IP，差异化内容基底</li>
+        <li>紧邻十八洞 5A，景区溢出红利</li>
+        <li>传统村落 + 3A + 乡村振兴三重政策</li>
+        <li>1,500 亩自有茶园，原料供应链稳定</li>
+      </ul>
+    </div>
+    <div class="sq w anm anm-d4">
+      <div class="label">W · 劣势 · Weaknesses</div>
+      <div class="hd">内部制约因素</div>
+      <ul>
+        <li>现有住宿品质不足，需全面改造</li>
+        <li>交通最后一公里，山路大巴受限</li>
+        <li>现有产品单一，缺乏深度体验</li>
+        <li>运营人才匮乏，山区招人困难</li>
+        <li>品牌知名度为零，从零开始</li>
+      </ul>
+    </div>
+    <div class="sq o anm anm-d5">
+      <div class="label">O · 机会 · Opportunities</div>
+      <div class="hd">外部有利趋势</div>
+      <ul>
+        <li>情绪经济风口，60 亿人次出行</li>
+        <li>研学旅行市场爆发</li>
+        <li>银发旅居万亿市场</li>
+        <li>小而美精品化趋势</li>
+        <li>小红书 + 私域获客红利</li>
+      </ul>
+    </div>
+    <div class="sq t anm anm-d6">
+      <div class="label">T · 威胁 · Threats</div>
+      <div class="hd">外部风险挑战</div>
+      <ul>
+        <li>周边竞品同质化严重</li>
+        <li>山路安全风险，雨季尤甚</li>
+        <li>村落承载力有限，扩张受限</li>
+        <li>十八洞虹吸效应，资源争夺</li>
+        <li>经济下行消费降级风险</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">SWOT 分析</div>
+    <div class="page-num">P6 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P7 · 客群画像
+     ============================================ -->
+<section data-label="客群画像">
+<div class="slide p7 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第二幕 · 市场与定位</div>
+  </div>
+  <div class="kicker anm anm-d1">05 · PERSONA</div>
+  <div class="t-h2 anm anm-d2">双核心客群</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="seg">
+    <div class="seg-card primary anm anm-l">
+      <div class="pct">主客群 · 70—80% 营收</div>
+      <div class="nm">银发活力长者</div>
+      <div class="meta">
+        <div class="r"><span class="k">年龄</span><span>60—80 岁</span></div>
+        <div class="r"><span class="k">来源</span><span>长株潭 / 吉首 / 重庆 / 贵阳</span></div>
+        <div class="r"><span class="k">收入</span><span>退休金 4,000—8,000 元/月</span></div>
+        <div class="r"><span class="k">停留</span><span>7—30 天长住</span></div>
+        <div class="r"><span class="k">痛点</span><span>凉快 · 省心 · 热闹 · 安全</span></div>
+      </div>
+      <div class="tags">
+        <span>避暑长住</span>
+        <span>同龄社交</span>
+        <span>养生餐</span>
+        <span>日均 600 元</span>
+      </div>
+    </div>
+
+    <div class="seg-card anm anm-r-d3">
+      <div class="pct">辅客群 · 20—30% 营收</div>
+      <div class="nm">中年茶修疗愈</div>
+      <div class="meta">
+        <div class="r"><span class="k">年龄</span><span>35—55 岁</span></div>
+        <div class="r"><span class="k">来源</span><span>北上广深 · 长株潭</span></div>
+        <div class="r"><span class="k">职业</span><span>高知女性 / 企业高管 / 自由职业</span></div>
+        <div class="r"><span class="k">停留</span><span>3—7 天短休</span></div>
+        <div class="r"><span class="k">痛点</span><span>解压 · 静心 · 拍照 · 高质量内容</span></div>
+      </div>
+      <div class="tags">
+        <span>茶修静心</span>
+        <span>悬崖云海</span>
+        <span>高客单价</span>
+        <span>日均 800+</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">客群画像</div>
+    <div class="page-num">P7 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P8 · 圈层分析
+     ============================================ -->
+<section data-label="圈层分析">
+<div class="slide p8 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第二幕 · 市场与定位</div>
+  </div>
+  <div class="kicker anm anm-d1">06 · CATCHMENT</div>
+  <div class="t-h2 anm anm-d2">三层客源圈层</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="hero">
+    <div>
+      <div class="lr anm anm-d3">
+        <div class="dm">第一圈层 · 1—2h</div>
+        <div class="dn">吉首 · 花垣 · 铜仁</div>
+        <div class="dd">周末自驾 · 亲友推荐 · 基础客群（占比 30%）</div>
+      </div>
+      <div class="lr anm anm-d4">
+        <div class="dm">第二圈层 · 2—4h</div>
+        <div class="dn">怀化 · 张家界 · 常德</div>
+        <div class="dd">省内银发 · 小红书种草 · 核心增量（占比 35%）</div>
+      </div>
+      <div class="lr anm anm-d5">
+        <div class="dm">第三圈层 · 4h+</div>
+        <div class="dn">长沙 · 重庆 · 贵阳</div>
+        <div class="dd">高铁 + 租车 · 高客单价 · 品牌传播（占比 25%）</div>
+      </div>
+      <div class="lr anm anm-d6">
+        <div class="dm">溢出圈层</div>
+        <div class="dn">十八洞 → 矮寨 → 金龙村</div>
+        <div class="dd">景区联动导流 · 边际增量（占比 10%）</div>
+      </div>
+    </div>
+
+    <div class="ring-viz anm anm-r-d3">
+      <div class="ring ring-1"><div class="ring-lb">5H+</div></div>
+      <div class="ring ring-2"><div class="ring-lb">3H</div></div>
+      <div class="ring ring-3"><div class="ring-lb">1H</div></div>
+      <div class="ring-center">金龙</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">圈层分析</div>
+    <div class="page-num">P8 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P9 · 竞品对标
+     ============================================ -->
+<section data-label="竞品对标">
+<div class="slide p9 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第二幕 · 市场与定位</div>
+  </div>
+  <div class="kicker anm anm-d1">07 · COMPETITION</div>
+  <div class="t-h2 anm anm-d2">差异化竞争定位</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>维度</th>
+        <th>川西百元全包</th>
+        <th>花垣现有景区</th>
+        <th class="hl">本项目 · 云崖茶隐</th>
+      </tr>
+      <tr class="anm anm-d3">
+        <td class="lb">核心卖点</td>
+        <td>平价省心 / 农家餐</td>
+        <td>瀑布峡谷 / 红色文化</td>
+        <td class="hl-val">悬崖云海 + 高山茶修</td>
+      </tr>
+      <tr class="anm anm-d4">
+        <td class="lb">客单价</td>
+        <td>80—120 元/天</td>
+        <td>— / 门票 50—80 元</td>
+        <td class="hl-val">400—800 元/天</td>
+      </tr>
+      <tr class="anm anm-d5">
+        <td class="lb">住宿品质</td>
+        <td>村民自营 · 基础</td>
+        <td>无住宿 · 周边民宿</td>
+        <td class="hl-val">精品适老客房 · 5—6 间</td>
+      </tr>
+      <tr class="anm anm-d6">
+        <td class="lb">内容深度</td>
+        <td>无附加内容</td>
+        <td>纯观光 · 1 日游</td>
+        <td class="hl-val">每日茶修 + 养生餐 + 文化</td>
+      </tr>
+      <tr class="anm anm-d7">
+        <td class="lb">客群匹配</td>
+        <td>全龄段 / 银发为主</td>
+        <td>大众观光客</td>
+        <td class="hl-val">银发长住 + 中年茶修</td>
+      </tr>
+      <tr class="anm anm-d8">
+        <td class="lb">差异化</td>
+        <td>价格竞争</td>
+        <td>资源竞争</td>
+        <td class="hl-val">悬崖 + 茶 + 云海 · 湘西独家</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="foot">
+    <div class="brand">竞品对标</div>
+    <div class="page-num">P9 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P10 · 品牌定位
+     ============================================ -->
+<section data-label="品牌定位">
+<div class="slide p10 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第二幕 · 市场与定位</div>
+  </div>
+  <div class="kicker anm anm-d1">08 · BRAND</div>
+  <div class="t-h2 anm anm-d2">品牌金字塔</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="hero">
+    <div class="brand-card anm anm-l" style="background: linear-gradient(135deg, rgba(42,110,59,0.08) 0%, rgba(216,155,92,0.06) 100%);">
+      <div class="name-en" style="font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.3em; opacity: 0.45; margin-bottom: 8px;">BRAND NAME</div>
+      <div style="font-family: var(--font-serif); font-weight: 900; font-size: 88px; line-height: 1; color: var(--c-green-deep); letter-spacing: 0.04em;">云崖茶隐</div>
+      <div style="font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.2em; opacity: 0.4; margin-top: 8px;">YUN-YA · CHAYIN</div>
+      <div class="slogan" style="margin-top: 24px;">「 睡在云端，醒在茶里 」</div>
+      <div style="font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.15em; opacity: 0.45; margin-top: 8px;">SLEEP IN THE CLOUDS · WAKE UP WITH TEA</div>
+      <div style="display: flex; gap: 12px; margin-top: 32px;">
+        <div style="width: 60px; height: 60px; background: #1a2e1f; border-radius: 50%;"></div>
+        <div style="width: 60px; height: 60px; background: #2a6e3b; border-radius: 50%;"></div>
+        <div style="width: 60px; height: 60px; background: #5C8C5A; border-radius: 50%;"></div>
+        <div style="width: 60px; height: 60px; background: #D89B5C; border-radius: 50%;"></div>
+        <div style="width: 60px; height: 60px; background: #8B6F47; border-radius: 50%;"></div>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.15em; opacity: 0.4; margin-top: 12px;">苗蓝 · 茶绿 · 云白 · 茶褐 · 茶褐深</div>
+    </div>
+
+    <div class="pyr anm anm-r-d3">
+      <div class="pyr-row t">
+        <div class="lb">SLOGAN · 情感共鸣</div>
+        <div class="tx slogan">「睡在云端，醒在茶里」</div>
+      </div>
+      <div class="pyr-row m">
+        <div class="lb">EMOTIONAL · 情感利益</div>
+        <div class="tx">推开窗就是云海的真实体验</div>
+      </div>
+      <div class="pyr-row b">
+        <div class="lb">FUNCTIONAL · 功能利益</div>
+        <div class="tx">悬崖客房 + 茶修课程 + 养生餐</div>
+      </div>
+      <div style="width: 70%; padding: 16px 20px; text-align: center; font-size: 18px; opacity: 0.55; border: 1px dashed currentColor; border-radius: 4px; margin-top: 6px;">
+        社会价值 · 盘活空心苗寨，带动就业 ≥ 10 人
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">品牌定位</div>
+    <div class="page-num">P10 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P11 · 产品定价
+     ============================================ -->
+<section data-label="产品定价">
+<div class="slide p11 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第二幕 · 市场与定位</div>
+  </div>
+  <div class="kicker anm anm-d1">09 · PRICING</div>
+  <div class="t-h2 anm anm-d2">产品矩阵与定价体系</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="grid4">
+    <div class="pc anm anm-d3">
+      <div class="lb" style="font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.22em; opacity: 0.4; margin-bottom: 8px;">EXPERIENCE · 体验</div>
+      <div class="nm">云起</div>
+      <div class="dur">3D · 2N</div>
+      <div class="pr anm-pop anm-p1">2,280<span class="u">元/人</span></div>
+      <div class="avg">日均 1,140 元</div>
+      <div class="inc">含住宿 + 三餐 + 基础茶修 + L1 品鉴</div>
+    </div>
+    <div class="pc anm anm-d4">
+      <div class="lb" style="font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.22em; opacity: 0.4; margin-bottom: 8px;">HEALING · 疗愈</div>
+      <div class="nm">山栖</div>
+      <div class="dur">5D · 4N</div>
+      <div class="pr anm-pop anm-p2">3,980<span class="u">元/人</span></div>
+      <div class="avg">日均 995 元</div>
+      <div class="inc">含全部课程 + L4 茶山巡礼 + 体质茶</div>
+    </div>
+    <div class="pc featured anm anm-d5">
+      <div class="badge">★ 旗舰</div>
+      <div class="lb" style="font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.22em; opacity: 0.4; margin-bottom: 8px;">RETREAT · 静修</div>
+      <div class="nm">观止</div>
+      <div class="dur">7D · 6N</div>
+      <div class="pr anm-pop anm-p3">6,280<span class="u">元/人</span></div>
+      <div class="avg">日均 897 元</div>
+      <div class="inc">含悬崖茶会 L5 + 灵芝养生餐 + 私人管家</div>
+    </div>
+    <div class="pc anm anm-d6">
+      <div class="lb" style="font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.22em; opacity: 0.4; margin-bottom: 8px;">SILVER · 银发</div>
+      <div class="nm">云栖</div>
+      <div class="dur">5D · 4N</div>
+      <div class="pr anm-pop anm-p4" style="color: var(--c-amber);">2,980<span class="u">元/人</span></div>
+      <div class="avg">日均 745 元</div>
+      <div class="inc">适老客房 + 慢节奏课程 + 慢病管理茶</div>
+    </div>
+  </div>
+
+  <div class="footer-note anm anm-d7">续住加天 · 600 元/天/人 · 含三餐</div>
+
+  <div class="foot">
+    <div class="brand">产品定价</div>
+    <div class="page-num">P11 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P12 · 课程体系
+     ============================================ -->
+<section data-label="课程体系">
+<div class="slide p12 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第三幕 · 产品与运营</div>
+  </div>
+  <div class="kicker anm anm-d1">10 · CURRICULUM</div>
+  <div class="t-h2 anm anm-d2">茶修课程体系 · L0 — L5</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="grid6">
+    <div class="cc anm anm-d3">
+      <div class="lv">L0</div>
+      <div class="nm">茶修入门</div>
+      <div class="meta"><div class="d">45 min</div><div class="d">免费</div></div>
+      <div class="desc">面向所有到访者，建立第一杯茶体验</div>
+      <div class="tag">FREE</div>
+    </div>
+    <div class="cc anm anm-d4">
+      <div class="lv">L1</div>
+      <div class="nm">金龙云雾茶品鉴</div>
+      <div class="meta"><div class="d">1 h</div><div class="d">必修</div></div>
+      <div class="desc">每日 09:30 开课，6 款山场茶 + 风土讲解</div>
+      <div class="tag">DAILY</div>
+    </div>
+    <div class="cc anm anm-d4">
+      <div class="lv">L2</div>
+      <div class="nm">泡茶实操·盖碗技法</div>
+      <div class="meta"><div class="d">1.5 h</div><div class="d">免费</div></div>
+      <div class="desc">盖碗三指法 · 注水高度 · 出汤节奏控制</div>
+      <div class="tag">SKILL</div>
+    </div>
+    <div class="cc featured anm anm-d5">
+      <div class="lv">L3</div>
+      <div class="nm">茶与健康·体质辨茶</div>
+      <div class="meta"><div class="d">1 h</div><div class="d">银发重点</div></div>
+      <div class="desc">9 体质自测 + 慢病对应茶品选择（高血压/糖/失眠）</div>
+      <div class="tag">★ KEY</div>
+    </div>
+    <div class="cc anm anm-d6">
+      <div class="lv">L4</div>
+      <div class="nm">茶山巡礼·采青制茶</div>
+      <div class="meta"><div class="d">3 h</div><div class="d">+150 元</div></div>
+      <div class="desc">走进 1,500 亩茶园 · 采青 · 杀青 · 揉捻体验</div>
+      <div class="tag">PREMIUM</div>
+    </div>
+    <div class="cc featured anm anm-d7">
+      <div class="lv">L5</div>
+      <div class="nm">悬崖茶会·一席茶</div>
+      <div class="meta"><div class="d">2 h</div><div class="d">+280 元</div></div>
+      <div class="desc">悬崖边 · 云海上 · 限定 4 席 · 旗舰体验</div>
+      <div class="tag">★ FLAGSHIP</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">课程体系</div>
+    <div class="page-num">P12 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P13 · 空间概念
+     ============================================ -->
+<section data-label="空间概念">
+<div class="slide p13 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第三幕 · 产品与运营</div>
+  </div>
+  <div class="kicker anm anm-d1">11 · SPATIAL</div>
+  <div class="t-h2 anm anm-d2">6 间客房 + 云上茶寮</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="hero">
+    <div class="rm-grid">
+      <div class="rm anm anm-d3">
+        <div class="num">101 · 一层</div>
+        <div class="nm">云起</div>
+        <div class="ds">大落地窗面向云海日出</div>
+      </div>
+      <div class="rm anm anm-d4">
+        <div class="num">102 · 一层</div>
+        <div class="nm">雾隐</div>
+        <div class="ds">独立茶席 · 私密套房</div>
+      </div>
+      <div class="rm anm anm-d4">
+        <div class="num">103 · 一层</div>
+        <div class="nm">山栖</div>
+        <div class="ds">带庭院 · 最大间 · 可加床</div>
+      </div>
+      <div class="rm anm anm-d5">
+        <div class="num">201 · 二层</div>
+        <div class="nm">茶寮</div>
+        <div class="ds">推窗见茶山 · 书房角</div>
+      </div>
+      <div class="rm anm anm-d6">
+        <div class="num">202 · 二层</div>
+        <div class="nm">云栖</div>
+        <div class="ds">银发友好型 · 适老细节</div>
+      </div>
+      <div class="rm anm anm-d7">
+        <div class="num">203 · 二层</div>
+        <div class="nm">观止</div>
+        <div class="ds">270° 景观 · VIP 套房</div>
+      </div>
+    </div>
+
+    <div class="an" style="display: flex; flex-direction: column; gap: 18px;">
+      <div class="rm span2 anm anm-r-d3" style="padding: 28px;">
+        <div class="num">PUBLIC · 公共空间</div>
+        <div class="nm">云上茶寮</div>
+        <div class="ds">全落地窗面向云海 · 容纳 20—30 人<br>茶修课堂 · 悬崖茶会 · 长桌宴<br>篝火 · 苗歌 · 故事会</div>
+      </div>
+      <div style="padding: 24px; border: 1px solid rgba(245,241,232,0.1); border-radius: 4px; background: rgba(245,241,232,0.03);" class="anm anm-r-d3">
+        <div style="font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.22em; opacity: 0.4; text-transform: uppercase; margin-bottom: 12px;">MOOD · 设计调性</div>
+        <div style="font-size: 20px; line-height: 1.6; opacity: 0.75;">既在山里 · 又在云端</div>
+        <div style="font-size: 18px; line-height: 1.5; opacity: 0.5; margin-top: 8px;">外保留苗寨粗粝 · 内做舒适精品</div>
+        <div style="display: flex; gap: 6px; margin-top: 16px;">
+          <div style="width: 36px; height: 36px; background: #1a2e1f; border-radius: 4px;"></div>
+          <div style="width: 36px; height: 36px; background: #2a6e3b; border-radius: 4px;"></div>
+          <div style="width: 36px; height: 36px; background: #f5f1e8; border-radius: 4px;"></div>
+          <div style="width: 36px; height: 36px; background: #D89B5C; border-radius: 4px;"></div>
+          <div style="width: 36px; height: 36px; background: #8B6F47; border-radius: 4px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">空间概念</div>
+    <div class="page-num">P13 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P14 · 一日作息
+     ============================================ -->
+<section data-label="一日作息">
+<div class="slide p14 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第三幕 · 产品与运营</div>
+  </div>
+  <div class="kicker anm anm-d1">12 · DAILY RHYTHM</div>
+  <div class="t-h2 anm anm-d2">银发长住 · 一日作息</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="tl">
+    <div class="ts anm anm-d3"><div class="tp">07:00</div><div class="tl-lb">晨起<br>云海</div></div>
+    <div class="ts anm anm-d3"><div class="tp">07:30</div><div class="tl-lb">悬崖<br>太极</div></div>
+    <div class="ts anm anm-d4"><div class="tp">08:30</div><div class="tl-lb">养生<br>早餐</div></div>
+    <div class="ts anm anm-d4"><div class="tp">09:30</div><div class="tl-lb">每日<br>茶修</div></div>
+    <div class="ts anm anm-d5"><div class="tp">11:00</div><div class="tl-lb">棋牌<br>阅读</div></div>
+    <div class="ts anm anm-d5"><div class="tp">12:00</div><div class="tl-lb">午餐<br>午休</div></div>
+    <div class="ts anm anm-d6"><div class="tp">15:00</div><div class="tl-lb">苗寨<br>导览</div></div>
+    <div class="ts anm anm-d6"><div class="tp">17:30</div><div class="tl-lb">长桌<br>宴</div></div>
+    <div class="ts anm anm-d7"><div class="tp">19:00</div><div class="tl-lb">篝火<br>故事</div></div>
+    <div class="ts anm anm-d7"><div class="tp">20:30</div><div class="tl-lb">回房<br>休息</div></div>
+  </div>
+
+  <div style="padding: 24px 32px; background: rgba(42,110,59,0.05); border-left: 3px solid var(--c-green-deep); border-radius: 4px; margin-top: 24px;" class="anm anm-d8">
+    <div style="font-family: var(--font-serif); font-weight: 700; font-size: 26px; margin-bottom: 8px; color: var(--c-green-deep);">设计原则 · 慢节奏 · 自主可选</div>
+    <div style="font-size: 20px; line-height: 1.5; opacity: 0.7;">茶修为每日必修 · 其他活动均可选 · 不强求打卡 · 给银发客人充分的"发呆时间"</div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">一日作息</div>
+    <div class="page-num">P14 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P15 · 组织架构
+     ============================================ -->
+<section data-label="组织架构">
+<div class="slide p15 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第三幕 · 产品与运营</div>
+  </div>
+  <div class="kicker anm anm-d1">13 · ORG CHART</div>
+  <div class="t-h2 anm anm-d2">组织架构与人力配置</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="hero">
+    <div>
+      <div class="org-list">
+        <div class="org-row head anm anm-d3">
+          <div><div class="lb">LEADERSHIP</div><div class="vl">项目负责人</div></div>
+          <div><div class="ds">投资人 · 战略 · 资源对接</div></div>
+        </div>
+        <div class="org-row anm anm-d4">
+          <div><div class="lb">OPERATIONS · 1 人</div><div class="vl">店长 / 管家</div></div>
+          <div><div class="price">5—6K/月</div><div class="ds">外聘 · 民宿管理经验</div></div>
+        </div>
+        <div class="org-row anm anm-d5">
+          <div><div class="lb">CORE SKILL · 1 人</div><div class="vl">茶师</div></div>
+          <div><div class="price">4—5K/月</div><div class="ds">本地优先 · 持证茶艺师</div></div>
+        </div>
+        <div class="org-row anm anm-d5">
+          <div><div class="lb">CUISINE · 1 人</div><div class="vl">厨师</div></div>
+          <div><div class="price">4—5K/月</div><div class="ds">本地 · 苗家菜 + 养生餐</div></div>
+        </div>
+        <div class="org-row anm anm-d6">
+          <div><div class="lb">SUPPORT · 1.5 人</div><div class="vl">保洁 + 兼职向导</div></div>
+          <div><div class="price">2.5—3K/月</div><div class="ds">保洁 1 + 向导 0.5（按需）</div></div>
+        </div>
+      </div>
+      <div class="tot anm anm-d7">
+        <div class="it"><span class="v">4.5</span><span>人核心团队</span></div>
+        <div class="it"><span class="v">24—29</span><span>万年人力成本</span></div>
+        <div class="it"><span class="v">45%</span><span>占收入比</span></div>
+      </div>
+    </div>
+
+    <div style="padding: 32px; border: 1px solid rgba(245,241,232,0.1); border-radius: 4px; background: rgba(245,241,232,0.03);" class="anm anm-r-d3">
+      <div style="font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.22em; opacity: 0.4; text-transform: uppercase; margin-bottom: 20px; text-align: center;">TREE · 架构</div>
+      <svg viewBox="0 0 360 360" style="width: 100%; height: auto;">
+        <line x1="180" y1="40" x2="180" y2="100" stroke="rgba(92,140,90,0.4)" stroke-width="1.5"/>
+        <line x1="60" y1="100" x2="300" y2="100" stroke="rgba(92,140,90,0.4)" stroke-width="1.5"/>
+        <line x1="60" y1="100" x2="60" y2="160" stroke="rgba(92,140,90,0.4)" stroke-width="1.5"/>
+        <line x1="180" y1="100" x2="180" y2="160" stroke="rgba(92,140,90,0.4)" stroke-width="1.5"/>
+        <line x1="300" y1="100" x2="300" y2="160" stroke="rgba(92,140,90,0.4)" stroke-width="1.5"/>
+        <line x1="60" y1="160" x2="60" y2="220" stroke="rgba(92,140,90,0.4)" stroke-width="1.5"/>
+        <line x1="180" y1="160" x2="180" y2="220" stroke="rgba(92,140,90,0.4)" stroke-width="1.5"/>
+        <rect x="120" y="10" width="120" height="36" rx="4" fill="rgba(92,140,90,0.25)" stroke="#5C8C5A" stroke-width="1.5"/>
+        <text x="180" y="33" text-anchor="middle" font-size="16" font-weight="600" fill="#5C8C5A" style="font-family: var(--font-serif);">项目负责人</text>
+        <rect x="0" y="100" width="120" height="36" rx="4" fill="rgba(245,241,232,0.06)" stroke="rgba(245,241,232,0.2)" stroke-width="1"/>
+        <text x="60" y="123" text-anchor="middle" font-size="15" fill="#f5f1e8" style="font-family: var(--font-serif);">店长 / 管家</text>
+        <rect x="120" y="100" width="120" height="36" rx="4" fill="rgba(92,140,90,0.15)" stroke="#5C8C5A" stroke-width="1.2"/>
+        <text x="180" y="123" text-anchor="middle" font-size="15" fill="#8BAB87" style="font-family: var(--font-serif); font-weight: 600;">茶师</text>
+        <rect x="240" y="100" width="120" height="36" rx="4" fill="rgba(216,155,92,0.15)" stroke="#D89B5C" stroke-width="1.2"/>
+        <text x="300" y="123" text-anchor="middle" font-size="15" fill="#D89B5C" style="font-family: var(--font-serif); font-weight: 600;">厨师</text>
+        <rect x="0" y="220" width="120" height="32" rx="4" fill="rgba(245,241,232,0.04)" stroke="rgba(245,241,232,0.15)" stroke-width="1"/>
+        <text x="60" y="241" text-anchor="middle" font-size="14" fill="rgba(245,241,232,0.7)" style="font-family: var(--font-serif);">保洁 · 1人</text>
+        <rect x="240" y="220" width="120" height="32" rx="4" fill="rgba(245,241,232,0.04)" stroke="rgba(245,241,232,0.15)" stroke-width="1"/>
+        <text x="300" y="241" text-anchor="middle" font-size="14" fill="rgba(245,241,232,0.7)" style="font-family: var(--font-serif);">向导 · 0.5人</text>
+        <text x="180" y="300" text-anchor="middle" font-size="13" fill="rgba(245,241,232,0.4)" style="font-family: var(--font-mono); letter-spacing: 0.15em;">— 4.5 人核心团队 —</text>
+        <text x="180" y="328" text-anchor="middle" font-size="13" fill="rgba(245,241,232,0.4)" style="font-family: var(--font-mono); letter-spacing: 0.15em;">24—29 万 / 年</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">组织架构</div>
+    <div class="page-num">P15 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P16 · B角制度
+     ============================================ -->
+<section data-label="B角制度">
+<div class="slide p16 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第三幕 · 产品与运营</div>
+  </div>
+  <div class="kicker anm anm-d1">14 · BACKUP TALENT</div>
+  <div class="t-h2 anm anm-d2">全员 B 角制度</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="flow anm anm-d4">
+    <div class="fn anm anm-d3">
+      <div class="nm">保洁</div>
+      <div class="sk">学基础菜</div>
+    </div>
+    <div class="arw anm anm-d4">→</div>
+    <div class="fn anm anm-d4">
+      <div class="nm">厨师</div>
+      <div class="sk">学基础茶修</div>
+    </div>
+    <div class="arw anm anm-d5">→</div>
+    <div class="fn anm anm-d5">
+      <div class="nm">茶师</div>
+      <div class="sk">学基础接待</div>
+    </div>
+    <div class="arw anm anm-d6">→</div>
+    <div class="fn x anm anm-d6">
+      <div class="nm">全员互通</div>
+      <div class="sk">无单一依赖</div>
+    </div>
+  </div>
+
+  <div class="principle anm anm-d5">
+    <div class="hd">原则 · 关键设计</div>
+    <div class="tx">不能有"只有一个人会"的核心技能 · 每个岗位必须培养 B 角 · 淡季/突发/离职均可立即顶上</div>
+  </div>
+
+  <div class="save anm anm-d7">
+    <div class="it">
+      <div class="v" style="color: var(--c-green-deep);">15—20</div>
+      <div class="l">闭店省 (万元/年)</div>
+    </div>
+    <div style="font-family: var(--font-mono); font-size: 24px; opacity: 0.4;">VS</div>
+    <div class="it">
+      <div class="v red">—30</div>
+      <div class="l">硬撑亏 (万元/年)</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">B 角制度</div>
+    <div class="page-num">P16 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P17 · 营销策略
+     ============================================ -->
+<section data-label="营销策略">
+<div class="slide p17 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第三幕 · 产品与运营</div>
+  </div>
+  <div class="kicker anm anm-d1">15 · ACQUISITION</div>
+  <div class="t-h2 anm anm-d2">低成本精准获客</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="hero">
+    <div>
+      <div class="ch anm anm-d3">
+        <div class="l">
+          <div class="cn">小红书种草</div>
+          <div class="cd">KOC 免费置换 10—15 人 · 不要求出稿 · 靠产品力自发传播</div>
+          <div class="bar"><i style="width: 100%; animation-delay: 0.2s;"></i></div>
+        </div>
+        <div class="pct">40—45<span style="font-size: 22px; opacity: 0.6;">%</span></div>
+      </div>
+      <div class="ch anm anm-d4">
+        <div class="l">
+          <div class="cn">私域转介绍</div>
+          <div class="cd">银发子女链路 · 口碑裂变 · 老带新</div>
+          <div class="bar"><i style="width: 50%; animation-delay: 0.4s;"></i></div>
+        </div>
+        <div class="pct">20—25<span style="font-size: 22px; opacity: 0.6;">%</span></div>
+      </div>
+      <div class="ch anm anm-d5">
+        <div class="l">
+          <div class="cn">抖音 / 视频号</div>
+          <div class="cd">短视频破圈 · 品牌曝光 · 探店博主</div>
+          <div class="bar"><i style="width: 30%; animation-delay: 0.6s;"></i></div>
+        </div>
+        <div class="pct">10—15<span style="font-size: 22px; opacity: 0.6;">%</span></div>
+      </div>
+      <div class="ch anm anm-d6">
+        <div class="l">
+          <div class="cn">传统渠道</div>
+          <div class="cd">旅行社 · 企业团建 · 老年大学</div>
+          <div class="bar"><i style="width: 30%; animation-delay: 0.8s;"></i></div>
+        </div>
+        <div class="pct">10—15<span style="font-size: 22px; opacity: 0.6;">%</span></div>
+      </div>
+      <div class="ch anm anm-d7">
+        <div class="l">
+          <div class="cn">OTA 平台</div>
+          <div class="cd">携程 · 美团 · 飞猪 · 民宿平台</div>
+          <div class="bar"><i style="width: 15%; animation-delay: 1.0s;"></i></div>
+        </div>
+        <div class="pct">5—10<span style="font-size: 22px; opacity: 0.6;">%</span></div>
+      </div>
+    </div>
+
+    <div style="padding: 32px; border: 1px solid rgba(245,241,232,0.1); border-radius: 4px; background: rgba(245,241,232,0.03);" class="anm anm-r-d3">
+      <div style="font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.22em; opacity: 0.4; text-transform: uppercase; margin-bottom: 16px;">FUNNEL · 获客漏斗</div>
+      <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
+        <div style="width: 90%; padding: 12px; background: rgba(42,110,59,0.15); border: 1px solid var(--c-green-soft); border-radius: 4px 4px 0 0; text-align: center; font-family: var(--font-mono); font-size: 18px;">10,000 触达</div>
+        <div style="width: 70%; padding: 12px; background: rgba(42,110,59,0.18); border: 1px solid var(--c-green-soft); border-radius: 0; text-align: center; font-family: var(--font-mono); font-size: 18px;">2,500 兴趣</div>
+        <div style="width: 55%; padding: 12px; background: rgba(42,110,59,0.22); border: 1px solid var(--c-green-soft); border-radius: 0; text-align: center; font-family: var(--font-mono); font-size: 18px;">800 咨询</div>
+        <div style="width: 40%; padding: 12px; background: rgba(42,110,59,0.28); border: 1px solid var(--c-green-soft); border-radius: 0; text-align: center; font-family: var(--font-mono); font-size: 18px;">200 预订</div>
+        <div style="width: 28%; padding: 12px; background: rgba(42,110,59,0.35); border: 1px solid var(--c-green-soft); border-radius: 0 0 4px 4px; text-align: center; font-family: var(--font-mono); font-size: 18px; font-weight: 600; color: var(--c-green-soft);">60 入住 · 20 复购</div>
+      </div>
+      <div style="margin-top: 20px; font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.15em; opacity: 0.5; text-align: center;">首年营销预算 · 3.5—5 万元</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">营销策略</div>
+    <div class="page-num">P17 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P18 · 营销日历
+     ============================================ -->
+<section data-label="营销日历">
+<div class="slide p18 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第三幕 · 产品与运营</div>
+  </div>
+  <div class="kicker anm anm-d1">16 · MARKETING CALENDAR</div>
+  <div class="t-h2 anm anm-d2">首年营销日历</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="tl-grid">
+    <div class="tl-c anm anm-d3">
+      <div class="q">T-3 M</div>
+      <div class="ti">小红书蓄水</div>
+      <div class="ds">官号启动<br>视觉内容沉淀</div>
+    </div>
+    <div class="tl-c anm anm-d4">
+      <div class="q">T-2 M</div>
+      <div class="ti">KOC 免费体验</div>
+      <div class="ds">10—15 人<br>0 成本置换</div>
+    </div>
+    <div class="tl-c anm anm-d4">
+      <div class="q">T-1 M</div>
+      <div class="ti">早鸟预售</div>
+      <div class="ds">7 折限时<br>锁定首批客户</div>
+    </div>
+    <div class="tl-c hot anm anm-d5">
+      <div class="q">Q2 · 开营</div>
+      <div class="ti">密集种草</div>
+      <div class="ds">小红书爆文<br>开营活动</div>
+    </div>
+    <div class="tl-c hot anm anm-d6">
+      <div class="q">Q3 · 旺季</div>
+      <div class="ti">银发攻坚</div>
+      <div class="ds">OTA 上线<br>老年大学合作</div>
+    </div>
+    <div class="tl-c anm anm-d6">
+      <div class="q">Q4 · 平季</div>
+      <div class="ti">茶修静心</div>
+      <div class="ds">苗年活动<br>节气主题</div>
+    </div>
+    <div class="tl-c anm anm-d7">
+      <div class="q">Y2 Q1</div>
+      <div class="ti">复购沉淀</div>
+      <div class="ds">会员体系<br>内容沉淀</div>
+    </div>
+  </div>
+
+  <div class="note anm anm-d8">首年营销预算 · 3.5—5 万元 · 远超盈亏平衡点</div>
+
+  <div class="foot">
+    <div class="brand">营销日历</div>
+    <div class="page-num">P18 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P19 · 投资明细
+     ============================================ -->
+<section data-label="投资明细">
+<div class="slide p19 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第四幕 · 投资与财务</div>
+  </div>
+  <div class="kicker anm anm-d1">17 · INVESTMENT</div>
+  <div class="t-h2 anm anm-d2">投资估算明细</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="hero">
+    <div>
+      <div class="bar-row anm anm-d3">
+        <div class="top"><div class="bn">民居改造（5—6 间）</div><div class="bv">180 万</div></div>
+        <div class="bf"><i style="width: 100%; animation-delay: 0.2s;"></i></div>
+      </div>
+      <div class="bar-row anm anm-d4">
+        <div class="top"><div class="bn">茶修空间</div><div class="bv">32 万</div></div>
+        <div class="bf"><i style="width: 18%; animation-delay: 0.4s;"></i></div>
+      </div>
+      <div class="bar-row anm anm-d4">
+        <div class="top"><div class="bn">适老卫浴专项</div><div class="bv">14 万</div></div>
+        <div class="bf"><i style="width: 8%; animation-delay: 0.5s;"></i></div>
+      </div>
+      <div class="bar-row anm anm-d5">
+        <div class="top"><div class="bn">户外配套（观景台/步道）</div><div class="bv">28 万</div></div>
+        <div class="bf"><i style="width: 16%; animation-delay: 0.6s;"></i></div>
+      </div>
+      <div class="bar-row anm anm-d6">
+        <div class="top"><div class="bn">软装 / 家具 / 布草</div><div class="bv">24 万</div></div>
+        <div class="bf"><i style="width: 13%; animation-delay: 0.7s;"></i></div>
+      </div>
+      <div class="bar-row anm anm-d7">
+        <div class="top"><div class="bn">品牌 / 培训 / 设备</div><div class="bv">12 万</div></div>
+        <div class="bf"><i style="width: 7%; animation-delay: 0.8s;"></i></div>
+      </div>
+      <div class="total anm anm-d8">
+        <div class="l">总投资 · 含 10% 预备金</div>
+        <div class="v">¥ 250 万</div>
+      </div>
+    </div>
+
+    <div class="side-svg anm anm-r-d3">
+      <img src="svg/p19-investment.svg" style="width: 100%; height: auto; display: block;" alt="投资构成图">
+      <div style="font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.2em; opacity: 0.4; text-align: center; margin-top: 16px; text-transform: uppercase;">BREAKDOWN · 250 万构成</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">投资明细</div>
+    <div class="page-num">P19 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P20 · 收入预测
+     ============================================ -->
+<section data-label="收入预测">
+<div class="slide p20 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第四幕 · 投资与财务</div>
+  </div>
+  <div class="kicker anm anm-d1">18 · REVENUE FORECAST</div>
+  <div class="t-h2 anm anm-d2">三年收入与利润预测</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="hero">
+    <div>
+      <div class="yr anm anm-d3">
+        <div class="y-l"><div class="y-n">Y1 · 第 1 年</div><div class="y-v">收入 <span style="color: var(--c-green-deep);">43.2</span> 万</div></div>
+        <div class="y-d">运营成本 33.7 万 · 折旧 25 万 · 净利润 <span style="color: var(--c-red); font-weight: 600;">—15.5 万</span></div>
+        <div class="y-bar"><div class="seg rev" style="width: 78%; animation-delay: 0.3s;"></div><div class="seg cost" style="width: 60%; animation-delay: 0.6s;"></div></div>
+      </div>
+      <div class="yr anm anm-d4">
+        <div class="y-l"><div class="y-n">Y2 · 第 2 年</div><div class="y-v">收入 <span style="color: var(--c-green-deep);">50.8</span> 万</div></div>
+        <div class="y-d">入住率 +8% · 运营成本 39.6 万 · 净利润 <span style="color: var(--c-red); font-weight: 600;">—7.5 万</span></div>
+        <div class="y-bar"><div class="seg rev" style="width: 92%; animation-delay: 0.4s;"></div><div class="seg cost" style="width: 70%; animation-delay: 0.7s;"></div></div>
+      </div>
+      <div class="yr hot anm anm-d5">
+        <div class="y-l"><div class="y-n">Y3 · 第 3 年</div><div class="y-v">收入 <span style="color: var(--c-green-deep);">54.9</span> 万</div></div>
+        <div class="y-d">品牌沉淀 · 运营成本 41.2 万 · 折旧 25 万 · 净利润 <span style="color: var(--c-green-deep); font-weight: 700;">+1.2 万 · 扭亏为盈 ✓</span></div>
+        <div class="y-bar"><div class="seg rev" style="width: 100%; animation-delay: 0.5s;"></div></div>
+      </div>
+    </div>
+
+    <div class="side-svg anm anm-r-d3">
+      <img src="svg/p20-revenue.svg" style="width: 100%; height: auto; display: block;" alt="三年收入柱状图">
+      <div style="font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.2em; opacity: 0.4; text-align: center; margin-top: 16px; text-transform: uppercase;">Y1—Y3 收入与净利润走势</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">收入预测</div>
+    <div class="page-num">P20 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P21 · 三情景分析
+     ============================================ -->
+<section data-label="三情景分析">
+<div class="slide p21 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第四幕 · 投资与财务</div>
+  </div>
+  <div class="kicker anm anm-d1">19 · SCENARIOS</div>
+  <div class="t-h2 anm anm-d2">三情景分析与敏感性</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="sc-grid">
+    <div class="sc optimistic anm anm-d3">
+      <div class="lb">乐观 · 入住率 +15%</div>
+      <div class="nm">OPTMISTIC</div>
+      <div class="v-row"><span class="k">年收入</span><span class="v">54.0 万</span></div>
+      <div class="v-row"><span class="k">年净利润</span><span class="v" style="color: var(--c-amber);">—5.5 万</span></div>
+      <div class="v-row"><span class="k">回收期</span><span class="v">5—6 年</span></div>
+      <div class="v-row hot"><span class="k">评价</span><span class="v" style="color: var(--c-green-soft);">✓ 优秀</span></div>
+    </div>
+    <div class="sc baseline anm anm-d4">
+      <div class="lb">保守 · 基准情景</div>
+      <div class="nm">BASELINE</div>
+      <div class="v-row"><span class="k">年收入</span><span class="v">43.2 万</span></div>
+      <div class="v-row"><span class="k">年净利润</span><span class="v" style="color: var(--c-amber);">—15.5 万</span></div>
+      <div class="v-row"><span class="k">回收期</span><span class="v">7—8 年</span></div>
+      <div class="v-row hot"><span class="k">评价</span><span class="v" style="color: var(--c-blue);">⚖ 可接受</span></div>
+    </div>
+    <div class="sc pessimistic anm anm-d5">
+      <div class="lb">悲观 · 入住率 —15%</div>
+      <div class="nm">PESSIMISTIC</div>
+      <div class="v-row"><span class="k">年收入</span><span class="v">32.4 万</span></div>
+      <div class="v-row"><span class="k">年净利润</span><span class="v" style="color: var(--c-red);">—25.5 万</span></div>
+      <div class="v-row"><span class="k">回收期</span><span class="v">&gt; 10 年</span></div>
+      <div class="v-row hot"><span class="k">评价</span><span class="v" style="color: var(--c-red);">✗ 需警惕</span></div>
+    </div>
+  </div>
+
+  <div class="sens anm anm-d7">
+    <div class="hd">SENSITIVITY · 敏感性分析</div>
+    <div class="it">
+      <span class="arr">↓ 客流 —20%</span>
+      <span>则首年净利润额外下降</span>
+      <span class="v">—8.6 万</span>
+    </div>
+    <div class="it">
+      <span class="arr">↓ 房价 —10%</span>
+      <span>则首年净利润额外下降</span>
+      <span class="v">—4.3 万</span>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">三情景分析</div>
+    <div class="page-num">P21 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P22 · 盈亏平衡
+     ============================================ -->
+<section data-label="盈亏平衡">
+<div class="slide p22 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第四幕 · 投资与财务</div>
+  </div>
+  <div class="kicker anm anm-d1">20 · BREAK-EVEN</div>
+  <div class="t-h2 anm anm-d2">盈亏平衡点分析</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="hero">
+    <div>
+      <div class="kp-grid">
+        <div class="kp anm anm-d3">
+          <div class="kl">年均房价</div>
+          <div class="kv">950<span style="font-size: 18px; opacity: 0.5; margin-left: 6px;">元/间/天</span></div>
+          <div class="kd">加权 · 旺季 1200 · 平季 900 · 淡季 600</div>
+        </div>
+        <div class="kp anm anm-d4">
+          <div class="kl">每间夜变动成本</div>
+          <div class="kv">741<span style="font-size: 18px; opacity: 0.5; margin-left: 6px;">元</span></div>
+          <div class="kd">人力 45% + 食材 15% + 营销 8% + 水电 10%</div>
+        </div>
+        <div class="kp anm anm-d5">
+          <div class="kl">每间夜边际贡献</div>
+          <div class="kv g">209<span style="font-size: 18px; opacity: 0.5; margin-left: 6px;">元</span></div>
+          <div class="kd">房价 — 变动成本</div>
+        </div>
+        <div class="kp anm anm-d6">
+          <div class="kl">年固定成本（折旧）</div>
+          <div class="kv">25<span style="font-size: 18px; opacity: 0.5; margin-left: 6px;">万元</span></div>
+          <div class="kd">250 万 ÷ 10 年直线折旧</div>
+        </div>
+        <div class="kp full anm anm-d7">
+          <div class="kl" style="color: var(--c-red); opacity: 0.7;">⚠ 保本入住率</div>
+          <div class="kv r" style="font-size: 56px;">65.5<span style="font-size: 22px; opacity: 0.5; margin-left: 6px;">%</span></div>
+          <div class="kd">对应年保本间夜数 1,196 间夜 · 第 3 年有望达标</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-side anm anm-r-d3" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <div style="font-family: var(--font-mono); font-size: 18px; letter-spacing: 0.22em; opacity: 0.4; text-transform: uppercase; margin-bottom: 20px;">CROSSOVER · 盈亏交叉</div>
+      <svg viewBox="0 0 360 280" style="width: 100%; height: auto;">
+        <line x1="40" y1="240" x2="340" y2="240" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+        <line x1="40" y1="20" x2="40" y2="240" stroke="rgba(0,0,0,0.3)" stroke-width="1.5"/>
+        <text x="20" y="30" font-size="14" fill="#1a2e1f" opacity="0.5" style="font-family: var(--font-mono);">万元</text>
+        <text x="340" y="258" font-size="14" fill="#1a2e1f" opacity="0.5" text-anchor="end" style="font-family: var(--font-mono);">入住率</text>
+        <line x1="40" y1="120" x2="340" y2="120" stroke="rgba(0,0,0,0.15)" stroke-dasharray="4 4"/>
+        <line x1="200" y1="20" x2="200" y2="240" stroke="rgba(0,0,0,0.15)" stroke-dasharray="4 4"/>
+        <text x="195" y="14" font-size="14" fill="#1a2e1f" text-anchor="end" opacity="0.6" style="font-family: var(--font-mono);">保本 65.5%</text>
+        <path d="M40,210 L200,90 L340,40" fill="none" stroke="#2a6e3b" stroke-width="3" style="stroke-dasharray: 600; animation: drawLine 1.5s ease both;"/>
+        <path d="M40,140 L200,140 L340,140" fill="none" stroke="#B85450" stroke-width="3" stroke-dasharray="6 6"/>
+        <text x="60" y="200" font-size="15" font-weight="600" fill="#2a6e3b" style="font-family: var(--font-serif);">收入线</text>
+        <text x="60" y="130" font-size="15" font-weight="600" fill="#B85450" style="font-family: var(--font-serif);">总成本线</text>
+        <circle cx="200" cy="120" r="6" fill="#2a6e3b" stroke="#fff" stroke-width="2"/>
+        <text x="220" y="100" font-size="14" font-weight="700" fill="#2a6e3b" style="font-family: var(--font-serif);">保本点</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">盈亏平衡</div>
+    <div class="page-num">P22 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P23 · Dashboard
+     ============================================ -->
+<section data-label="关键指标">
+<div class="slide p23 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第四幕 · 投资与财务</div>
+  </div>
+  <div class="kicker anm anm-d1">21 · DASHBOARD</div>
+  <div class="t-h2 anm anm-d2">关键经营指标</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="kpi-grid">
+    <div class="dc anm anm-d3">
+      <div class="dl">总投资</div>
+      <div class="dv g anm-pop anm-p1">250<span class="u">万</span></div>
+      <div class="dd">方案 A 中值 · 含 10% 预备金</div>
+    </div>
+    <div class="dc anm anm-d4">
+      <div class="dl">每间投资</div>
+      <div class="dv b anm-pop anm-p2">50<span class="u">万</span></div>
+      <div class="dd">5—6 间精品客房分摊</div>
+    </div>
+    <div class="dc anm anm-d5">
+      <div class="dl">年收入（首年）</div>
+      <div class="dv g anm-pop anm-p3">43.2<span class="u">万</span></div>
+      <div class="dd">旺季入住率 60% 基准</div>
+    </div>
+    <div class="dc warn anm anm-d5">
+      <div class="dl">首年净利润</div>
+      <div class="dv r anm-pop anm-p3">—15.5<span class="u">万</span></div>
+      <div class="dd">正常爬坡期 · 行业基线</div>
+    </div>
+    <div class="dc warn anm anm-d6">
+      <div class="dl">首年净利润率</div>
+      <div class="dv r anm-pop anm-p4">—36<span class="u">%</span></div>
+      <div class="dd">第 3 年扭亏为盈</div>
+    </div>
+    <div class="dc good anm anm-d7">
+      <div class="dl">保本入住率</div>
+      <div class="dv g anm-pop anm-p5">65.5<span class="u">%</span></div>
+      <div class="dd">1,196 间夜 / 年</div>
+    </div>
+  </div>
+
+  <div class="concl anm anm-d8">
+    核心判断 · 首年亏损属正常爬坡 · 第三年可扭亏为盈 · 投资回收期 7—8 年 · 行业基线水平
+  </div>
+
+  <div class="foot">
+    <div class="brand">关键指标</div>
+    <div class="page-num">P23 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P24 · 实施路线图
+     ============================================ -->
+<section data-label="实施路线图">
+<div class="slide p24 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第五幕 · 实施与风险</div>
+  </div>
+  <div class="kicker anm anm-d1">22 · TIMELINE</div>
+  <div class="t-h2 anm anm-d2">实施路线图 · 8 个月</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="gantt">
+    <div class="gnt f1 anm anm-d3">
+      <div class="lbl"><div class="n">M1 · 前期准备</div><div class="d">T+1M — T+2M</div></div>
+      <div class="track"><div class="fill"></div><div class="ph"></div></div>
+    </div>
+    <div class="gnt f2 anm anm-d4">
+      <div class="lbl"><div class="n">M2 · 施工改造</div><div class="d">T+3M — T+5M（12 周）</div></div>
+      <div class="track"><div class="fill"></div><div class="ph"></div></div>
+    </div>
+    <div class="gnt f3 anm anm-d5">
+      <div class="lbl"><div class="n">M3 · 软装筹备</div><div class="d">T+6M</div></div>
+      <div class="track"><div class="fill"></div><div class="ph"></div></div>
+    </div>
+    <div class="gnt f4 anm anm-d6">
+      <div class="lbl"><div class="n">M4 · 试运营</div><div class="d">T+7M</div></div>
+      <div class="track"><div class="fill"></div><div class="ph"></div></div>
+    </div>
+    <div class="gnt f5 anm anm-d7">
+      <div class="lbl"><div class="n">M5 · 正式运营</div><div class="d">T+8M 起</div></div>
+      <div class="track"><div class="fill"></div><div class="ph"></div></div>
+    </div>
+    <div class="timeline">
+      <div class="seg">M1</div>
+      <div class="seg">M2</div>
+      <div class="seg">M3</div>
+      <div class="seg">M4</div>
+      <div class="seg">M5 →</div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 32px; margin-top: 24px;" class="anm anm-d8">
+    <div style="padding: 12px 20px; background: rgba(42,110,59,0.08); border-left: 3px solid var(--c-green-deep); border-radius: 4px; font-size: 18px;"><strong style="color: var(--c-green-deep);">▣</strong> 决策节点 · 开工 / 验收 / 试运营 / 开营</div>
+    <div style="padding: 12px 20px; background: rgba(74,124,140,0.08); border-left: 3px solid var(--c-blue); border-radius: 4px; font-size: 18px;"><strong style="color: var(--c-blue);">▣</strong> 缓冲机制 · 预留 2 周缓冲应对审批</div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">实施路线图</div>
+    <div class="page-num">P24 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P25 · 分期开发
+     ============================================ -->
+<section data-label="分期开发">
+<div class="slide p25 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第五幕 · 实施与风险</div>
+  </div>
+  <div class="kicker anm anm-d1">23 · PHASED ROLLOUT</div>
+  <div class="t-h2 anm anm-d2">分期开发 · 试水 + 扩量</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="ph-grid">
+    <div class="ph p1 anm anm-d4">
+      <div class="ph-lb">
+        <div class="ph-n">一期 · 精品试水</div>
+        <div class="ph-d">YEAR 1 · 投资 250 万</div>
+      </div>
+      <div class="ph-list">
+        <div class="r">5—6 间精品茶修客房</div>
+        <div class="r">云上茶寮 · 公共空间</div>
+        <div class="r">悬崖观景台修缮</div>
+        <div class="r">品牌 + 课程 + 团队完整闭环</div>
+        <div class="r">验证"悬崖茶修"产品力与定价</div>
+        <div class="r">跑通获客 → 接待 → 交付 → 传播</div>
+      </div>
+      <div style="margin-top: 20px; padding: 14px 18px; background: rgba(42,110,59,0.15); border-radius: 4px; font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.15em; opacity: 0.85; text-align: center;">核心 · 验证模式</div>
+    </div>
+
+    <div class="ph p2 anm anm-d6">
+      <div class="ph-lb">
+        <div class="ph-n">二期 · 扩量升级</div>
+        <div class="ph-d">YEAR 2—3 · 视一期情况</div>
+      </div>
+      <div class="ph-list">
+        <div class="r">再改造 3—5 间客房</div>
+        <div class="r">单独银发公寓（适老升级）</div>
+        <div class="r">樱桃会非遗传习所</div>
+        <div class="r">研学课程开发 · 学校渠道</div>
+        <div class="r">品牌输出 · 加盟联营</div>
+        <div class="r">茶山民宿集群（5—8 家）</div>
+      </div>
+      <div style="margin-top: 20px; padding: 14px 18px; background: rgba(74,124,140,0.15); border-radius: 4px; font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.15em; opacity: 0.85; text-align: center;">升级 · 规模品牌</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">分期开发</div>
+    <div class="page-num">P25 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P26 · 风险矩阵
+     ============================================ -->
+<section data-label="风险矩阵">
+<div class="slide p26 bg-paper">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第五幕 · 实施与风险</div>
+  </div>
+  <div class="kicker anm anm-d1">24 · RISK MATRIX</div>
+  <div class="t-h2 anm anm-d2">风险矩阵与应急预案</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="r-grid">
+    <div class="rc r1 anm anm-d3">
+      <div class="lvl">🔴 致命</div>
+      <div class="rn">R1 · 冬季淡季</div>
+      <div class="rd">湘西冬季湿冷 · 12—3 月入住率低</div>
+      <div class="re">
+        <div class="l">预案</div>
+        <div class="t">入住率 &lt; 50% → 果断闭店 3 个月 · 茶师轮休 · 留 1 名管家值守</div>
+      </div>
+    </div>
+    <div class="rc r2 anm anm-d4">
+      <div class="lvl">🔴 致命</div>
+      <div class="rn">R2 · 银发健康</div>
+      <div class="rd">银发客人突发病情 · 急救资源远</div>
+      <div class="re">
+        <div class="l">预案</div>
+        <div class="t">全员急救培训 · 与双龙镇卫生院签绿色通道 · 强制住宿险</div>
+      </div>
+    </div>
+    <div class="rc r3 anm anm-d5">
+      <div class="lvl">🟠 重大</div>
+      <div class="rn">R3 · 获客不足</div>
+      <div class="rd">小红书投放转化低 · 渠道失效</div>
+      <div class="re">
+        <div class="l">预案</div>
+        <div class="t">连续 3 月入住率 &lt; 40% → 暂停投放 · 用户访谈 · 修正产品</div>
+      </div>
+    </div>
+    <div class="rc r4 anm anm-d6">
+      <div class="lvl">🟠 重大</div>
+      <div class="rn">R4 · 人员离职</div>
+      <div class="rd">茶师 / 厨师突然离职 · 招聘周期长</div>
+      <div class="re">
+        <div class="l">预案</div>
+        <div class="t">全员 B 角制度 · 关键岗位必带教徒弟 · 流失率预警</div>
+      </div>
+    </div>
+    <div class="rc r5 anm anm-d7">
+      <div class="lvl">🟠 重大</div>
+      <div class="rn">R5 · 施工延迟</div>
+      <div class="rd">材料涨价 · 审批拖延 · 雨季影响</div>
+      <div class="re">
+        <div class="l">预案</div>
+        <div class="t">预留 2 周缓冲 · 提前与文旅局沟通 · 关键材料提前 60 天预定</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="brand">风险矩阵</div>
+    <div class="page-num">P26 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P27 · 政策申报
+     ============================================ -->
+<section data-label="政策申报">
+<div class="slide p27 bg-ink">
+  <div class="chrome anm">
+    <div>云崖茶隐 · YUN-YA</div>
+    <div>第五幕 · 实施与风险</div>
+  </div>
+  <div class="kicker anm anm-d1">25 · POLICY</div>
+  <div class="t-h2 anm anm-d2">可申报政策资金通道</div>
+  <div class="rule anm anm-d3"></div>
+
+  <div class="pol-grid">
+    <div class="pol anm anm-d3">
+      <div class="pl">01 · 国家级</div>
+      <div class="pn">传统村落<br>保护利用资金</div>
+      <div class="pv">100—300<span style="font-size: 18px; opacity: 0.6; margin-left: 4px;">万</span></div>
+      <div class="pd">住建部 + 财政部<br>每村最高 300 万</div>
+    </div>
+    <div class="pol anm anm-d4">
+      <div class="pl">02 · 省级</div>
+      <div class="pn">湖南省乡村<br>旅游重点民宿</div>
+      <div class="pv">50—150<span style="font-size: 18px; opacity: 0.6; margin-left: 4px;">万</span></div>
+      <div class="pd">湖南省文旅厅<br>评定后一次性奖补</div>
+    </div>
+    <div class="pol anm anm-d5">
+      <div class="pl">03 · 县级</div>
+      <div class="pn">花垣县乡村<br>振兴产业扶持</div>
+      <div class="pv">30—100<span style="font-size: 18px; opacity: 0.6; margin-left: 4px;">万</span></div>
+      <div class="pd">花垣县乡村振兴局<br>项目奖补 + 贷款贴息</div>
+    </div>
+    <div class="pol anm anm-d6">
+      <div class="pl">04 · 床位补贴</div>
+      <div class="pn">养老服务<br>床位建设补贴</div>
+      <div class="pv">5,000<span style="font-size: 18px; opacity: 0.6; margin-left: 4px;">元/床</span></div>
+      <div class="pd">民政部<br>符合适老标准可申请</div>
+    </div>
+  </div>
+
+  <div class="tl anm anm-d7">
+    <div class="h">申报时间线建议</div>
+    <div class="r"><div class="t">Q3 · 选址</div><div>锁定地址 · 启动传统村落保护申请材料</div></div>
+    <div class="r"><div class="t">Q4 · 提交</div><div>非遗 / 传统村落保护利用资金申请</div></div>
+    <div class="r"><div class="t">次年 Q1</div><div>省级研学基地备案 · 民宿评定申报</div></div>
+    <div class="r"><div class="t">Q2 · 运营</div><div>运营后申请养老床位补贴 · 兑现</div></div>
+  </div>
+
+  <div class="warn anm anm-d8">⚠ 上述金额为行业经验推测值 · 实际以当地政府当年发布指南为准</div>
+
+  <div class="foot">
+    <div class="brand">政策申报</div>
+    <div class="page-num">P27 / 28</div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================
+     P28 · 尾页
+     ============================================ -->
+<section data-label="尾页">
+<div class="slide p28 bg-ink">
+  <div class="vline anm anm-d1"></div>
+  <div class="display anm anm-d3">谢&nbsp;&nbsp;&nbsp;&nbsp;谢</div>
+  <div class="vline anm anm-d4"></div>
+  <div class="sub anm anm-d5">云端茶修 · 静候佳音</div>
+  <div class="vline anm anm-d6"></div>
+  <div class="brand anm anm-d7">云崖茶隐 · 悬崖康养·云中茶修基地</div>
+  <div class="slogan anm anm-d8">「 睡在云端 · 醒在茶里 」</div>
+  <div class="vline anm anm-d8" style="margin-top: 32px;"></div>
+  <div class="contact anm anm-d9">CONTACT · [ 待 填 写 ]</div>
+</div>
+</section>
+
+</deck-stage>
+<script src="assets/deck-stage.js"></script>
+</body>
+</html>

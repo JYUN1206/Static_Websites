@@ -217,7 +217,7 @@
                     </div>
                     <div class="gallery-item" onclick="previewImage(this)">
                         <div class="gallery-item-image"><img src="images/projects/project23.jpg" alt="" loading="lazy"></div>
-                        <div class="gallery-item-title">“云上相思 南国有爱”策划案</div>
+                        <div class="gallery-item-title">"云上相思 南国有爱"策划案</div>
                     </div>
                     <div class="gallery-item" onclick="previewImage(this)">
                         <div class="gallery-item-image"><img src="images/projects/project24.jpg" alt="" loading="lazy"></div>
@@ -304,11 +304,20 @@
                     </div>
                     <div class="gallery-item" onclick="previewImage(this)">
                         <div class="gallery-item-image"><img src="images/projects/project35.jpg" alt="" loading="lazy"></div>
-                        <div class="gallery-item-title">云南省文旅厅 · “十五五”规划培训汇报(PPT)</div>
+                        <div class="gallery-item-title">云南省文旅厅 · "十五五"规划培训汇报(PPT)</div>
                     </div>
                     <div class="gallery-item" onclick="previewImage(this)">
                         <div class="gallery-item-image"><img src="images/projects/project36.jpg" alt="" loading="lazy"></div>
-                        <div class="gallery-item-title">云南省文旅厅 · “十五五”规划培训汇报</div>
+                        <div class="gallery-item-title">云南省文旅厅 · "十五五"规划培训汇报</div>
+                    </div>
+                </div>
+
+                <!-- 数据分析与AI赋能 -->
+                <div class="works-category-title">📈 数据分析与 AI 赋能</div>
+                <div class="works-gallery">
+                    <div class="gallery-item" onclick="window.open('demo/xiangxi-dashboard.html', '_blank')" style="cursor:pointer;">
+                        <div class="gallery-item-image"><img src="images/projects/dashboard-xiangxi.jpg" alt="湘西旅游区2023运营数据看板" loading="lazy"></div>
+                        <div class="gallery-item-title">湘西旅游区 2023 运营数据看板 ↗</div>
                     </div>
                 </div>
             </div>
@@ -691,15 +700,39 @@
                 <p class="section-subtitle" style="margin:0 auto;">精选代表性项目案例，详细展示项目背景、工作方法与成果</p>
             </div>
             <div class="fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
-                <div class="blog-card" style="text-align:center;padding:48px 24px;">
-                    <div style="font-size:32px;margin-bottom:12px;">📊</div>
-                    <div class="blog-card-title" style="margin-bottom:8px;">文旅数据分析项目</div>
-                    <div style="font-size:13px;color:var(--text-muted);">案例整理中，敬请期待</div>
+                <div class="blog-card" style="padding:0;overflow:hidden;cursor:pointer;" onclick="window.open('demo/xiangxi-dashboard.html', '_blank')">
+                    <div style="aspect-ratio:16/9;overflow:hidden;">
+                        <img src="images/projects/dashboard-xiangxi.jpg" alt="湘西旅游区数据看板" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+                    </div>
+                    <div style="padding:20px;">
+                        <div class="blog-card-title" style="margin-bottom:8px;">湘西旅游区 2023 运营数据看板</div>
+                        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">
+                            面向文旅经济运行的数据分析实践。整合景区客流、营收、客群、渠道、服务质量等多维运营数据，构建从宏观趋势到微观景区的完整分析体系，支撑文旅经济运行监测与决策研判。
+                        </div>
+                        <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;">
+                            <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--tag-bg);color:var(--tag-color);">文旅经济运行</span>
+                            <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--tag-bg);color:var(--tag-color);">客流分析</span>
+                            <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--tag-bg);color:var(--tag-color);">数据可视化</span>
+                            <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--tag-bg);color:var(--tag-color);">AI赋能</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="blog-card" style="text-align:center;padding:48px 24px;">
-                    <div style="font-size:32px;margin-bottom:12px;">🗺️</div>
-                    <div class="blog-card-title" style="margin-bottom:8px;">文旅策划项目</div>
-                    <div style="font-size:13px;color:var(--text-muted);">案例整理中，敬请期待</div>
+                <div class="blog-card" style="padding:0;overflow:hidden;cursor:pointer;" onclick="window.open('demo/minimax/index.html', '_blank')">
+                    <div style="aspect-ratio:16/9;overflow:hidden;">
+                        <img src="images/projects/minimax-cover.jpg" alt="悬崖康养云中茶修策划方案" style="width:100%;height:100%;object-fit:cover;" loading="lazy">
+                    </div>
+                    <div style="padding:20px;">
+                        <div class="blog-card-title" style="margin-bottom:8px;">悬崖康养 · 云中茶修 — 云崖茶隐策划方案</div>
+                        <div style="font-size:13px;color:var(--text-muted);line-height:1.6;">
+                            湘西花垣县金龙村文旅策划项目。以"悬崖云海 + 高山茶修"为核心主题，面向银发避暑康养客群，涵盖资源研判、市场分析、产品体系、业态布局、投资测算与运营策略的完整策划方案。
+                        </div>
+                        <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;">
+                            <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--tag-bg);color:var(--tag-color);">文旅策划</span>
+                            <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--tag-bg);color:var(--tag-color);">康养旅游</span>
+                            <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--tag-bg);color:var(--tag-color);">乡村振兴</span>
+                            <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:var(--tag-bg);color:var(--tag-color);">投资测算</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 360">
+  <style>text{font-family:'Noto Serif SC','Noto Sans SC',sans-serif}</style>
+  <rect width="500" height="360" fill="none"/>
+  <!-- Card 1 -->
+  <rect x="10" y="10" width="152" height="340" rx="6" fill="#f5f1e8" stroke="rgba(42,157,143,0.3)" stroke-width="1.5"/>
+  <rect x="10" y="10" width="152" height="340" rx="6" fill="rgba(42,157,143,0.04)"/>
+  <text x="86" y="40" font-size="10" fill="#1a2e1f" opacity="0.35" text-anchor="middle" font-family="'IBM Plex Mono',monospace">01 银发经济</text>
+  <text x="86" y="80" font-size="28" font-weight="700" fill="#2A9D8F" text-anchor="middle">12</text>
+  <text x="130" y="80" font-size="11" fill="#1a2e1f" opacity="0.4" text-anchor="middle">万亿元</text>
+  <text x="86" y="105" font-size="10" fill="#1a2e1f" opacity="0.5" text-anchor="middle">康养旅居增长 25%</text>
+  <!-- Bar -->
+  <rect x="25" y="125" width="40" height="100" rx="2" fill="rgba(42,157,143,0.3)"/>
+  <rect x="75" y="155" width="40" height="70" rx="2" fill="rgba(55,138,221,0.2)"/>
+  <text x="45" y="235" font-size="8" fill="#1a2e1f" opacity="0.35" text-anchor="middle">2024</text>
+  <text x="95" y="235" font-size="8" fill="#1a2e1f" opacity="0.35" text-anchor="middle">2025</text>
+  <text x="86" y="260" font-size="9" fill="#1a2e1f" opacity="0.4" text-anchor="middle">规模走势</text>
+
+  <!-- Card 2 -->
+  <rect x="174" y="10" width="152" height="340" rx="6" fill="rgba(251,191,36,0.03)" stroke="rgba(251,191,36,0.2)" stroke-width="1.5"/>
+  <text x="250" y="40" font-size="10" fill="#1a2e1f" opacity="0.35" text-anchor="middle" font-family="'IBM Plex Mono',monospace">02 避暑旅居</text>
+  <text x="230" y="80" font-size="28" font-weight="700" fill="#D85A30" text-anchor="middle">+41</text>
+  <text x="270" y="80" font-size="11" fill="#1a2e1f" opacity="0.4" text-anchor="middle">%</text>
+  <text x="250" y="105" font-size="10" fill="#1a2e1f" opacity="0.5" text-anchor="middle">长住订单同比</text>
+  <rect x="195" y="125" width="28" height="60" rx="2" fill="rgba(216,90,48,0.15)"/>
+  <rect x="235" y="105" width="28" height="80" rx="2" fill="rgba(216,90,48,0.35)"/>
+  <text x="209" y="195" font-size="8" fill="#1a2e1f" opacity="0.35" text-anchor="middle">2025</text>
+  <text x="249" y="195" font-size="8" fill="#1a2e1f" opacity="0.35" text-anchor="middle">2026</text>
+  <text x="250" y="220" font-size="9" fill="#1a2e1f" opacity="0.4" text-anchor="middle">旺季入住率 80-90%</text>
+  <text x="250" y="240" font-size="9" fill="#1a2e1f" opacity="0.35" text-anchor="middle">来源：搜狐财经</text>
+
+  <!-- Card 3 -->
+  <rect x="338" y="10" width="152" height="340" rx="6" fill="rgba(55,138,221,0.03)" stroke="rgba(55,138,221,0.2)" stroke-width="1.5"/>
+  <text x="414" y="40" font-size="10" fill="#1a2e1f" opacity="0.35" text-anchor="middle" font-family="'IBM Plex Mono',monospace">03 政策红利</text>
+  <text x="414" y="75" font-size="18" font-weight="700" fill="#1a2e1f" text-anchor="middle">大湘西</text>
+  <text x="414" y="95" font-size="16" font-weight="700" fill="#1a2e1f" text-anchor="middle">生态康养带</text>
+  <text x="414" y="120" font-size="10" fill="#1a2e1f" opacity="0.5" text-anchor="middle">湖南省三大省级康养布局</text>
+  <!-- Icon area -->
+  <rect x="370" y="140" width="88" height="60" rx="4" fill="rgba(55,138,221,0.08)" stroke="rgba(55,138,221,0.15)" stroke-width="0.5"/>
+  <text x="414" y="162" font-size="11" fill="#378ADD" text-anchor="middle" font-weight="600">花垣县</text>
+  <text x="414" y="180" font-size="9" fill="#1a2e1f" opacity="0.4" text-anchor="middle">政策资源富集</text>
+  <text x="414" y="240" font-size="9" fill="#1a2e1f" opacity="0.35" text-anchor="middle">来源：湖南省政府</text>
+</svg>
