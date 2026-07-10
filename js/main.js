@@ -162,18 +162,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadBlog();
 
-    // ===== 滚动入场动画 =====
+    // ===== 滚动入场动画（加固：异常时也能正常显示）=====
     const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
+    if (!('IntersectionObserver' in window)) {
+        fadeEls.forEach(el => el.classList.add('visible'));
+        window.__fadeOK = true;
+    } else {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
 
-    fadeEls.forEach(el => observer.observe(el));
+        fadeEls.forEach(el => observer.observe(el));
+        window.__fadeOK = true;
+    }
 
     // ===== 平滑滚动 =====
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

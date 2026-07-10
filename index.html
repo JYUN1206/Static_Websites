@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,14..72,300;0,14..72,500;1,14..72,300;1,14..72,500&display=swap" rel="stylesheet">
+    <script>document.documentElement.classList.add('js');</script>
+    <noscript><style>.fade-in{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
@@ -785,5 +787,38 @@
     </div>
 
     <script src="js/main.js"></script>
+    <!-- 加固：图片/内容显示兜底，防止“显示不全” -->
+    <script>
+    (function () {
+        // 1) 图片加载失败 -> 占位图（避免碎图/空白导致显示不全）
+        var PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect fill='%23f0f0f0' width='400' height='300'/%3E%3Ctext x='200' y='160' text-anchor='middle' fill='%23999' font-size='16' font-family='sans-serif'%3E图片加载失败%3C/text%3E%3C/svg%3E";
+        document.addEventListener('error', function (e) {
+            var t = e.target;
+            if (t && t.tagName === 'IMG' && !t.dataset.fb) {
+                t.dataset.fb = '1';
+                t.removeAttribute('srcset');
+                t.src = PLACEHOLDER;
+            }
+        }, true);
+
+        // 2) fade-in 兜底：确保内容不会因脚本异常而永久隐藏
+        function revealInView() {
+            var h = window.innerHeight || document.documentElement.clientHeight;
+            document.querySelectorAll('.fade-in:not(.visible)').forEach(function (el) {
+                var r = el.getBoundingClientRect();
+                if (r.top < h && r.bottom > 0) el.classList.add('visible');
+            });
+        }
+        window.addEventListener('load', revealInView);
+        // 若主脚本入场动画未生效（observer 失败），1.5s 后强制全部显示
+        setTimeout(function () {
+            if (!window.__fadeOK) {
+                document.querySelectorAll('.fade-in:not(.visible)').forEach(function (el) {
+                    el.classList.add('visible');
+                });
+            }
+        }, 1500);
+    })();
+    </script>
 </body>
 </html>

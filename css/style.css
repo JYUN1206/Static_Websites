@@ -380,7 +380,7 @@ img {
 }
 
 /* ===== 滚动入场动画 ===== */
-.fade-in {
+.js .fade-in {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.6s ease, transform 0.6s ease;
